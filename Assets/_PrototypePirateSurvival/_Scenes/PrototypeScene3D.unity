@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AutomaticallyUnparentOnAwake: 1
-  TargetFrameRate: 300
+  TargetFrameRate: 60
   MaximumLives: 0
   CurrentLives: 0
   GameOverScene: 
@@ -1795,10 +1795,20 @@ PrefabInstance:
       propertyPath: m_MatchWidthOrHeight
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 766615731876363343, guid: cb3244a2dfe4389488e28efa59444315,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3059205865043631604, guid: cb3244a2dfe4389488e28efa59444315,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -28.000244
+      value: -28.000122
+      objectReference: {fileID: 0}
+    - target: {fileID: 4420529064217909539, guid: cb3244a2dfe4389488e28efa59444315,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4557246220297865549, guid: cb3244a2dfe4389488e28efa59444315,
         type: 3}
@@ -1883,6 +1893,11 @@ PrefabInstance:
     - target: {fileID: 5783197472861928463, guid: cb3244a2dfe4389488e28efa59444315,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719784042625349119, guid: cb3244a2dfe4389488e28efa59444315,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9209431604403603156, guid: cb3244a2dfe4389488e28efa59444315,

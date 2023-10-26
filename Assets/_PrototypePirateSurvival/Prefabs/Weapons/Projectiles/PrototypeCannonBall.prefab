@@ -216,7 +216,7 @@ MonoBehaviour:
   ProjectileIsFacingRight: 1
   InitialInvulnerabilityDuration: 0
   DamageOwner: 0
-  InitialForce: 500
+  InitialForce: 600
   InitialRotation: {x: 0, y: 0, z: 0}
   InitialForceMode: 0
   InitialForceMode2D: 1
