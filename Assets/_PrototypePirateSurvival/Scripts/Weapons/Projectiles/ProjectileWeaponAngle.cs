@@ -11,14 +11,14 @@ public class ProjectileWeaponAngle : ProjectileWeapon
     public Vector3 FromShootAngle = Vector3.zero;
     public Vector3 ToShootAngle = Vector3.zero;
 
-    private Vector3 _originalFaceDirection;
+    //private Vector3 _originalFaceDirection;
 
-    protected override void Start()
-    {
-        base.Start();
+    //protected override void Start()
+    //{
+    //    base.Start();
 
-        _originalFaceDirection = transform.forward;
-    }
+    //    _originalFaceDirection = transform.forward;
+    //}
 
     public override GameObject SpawnProjectile(Vector3 spawnPosition, int projectileIndex, int totalProjectiles, bool triggerObjectActivation = true)
     {

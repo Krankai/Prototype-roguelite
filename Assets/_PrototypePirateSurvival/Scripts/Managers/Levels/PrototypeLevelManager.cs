@@ -16,5 +16,15 @@ public class PrototypeLevelManager : LevelManager
         base.Initialization();
 
         _groundMeshRenderer = GroundTransform.gameObject.MMGetComponentNoAlloc<MeshRenderer>();
+
+        var mainPlayer = LevelManager.Instance.Players[0];
+        if (mainPlayer != default)
+        {
+            var handleWeapon = mainPlayer.FindAbility<CharacterHandleWeapon>();
+            var handleSecondaryWeapon = mainPlayer.FindAbility<CharacterHandleSecondaryWeapon>();
+
+            handleWeapon.ForceAlwaysShoot = false;
+            handleSecondaryWeapon.ForceAlwaysShoot = false;
+        }
     }
 }
