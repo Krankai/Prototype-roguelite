@@ -211,11 +211,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7579324933328962880}
   - component: {fileID: -4139110431289933113}
-  - component: {fileID: 2877269531164155219}
   - component: {fileID: -6632892441098476638}
-  - component: {fileID: -3394009187919328103}
+  - component: {fileID: 2877269531164155219}
   m_Layer: 0
-  m_Name: PrototypeInvisibleCannon
+  m_Name: PrototypeInvisibleCannon 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -325,26 +324,6 @@ MonoBehaviour:
   TestShootButton: 0
   FromShootAngle: {x: -50, y: 0, z: 0}
   ToShootAngle: {x: -50, y: 0, z: 0}
---- !u!114 &2877269531164155219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 946555796988062069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 614c631f7ae12ee4597511403e87f2b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MutualizeWaitingPools: 1
-  NestWaitingPool: 1
-  NestUnderThis: 0
-  GameObjectToPool: {fileID: 1770188937709924190, guid: 54d3eb5f55ed404449b30fabb6f803bb,
-    type: 3}
-  PoolSize: 4
-  PoolCanExpand: 1
-  AppliedInitialForce: 0
 --- !u!114 &-6632892441098476638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,44 +365,26 @@ MonoBehaviour:
   AvoidNullAim: 1
   IsFaceRight: 1
   IsSecondaryWeapon: 0
---- !u!114 &-3394009187919328103
+--- !u!114 &2877269531164155219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946555796988062069}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 917bba013df402b42b7581f687f6c802, type: 3}
+  m_Script: {fileID: 11500000, guid: 614c631f7ae12ee4597511403e87f2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetsMask:
-    serializedVersion: 2
-    m_Bits: 8192
-  ObstacleMask:
-    serializedVersion: 2
-    m_Bits: 256
-  ScanRadius: 7
-  LineOfFireBoxcastSize: {x: 0.1, y: 0.1}
-  DurationBetweenScans: 1
-  DetectionOriginOffset: {x: 0, y: 0, z: 0}
-  OnlyAcquireTargetsIfOwnerIsIdle: 0
-  RotationMode: 0
-  ApplyAutoAimAsLastDirection: 1
-  MoveCameraTarget: 0
-  CameraTargetDistance: 0.5
-  CameraTargetMaxDistance: 10
-  CameraTargetSpeed: 5
-  MoveCameraToCharacterIfNoTarget: 0
-  AimMarkerPrefab: {fileID: 0}
-  DestroyAimMarkerOnWeaponDestroy: 1
-  FirstTargetFoundFeedback: {fileID: 0}
-  NewTargetFoundFeedback: {fileID: 0}
-  NoMoreTargetsFeedback: {fileID: 0}
-  Target: {fileID: 0}
-  DrawDebugRadius: 0
-  OverlapMaximum: 10
+  MutualizeWaitingPools: 1
+  NestWaitingPool: 1
+  NestUnderThis: 0
+  GameObjectToPool: {fileID: 1770188937709924190, guid: 54d3eb5f55ed404449b30fabb6f803bb,
+    type: 3}
+  PoolSize: 4
+  PoolCanExpand: 1
+  AppliedInitialForce: 0
 --- !u!1 &2737003305881226661
 GameObject:
   m_ObjectHideFlags: 0

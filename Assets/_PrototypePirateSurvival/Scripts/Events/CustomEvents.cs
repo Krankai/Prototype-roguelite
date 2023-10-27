@@ -23,4 +23,26 @@ public class CustomEvents : MonoBehaviour
             MMEventManager.TriggerEvent(e);
         }
     }
+
+    public struct EnemyDetectEvent
+    {
+        public Vector3 EnemyPosition;
+        public bool IsFromSecondaryWeapon;
+
+        public EnemyDetectEvent(Vector3 position, bool isFromSecondaryWeapon)
+        {
+            EnemyPosition = position;
+            IsFromSecondaryWeapon = isFromSecondaryWeapon;
+        }
+
+        static EnemyDetectEvent e;
+
+        public static void Trigger(Vector3 position, bool isFromSecondaryWeapon)
+        {
+            e.EnemyPosition = position;
+            e.IsFromSecondaryWeapon = isFromSecondaryWeapon;
+
+            MMEventManager.TriggerEvent(e);
+        }
+    }
 }

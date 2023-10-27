@@ -1388,6 +1388,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1555356233}
     m_Modifications:
+    - target: {fileID: 560457600765445106, guid: b38bd22e060a7e245af0593a88d66da3,
+        type: 3}
+      propertyPath: InitialHealth
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 560457600765445106, guid: b38bd22e060a7e245af0593a88d66da3,
+        type: 3}
+      propertyPath: MaximumHealth
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 1173586363836793820, guid: b38bd22e060a7e245af0593a88d66da3,
         type: 3}
       propertyPath: m_Name
@@ -1937,6 +1947,16 @@ PrefabInstance:
         type: 3}
       propertyPath: volumeLayer.m_Bits
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453664631067034789, guid: cb3244a2dfe4389488e28efa59444315,
+        type: 3}
+      propertyPath: InputForcedMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453664631067034789, guid: cb3244a2dfe4389488e28efa59444315,
+        type: 3}
+      propertyPath: MovementControl
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4557246220297865549, guid: cb3244a2dfe4389488e28efa59444315,
         type: 3}
