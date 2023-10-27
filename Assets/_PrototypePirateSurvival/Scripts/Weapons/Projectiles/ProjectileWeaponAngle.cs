@@ -1,7 +1,5 @@
 using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileWeaponAngle : ProjectileWeapon
@@ -32,27 +30,40 @@ public class ProjectileWeaponAngle : ProjectileWeapon
             return projectileGameObject;
         }
 
-        Vector3 angleSpread = Vector3.zero;
+        // TODO: double-check if use x and y value (not correct yet!)
+        //Vector3 angleSpread = Vector3.zero;
+        //var dotProduct = Vector3.Dot(_originalFaceDirection, transform.forward);
+        //if (dotProduct >= 0)
+        //{
+        //    // same with original direction
+        //    angleSpread.z = UnityEngine.Random.Range(FromShootAngle.z, ToShootAngle.z);
+        //    angleSpread.x = UnityEngine.Random.Range(FromShootAngle.x, ToShootAngle.x);
+        //    angleSpread.y = UnityEngine.Random.Range(FromShootAngle.y, ToShootAngle.y);
+        //}
+        //else
+        //{
+        //    // opposite to original direction -> flip the angle
+        //    angleSpread.z = -UnityEngine.Random.Range(FromShootAngle.z, ToShootAngle.z);
+        //    angleSpread.x = -UnityEngine.Random.Range(FromShootAngle.x, ToShootAngle.x);
+        //    angleSpread.y = -UnityEngine.Random.Range(FromShootAngle.y, ToShootAngle.y);
+        //}
 
-        // TODO: double-check if use y value (not tested yet!)
-        var dotProduct = Vector3.Dot(_originalFaceDirection, transform.forward);
-        if (dotProduct >= 0)
-        {
-            // same with original direction
-            angleSpread.z = UnityEngine.Random.Range(FromShootAngle.z, ToShootAngle.z);
-            angleSpread.x = UnityEngine.Random.Range(FromShootAngle.x, ToShootAngle.x);
-            angleSpread.y = UnityEngine.Random.Range(FromShootAngle.y, ToShootAngle.y);
-        }
-        else
-        {
-            // opposite to original direction -> flip the angle
-            angleSpread.z = -UnityEngine.Random.Range(FromShootAngle.z, ToShootAngle.z);
-            angleSpread.x = -UnityEngine.Random.Range(FromShootAngle.x, ToShootAngle.x);
-            angleSpread.y = -UnityEngine.Random.Range(FromShootAngle.y, ToShootAngle.y);
-        }
+        //var spread = Quaternion.Euler(angleSpread);
+        //projectile.SetDirection(spread * transform.forward, transform.rotation, true);
+        //Debug.Log($"Direction: {spread * transform.forward}");
 
-        var spread = Quaternion.Euler(angleSpread);
-        projectile.SetDirection(spread * transform.forward, transform.rotation, true);
+        var angleX = UnityEngine.Random.Range(FromShootAngle.x, ToShootAngle.x);
+        var rotateX = Quaternion.AngleAxis(angleX, transform.right);
+
+        var angleY = UnityEngine.Random.Range(FromShootAngle.y, ToShootAngle.y);
+        var rotateY = Quaternion.AngleAxis(angleY, transform.up);
+
+        var angleZ = UnityEngine.Random.Range(FromShootAngle.z, ToShootAngle.z);
+        var rotateZ = Quaternion.AngleAxis(angleZ, transform.forward);
+
+        var direction = rotateX * rotateY * rotateZ * transform.forward;
+        projectile.SetDirection(direction, transform.rotation, true);
+        //Debug.Log($"Direction: {direction}");
 
         return projectileGameObject;
     }

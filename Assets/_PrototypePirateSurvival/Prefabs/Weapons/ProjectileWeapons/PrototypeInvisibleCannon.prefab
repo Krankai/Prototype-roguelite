@@ -322,8 +322,8 @@ MonoBehaviour:
   ObjectPooler: {fileID: 4066848957444094975}
   SpawnFeedbacks: []
   TestShootButton: 0
-  FromShootAngle: {x: 0, y: 0, z: 50}
-  ToShootAngle: {x: 0, y: 0, z: 50}
+  FromShootAngle: {x: -50, y: -30, z: 0}
+  ToShootAngle: {x: -50, y: -30, z: 0}
 --- !u!114 &4066848957444094975
 MonoBehaviour:
   m_ObjectHideFlags: 0

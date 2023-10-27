@@ -1,11 +1,7 @@
-using MoreMountains.Feedbacks;
-using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponChangeNotifier : MonoBehaviour
+public class DualWeaponHandle : MonoBehaviour
 {
     [Header("Main Weapon")]
     [SerializeField]
@@ -18,11 +14,6 @@ public class WeaponChangeNotifier : MonoBehaviour
     private CharacterHandleSecondaryWeapon _handleSecondaryWeaponAbility;
     [SerializeField]
     private bool _isSecondaryWeaponFaceRight;
-
-    //[SerializeField]
-    //private Vector3 _fromSecondaryShootAngle = Vector3.zero;
-    //[SerializeField]
-    //private Vector3 _toSecondaryShootAngle = Vector3.zero;
 
 
     protected virtual void Awake()
@@ -61,12 +52,5 @@ public class WeaponChangeNotifier : MonoBehaviour
             weaponHorizontalAim3D.IsFaceRight = _isSecondaryWeaponFaceRight;
             weaponHorizontalAim3D.IsSecondaryWeapon = true;
         }
-
-        //var weapon = _handleSecondaryWeaponAbility.CurrentWeapon as ProjectileWeaponAngle;
-        //if (weapon != default)
-        //{
-        //    weapon.FromShootAngle = _fromSecondaryShootAngle;
-        //    weapon.ToShootAngle = _toSecondaryShootAngle;
-        //}
     }
 }
