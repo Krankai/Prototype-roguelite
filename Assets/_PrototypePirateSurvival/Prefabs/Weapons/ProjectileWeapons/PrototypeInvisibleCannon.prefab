@@ -254,9 +254,9 @@ MonoBehaviour:
   WeaponCurrentlyActive: 1
   InputAuthorized: 1
   TriggerMode: 1
-  DelayBeforeUse: 0.5
+  DelayBeforeUse: 0
   DelayBeforeUseReleaseInterruption: 0
-  TimeBetweenUses: 1.5
+  TimeBetweenUses: 2
   TimeBetweenUsesReleaseInterruption: 0
   UseBurstMode: 0
   BurstLength: 3

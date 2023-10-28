@@ -16,9 +16,10 @@ public class ShootingRangeVisualization : MonoBehaviour
     [Header("Visualization Settings")]
     public float Radius = 0f;
     public float Elevation = 0f;
-    [SerializeField]
     [Tooltip("Angle for the shooting cone")]
-    private float RangeAngle = 360f;
+    public float RangeAngle = 360f;
+    [SerializeField]
+    private bool IsFaceRight;
     [SerializeField]
     private float MeshResolution = 0.5f;
 
@@ -56,7 +57,8 @@ public class ShootingRangeVisualization : MonoBehaviour
         var pointInArc = new Vector3(0, Elevation, 0);
 
         var originPoint = _handleWeaponAbility.CurrentWeapon.transform.position;
-        var currentRotationAngle = Vector3.SignedAngle(transform.right, Vector3.right, transform.up);
+        var originDirection = IsFaceRight ? Vector3.right : Vector3.left;
+        var currentRotationAngle = Vector3.SignedAngle(transform.right, originDirection, transform.up);
 
         for (int i = 0; i < stepCount + 1; ++i)
         {

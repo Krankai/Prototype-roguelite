@@ -19,10 +19,15 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
     [Header("Feedback")]
     public MMF_Player ShootingRangeFeedbacks;
 
+    [Header("Settings")]
+    // shooting range radius
+    [Tooltip("shooting range radius")]
+    public float ShootingRangeRadius;
+    // angle for shooting range arc
+    [Tooltip("angle for shooting range arc")]
+    public float ShootingRangeAngle = 60f;
+
     [Header("Output")]
-    // shooting range
-    [Tooltip("shooting range")]
-    public float ShootingRange;
     // required initial force
     [Tooltip("required initial force"), MMReadOnly]
     public float InitialForce;
@@ -138,16 +143,31 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
 
     private void TriggerFeedbacks()
     {
-        var listFeedbacks = ShootingRangeFeedbacks.GetFeedbacksOfType<MMF_Scale>();
-        for (int i = 0, count = listFeedbacks.Count; i < count; ++i)
+        var listScaleFeedbacks = ShootingRangeFeedbacks.GetFeedbacksOfType<MMF_Scale>();
+        for (int i = 0, count = listScaleFeedbacks.Count; i < count; ++i)
         {
-            var scaleFeedback = listFeedbacks[i];
+            var scaleFeedback = listScaleFeedbacks[i];
 
             var scale = scaleFeedback.DestinationScale;
-            scale.x = ShootingRange * 2;
-            scale.y = ShootingRange * 2;
+            scale.x = ShootingRangeRadius * 2;
+            scale.y = ShootingRangeRadius * 2;
 
             scaleFeedback.DestinationScale = scale;
+        }
+
+        var listFloatControllerFeedback = ShootingRangeFeedbacks.GetFeedbacksOfType<MMF_FloatController>();
+        for (int i = 0, count = listFloatControllerFeedback.Count; i < count; ++i)
+        {
+            var floatControllerFeedback = listFloatControllerFeedback[i];
+
+            if (floatControllerFeedback.Label.Equals("RadiusController", System.StringComparison.OrdinalIgnoreCase))
+            {
+                floatControllerFeedback.ToDestinationValue = ShootingRangeRadius;
+            }
+            else if (floatControllerFeedback.Label.Equals("AngleController", System.StringComparison.OrdinalIgnoreCase))
+            {
+                floatControllerFeedback.ToDestinationValue = ShootingRangeAngle;
+            }
         }
 
         ShootingRangeFeedbacks.PlayFeedbacks();
@@ -257,7 +277,7 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
         var maxDistanceProjectileMotion = initialVelocity * initialVelocity * Mathf.Sin(2 * angle * Mathf.Deg2Rad) / gravityModifier;
         var distanceTillHitGround = _weapon.SpawnPosition.y / Mathf.Tan(angle * Mathf.Deg2Rad);
 
-        ShootingRange = _weapon.SpawnPosition.x + maxDistanceProjectileMotion + distanceTillHitGround;
+        ShootingRangeRadius = _weapon.SpawnPosition.x + maxDistanceProjectileMotion + distanceTillHitGround;
 
         TriggerFeedbacks();
     }
