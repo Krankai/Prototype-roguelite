@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using static CustomEvents;
 
-public class ShootTriggerDetection : MMTriggerAndCollision
+public class ShootTriggerDetection : MMTriggerAndCollision, MMEventListener<MMGameEvent>
 {
     private Character Player => LevelManager.Instance.Players[0];
 
-    public float DetectionAngleHalfArc = 30f;
+    public float DetectionAngleHalfArc => DetectionAngle / 2f;
+    public float DetectionAngle = 30f;
 
     public CharacterHandleWeapon HandleWeaponAbility;
     public CharacterHandleSecondaryWeapon HandleSecondaryWeaponAbility;
@@ -57,6 +58,8 @@ public class ShootTriggerDetection : MMTriggerAndCollision
 #if UNITY_EDITOR
             _debugLineColor = Color.red;
 #endif
+            HandleWeaponAbility.ShootStart();
+            HandleSecondaryWeaponAbility.ShootStart();
             EnemyDetectEvent.Trigger(enemyGameObject.transform.position, isFromSecondaryWeapon);
         }
         else
@@ -64,6 +67,16 @@ public class ShootTriggerDetection : MMTriggerAndCollision
 #if UNITY_EDITOR
             _debugLineColor = Color.yellow;
 #endif
+        }
+    }
+
+    protected override void OnTriggerExit(Collider collider)
+    {
+        base.OnTriggerExit(collider);
+
+        if (TriggerLayerMask.MMContains(collider.gameObject))
+        {
+            DisableAutoShoot();
         }
     }
 
@@ -80,6 +93,29 @@ public class ShootTriggerDetection : MMTriggerAndCollision
 
         return (angle <= DetectionAngleHalfArc && angle >= 0);
     }
+
+    private void EnableAutoShoot()
+    {
+        HandleWeaponAbility.ForceAlwaysShoot = true;
+        HandleSecondaryWeaponAbility.ForceAlwaysShoot = true;
+    }
+
+    private void DisableAutoShoot()
+    {
+        HandleWeaponAbility.ForceAlwaysShoot = false;
+        HandleSecondaryWeaponAbility.ForceAlwaysShoot = false;
+    }
+
+    public void OnMMEvent(MMGameEvent eventType)
+    {
+        if (eventType.EventName.Equals("EnemyDeath", System.StringComparison.OrdinalIgnoreCase))
+        {
+            Debug.Log("Enemy die");
+            DisableAutoShoot();
+        }
+    }
+
+
 
 #if UNITY_EDITOR
     private Color _debugLineColor = Color.yellow;

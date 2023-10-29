@@ -1951,12 +1951,12 @@ PrefabInstance:
     - target: {fileID: 4453664631067034789, guid: cb3244a2dfe4389488e28efa59444315,
         type: 3}
       propertyPath: InputForcedMode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4453664631067034789, guid: cb3244a2dfe4389488e28efa59444315,
         type: 3}
       propertyPath: MovementControl
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4557246220297865549, guid: cb3244a2dfe4389488e28efa59444315,
         type: 3}

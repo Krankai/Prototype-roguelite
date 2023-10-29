@@ -115,7 +115,7 @@ MonoBehaviour:
   OnTrigger2DStayEvent:
     m_PersistentCalls:
       m_Calls: []
-  DetectionAngleHalfArc: 30
+  DetectionAngle: 30
   HandleWeaponAbility: {fileID: 4014946787610591279}
   HandleSecondaryWeaponAbility: {fileID: 0}
 --- !u!114 &2307225474118225158
@@ -263,8 +263,9 @@ MonoBehaviour:
   AttributeNames:
   - <Undefined Attribute>
   - DetectionAngleHalfArc
-  PropertyName: DetectionAngleHalfArc
-  ChoiceIndex: 1
+  - DetectionAngle
+  PropertyName: DetectionAngle
+  ChoiceIndex: 2
 --- !u!1 &481580438265248883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2743,7 +2744,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2073865382499739808}
   - component: {fileID: 8092329118455346907}
-  - component: {fileID: 7036345889434355188}
   m_Layer: 10
   m_Name: ShootController
   m_TagString: Untagged
@@ -2782,19 +2782,6 @@ MonoBehaviour:
   _isWeaponFaceRight: 1
   _handleSecondaryWeaponAbility: {fileID: 8481945162106303344}
   _isSecondaryWeaponFaceRight: 0
---- !u!114 &7036345889434355188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5670851968481885200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcab90d1e3b09c044888c321b031285d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _needRecheckEnemies: 0
 --- !u!1 &6054372477390018638
 GameObject:
   m_ObjectHideFlags: 0
@@ -3141,6 +3128,7 @@ MonoBehaviour:
   ShootingRangeFeedbacks: {fileID: 165676092384484428}
   ShootingRangeRadius: 6
   ShootingRangeAngle: 60
+  ShootingRangeArcHeightAngle: -50
   InitialForce: 0
   ProjectileAngleY: 0
   _initialVelocity: 0
