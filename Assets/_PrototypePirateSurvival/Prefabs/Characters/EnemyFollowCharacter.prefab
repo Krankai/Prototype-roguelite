@@ -101,7 +101,7 @@ MonoBehaviour:
   TargetGameObject: {fileID: 0}
   TargetRenderer: {fileID: 1661618168509268511}
   ShaderPropertyName: _Color
-  OffValue: 0
+  OffValue: 0.01
   OnValue: 1
   LerpValue: 1
   Curve:
@@ -1916,6 +1916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4ba60c907627f49bb68c60f96922b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _character: {fileID: 0}
   _handleWeaponAbility: {fileID: 1644186605891571408}
   _isWeaponFaceRight: 1
   _handleSecondaryWeaponAbility: {fileID: 2752158426491425369}

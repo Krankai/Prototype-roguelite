@@ -9,8 +9,6 @@ public class ProjectileWeaponAngle : ProjectileWeapon
     [Header("Shoot Angle")]
     // the range of shooting angle (in degrees) to apply for each projectile spawn
     [Tooltip("the range of shooting angle (in degrees) to apply for each projectile spawn")]
-    //public Vector3 FromShootAngle = Vector3.zero;
-    //public Vector3 ToShootAngle = Vector3.zero;
     public Vector3 ShootAngle = Vector3.zero;
 
     [Header("Sub Projectile")]
@@ -26,12 +24,6 @@ public class ProjectileWeaponAngle : ProjectileWeapon
         angle.x = arcHeightAngle;
         angle.y = originAngle;
         ShootAngle = angle;
-
-        //angle = ToShootAngle;
-        //angle.x = arcHeightAngle;
-        //angle.y = originAngle;
-        //ToShootAngle = angle;
-
 
         // Sub-projectiles
         if (ListShootAngles == default)
@@ -117,7 +109,7 @@ public class ProjectileWeaponAngle : ProjectileWeapon
         var direction = rotateX * rotateY * rotateZ * transform.forward;
         projectile.SetDirection(direction, transform.rotation, true);
 
-        Debug.Log($"Index: {projectileIndex}, Rotation: {angleX}, {angleY}, {angleZ}");
+        //Debug.Log($"Index: {projectileIndex}, Rotation: {angleX}, {angleY}, {angleZ}");
     }
 
     public override void WeaponUse()
@@ -135,8 +127,6 @@ public class ProjectileWeaponAngle : ProjectileWeapon
             {
                 SpawnPosition = OffsetSubProjectileSpawnPosition(i);
             }
-
-            Debug.Log($"Spawn projectile {i}");
 
             SpawnProjectile(SpawnPosition, i, ProjectilesPerShot, true);
             PlaySpawnFeedbacks();
@@ -171,17 +161,6 @@ public class ProjectileWeaponAngle : ProjectileWeapon
                 continue;
             }
 
-            //if (i % 2 == 0)
-            //{
-            //    lastLastValue = (i >= 4) ? ListStartOffsets[i - 4] : Vector3Zero;
-            //    lastValue = (i >= 2) ? ListStartOffsets[i - 2] : Vector3Zero;
-            //}
-            //else
-            //{
-            //    lastLastValue = (i >= 4) ? ListStartOffsets[i - 4] : Vector3Zero;
-            //    lastValue = (i >= 2) ? ListStartOffsets[i - 2] : Vector3Zero;
-            //}
-
             // Check in group of 2 (i.e. even and odd index)
             lastLastValue = (i >= 4) ? ListStartOffsets[i - 4] : Vector3Zero;
             lastValue = (i >= 2) ? ListStartOffsets[i - 2] : Vector3Zero;
@@ -199,13 +178,7 @@ public class ProjectileWeaponAngle : ProjectileWeapon
     {
         Vector3 spawnPosition;
         var indexListOffsets = (projectileIndex - 1) % ListStartOffsets.Count;
-
         var startPositionOffset = ListStartOffsets[indexListOffsets];
-        //startPositionOffset.x += Mathf.FloorToInt((projectileIndex - 1) / 2f) * startPositionOffset.x;
-        //startPositionOffset.y += Mathf.FloorToInt((projectileIndex - 1) / 2f) * startPositionOffset.y;
-        //startPositionOffset.z += Mathf.FloorToInt((projectileIndex - 1) / 2f) * startPositionOffset.z;
-
-        Debug.Log($"Index: {projectileIndex}, Offset: {startPositionOffset}");
 
         if (Flipped)
         {
@@ -233,8 +206,5 @@ public class ProjectileWeaponAngle : ProjectileWeapon
 [System.Serializable]
 public struct RangeShootAngle
 {
-    //public Vector3 FromShootAngle;
-    //public Vector3 ToShootAngle;
-
     public Vector3 ShootAngle;
 }

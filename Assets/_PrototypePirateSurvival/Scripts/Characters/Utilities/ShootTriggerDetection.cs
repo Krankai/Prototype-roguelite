@@ -15,8 +15,32 @@ public class ShootTriggerDetection : MMTriggerAndCollision, MMEventListener<MMGa
     public CharacterHandleWeapon HandleWeaponAbility;
     public CharacterHandleSecondaryWeapon HandleSecondaryWeaponAbility;
 
+    private bool _isLockingAim = false;
+    private bool _isAimShooting = false;
+    private int _lockedEnemyId;
+
+    private Coroutine _coroutineTrigger;
+    private WaitForSeconds _wfsTrigger;
+
+    private float _delayLockingAim = 1f;
+
 
     private void Start()
+    {
+        Initialization();
+    }
+
+    private void OnEnable()
+    {
+        this.MMEventStartListening();
+    }
+
+    private void OnDisable()
+    {
+        this.MMEventStopListening();
+    }
+
+    private void Initialization()
     {
         if (HandleWeaponAbility == default)
         {
@@ -27,6 +51,8 @@ public class ShootTriggerDetection : MMTriggerAndCollision, MMEventListener<MMGa
         {
             HandleSecondaryWeaponAbility = Player.FindAbility<CharacterHandleSecondaryWeapon>();
         }
+
+        _wfsTrigger = new WaitForSeconds(_delayLockingAim);
     }
 
     protected override void OnTriggerStay(Collider collider)
@@ -58,13 +84,40 @@ public class ShootTriggerDetection : MMTriggerAndCollision, MMEventListener<MMGa
 #if UNITY_EDITOR
             _debugLineColor = Color.red;
 #endif
-            EnemyDetectEvent.Trigger(enemyGameObject.transform.position, isFromSecondaryWeapon);
+            if (_isAimShooting)
+            {
+                EnemyDetectEvent.Trigger(enemyGameObject.transform.position, isFromSecondaryWeapon);
+            }
+            else if (!_isLockingAim)
+            {
+                _lockedEnemyId = enemyGameObject.GetInstanceID();
+                _coroutineTrigger = StartCoroutine(CoroutineTriggerDetectEvent(enemyGameObject.transform.position, isFromSecondaryWeapon));
+            }
         }
         else
         {
 #if UNITY_EDITOR
             _debugLineColor = Color.yellow;
 #endif
+            if ((_isAimShooting || _isLockingAim) && _lockedEnemyId == enemyGameObject.GetInstanceID())
+            {
+                CancelAimLocking();
+            }
+        }
+    }
+
+    protected override void OnTriggerExit(Collider collider)
+    {
+        base.OnTriggerExit(collider);
+
+        if (!TriggerLayerMask.MMContains(collider.gameObject))
+        {
+            return;
+        }
+
+        if (_lockedEnemyId == collider.gameObject.GetInstanceID())
+        {
+            CancelAimLocking();
         }
     }
 
@@ -82,10 +135,36 @@ public class ShootTriggerDetection : MMTriggerAndCollision, MMEventListener<MMGa
         return (angle <= DetectionAngleHalfArc && angle >= 0);
     }
 
-    private void EnableAutoShoot()
+    private IEnumerator CoroutineTriggerDetectEvent(Vector3 enemyPosition, bool isFromSecondaryWeapon)
     {
-        HandleWeaponAbility.ShootStart();
-        HandleSecondaryWeaponAbility.ShootStart();
+        _isLockingAim = true;
+        _isAimShooting = false;
+
+        Debug.LogError("Start locking aim...");
+        yield return _wfsTrigger;
+        Debug.LogError("Finish locking aim");
+
+        EnemyDetectEvent.Trigger(enemyPosition, isFromSecondaryWeapon);
+
+        _isAimShooting = true;
+        _isLockingAim = false;
+    }
+
+    private void CancelAimLocking()
+    {
+        if (_isLockingAim || _isAimShooting)
+        {
+            if (_coroutineTrigger != default)
+            {
+                StopCoroutine(_coroutineTrigger);
+            }
+
+            _isLockingAim = false;
+            _isAimShooting = false;
+            _lockedEnemyId = 0;
+
+            Debug.LogError("Cancel locking aim and/or shooting");
+        }
     }
 
     public void OnMMEvent(MMGameEvent eventType)
@@ -93,6 +172,8 @@ public class ShootTriggerDetection : MMTriggerAndCollision, MMEventListener<MMGa
         if (eventType.EventName.Equals("EnemyDeath", System.StringComparison.OrdinalIgnoreCase))
         {
             Debug.Log("Enemy die");
+
+            CancelAimLocking();
         }
     }
 

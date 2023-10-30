@@ -8,7 +8,7 @@ using static CustomEvents;
 [RequireComponent(typeof(CharacterHandleWeapon))]
 public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<EnemyDetectEvent>
 {
-    [Header("Ability")]
+    [Header("Abilities")]
     // handle weapon ability
     [Tooltip("handle weapon ability")]
     public CharacterHandleWeapon HandleWeaponAbility;
@@ -184,11 +184,11 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
         var enemyPosition = eventType.EnemyPosition;
         var range = Vector3.Distance(enemyPosition, _weapon.transform.position);
 
-        ComputeRequiredInitialForce(Mathf.Abs(range));
-        SetForceToGetToShootingRange();
-
         ComputeRequiredAngleForProjectile(eventType.EnemyPosition);
         SetAngleToLineUpProjectile();
+
+        ComputeRequiredInitialForce(Mathf.Abs(range));
+        SetForceToGetToShootingRange();
 
         MMGameEvent.Trigger("DualShoot");
     }
