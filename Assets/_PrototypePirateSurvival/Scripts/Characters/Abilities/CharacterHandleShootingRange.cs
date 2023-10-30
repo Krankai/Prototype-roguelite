@@ -90,17 +90,12 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
         var gravityModifier = Physics.gravity.magnitude;
         _gravityModifier = gravityModifier;
 
-        float angle = 0;
-        if (_weapon is ProjectileWeaponAngle)
-        {
-            var weaponAngle = _weapon as ProjectileWeaponAngle;
-            angle = Mathf.Max(Mathf.Abs(weaponAngle.FromShootAngle.x), Mathf.Abs(weaponAngle.ToShootAngle.x));
-        }
-        _angle = angle;
+        var angle = (_weapon is ProjectileWeaponAngle) ? (_weapon as ProjectileWeaponAngle).ShootAngle.x : 0;
+        _angle = Mathf.Abs(angle);
 
         _weapon.DetermineSpawnPosition();
 
-        var distanceTillHitGround = _weapon.SpawnPosition.y / Mathf.Tan(angle * Mathf.Deg2Rad);
+        var distanceTillHitGround = _weapon.SpawnPosition.y / Mathf.Tan(_angle * Mathf.Deg2Rad);
         var relativeWeaponPositionX = _weapon.SpawnPosition.x - _character.transform.position.x;
         var maxDistanceProjectile = range - distanceTillHitGround - relativeWeaponPositionX;
         maxDistanceProjectile += 0.5f;
@@ -111,7 +106,13 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
 
     private void SetForceToGetToShootingRange()
     {
-        var dynamicForceObjectPooler = _weapon.gameObject.MMGetComponentNoAlloc<DynamicForcePhysicObjectPooler>();
+        var dynamicForceObjectPooler = HandleWeaponAbility.CurrentWeapon.gameObject.MMGetComponentNoAlloc<DynamicForcePhysicObjectPooler>();
+        if (dynamicForceObjectPooler != default)
+        {
+            dynamicForceObjectPooler.AppliedInitialForce = InitialForce;
+        }
+
+        dynamicForceObjectPooler = HandleSecondaryWeaponAbility.CurrentWeapon.gameObject.MMGetComponentNoAlloc<DynamicForcePhysicObjectPooler>();
         if (dynamicForceObjectPooler != default)
         {
             dynamicForceObjectPooler.AppliedInitialForce = InitialForce;
@@ -131,24 +132,16 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
 
     private void SetAngleToLineUpProjectile()
     {
-        //if (_weapon is not ProjectileWeaponAngle)
-        //{
-        //    return;
-        //}
-
-        //var weaponAngle = _weapon as ProjectileWeaponAngle;
-        //weaponAngle.AdjustProjectileFormation(ProjectileAngleY, ProjectileAngleY, ShootingRangeArcHeightAngle, ShootingRangeAngle);
-
         if (HandleWeaponAbility.CurrentWeapon is ProjectileWeaponAngle)
         {
             var weapon = HandleWeaponAbility.CurrentWeapon as ProjectileWeaponAngle;
-            weapon.AdjustProjectileFormation(ProjectileAngleY, ProjectileAngleY, ShootingRangeArcHeightAngle, ShootingRangeAngle);
+            weapon.AdjustProjectilesAngle(ProjectileAngleY, ShootingRangeArcHeightAngle, ShootingRangeAngle);
         }
 
         if (HandleSecondaryWeaponAbility.CurrentWeapon is ProjectileWeaponAngle)
         {
             var weapon = HandleSecondaryWeaponAbility.CurrentWeapon as ProjectileWeaponAngle;
-            weapon.AdjustProjectileFormation(ProjectileAngleY, ProjectileAngleY, ShootingRangeArcHeightAngle, ShootingRangeAngle);
+            weapon.AdjustProjectilesAngle(ProjectileAngleY, ShootingRangeArcHeightAngle, ShootingRangeAngle);
         }
     }
 
@@ -187,7 +180,6 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
     public void OnMMEvent(EnemyDetectEvent eventType)
     {
         RefreshTargetWeapon(eventType.IsFromSecondaryWeapon);
-        isFromSecondaryWeapon = eventType.IsFromSecondaryWeapon;
 
         var enemyPosition = eventType.EnemyPosition;
         var range = Vector3.Distance(enemyPosition, _weapon.transform.position);
@@ -197,24 +189,8 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
 
         ComputeRequiredAngleForProjectile(eventType.EnemyPosition);
         SetAngleToLineUpProjectile();
-    }
 
-    private bool isFromSecondaryWeapon = false;
-
-    [ContextMenu("Test")]
-    private void Test()
-    {
-        HandleSecondaryWeaponAbility.ShootStart();
-        return;
-
-        if (isFromSecondaryWeapon)
-        {
-            HandleSecondaryWeaponAbility.ShootStart();
-        }
-        else
-        {
-            HandleWeaponAbility.ShootStart();
-        }
+        MMGameEvent.Trigger("DualShoot");
     }
 
     private void RefreshTargetWeapon(bool isSecondary)
@@ -276,7 +252,8 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
         if (_weapon is ProjectileWeaponAngle)
         {
             var weaponAngle = _weapon as ProjectileWeaponAngle;
-            angle = Mathf.Max(Mathf.Abs(weaponAngle.FromShootAngle.x), Mathf.Abs(weaponAngle.ToShootAngle.x));
+            //angle = Mathf.Max(Mathf.Abs(weaponAngle.FromShootAngle.x), Mathf.Abs(weaponAngle.ToShootAngle.x));
+            angle = Mathf.Abs(weaponAngle.ShootAngle.x);
         }
         _angle = angle;
 

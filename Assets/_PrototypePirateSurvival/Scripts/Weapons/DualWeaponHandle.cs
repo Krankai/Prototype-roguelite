@@ -1,8 +1,13 @@
+using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
 using UnityEngine;
 
-public class DualWeaponHandle : MonoBehaviour
+public class DualWeaponHandle : MonoBehaviour, MMEventListener<MMGameEvent>
 {
+    [Header("Character")]
+    [SerializeField]
+    private Character _character;
+
     [Header("Main Weapon")]
     [SerializeField]
     private CharacterHandleWeapon _handleWeaponAbility;
@@ -21,8 +26,29 @@ public class DualWeaponHandle : MonoBehaviour
         Initialization();
     }
 
+    protected void OnEnable()
+    {
+        if (_character != default && _character.CharacterType == Character.CharacterTypes.Player)
+        {
+            this.MMEventStartListening();
+        }
+    }
+
+    protected void OnDisable()
+    {
+        if (_character != default && _character.CharacterType == Character.CharacterTypes.Player)
+        {
+            this.MMEventStopListening();
+        }
+    }
+
     protected virtual void Initialization()
     {
+        if (_character == default)
+        {
+            _character = transform.parent.GetComponentInParent<Character>();
+        }
+
         if (_handleWeaponAbility != default)
         {
             _handleWeaponAbility.OnWeaponChange += OnWeaponChange;
@@ -32,6 +58,12 @@ public class DualWeaponHandle : MonoBehaviour
         {
             _handleSecondaryWeaponAbility.OnWeaponChange += OnSecondaryWeaponChange;
         }
+    }
+
+    protected virtual void ShootDualWeapon()
+    {
+        _handleWeaponAbility.ShootStart();
+        _handleSecondaryWeaponAbility.ShootStart();
     }
 
     private void OnWeaponChange()
@@ -51,6 +83,14 @@ public class DualWeaponHandle : MonoBehaviour
         {
             weaponHorizontalAim3D.IsFaceRight = _isSecondaryWeaponFaceRight;
             weaponHorizontalAim3D.IsSecondaryWeapon = true;
+        }
+    }
+
+    public void OnMMEvent(MMGameEvent eventType)
+    {
+        if (eventType.EventName.Equals("DualShoot", System.StringComparison.OrdinalIgnoreCase))
+        {
+            ShootDualWeapon();
         }
     }
 }

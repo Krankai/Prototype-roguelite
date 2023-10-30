@@ -58,8 +58,6 @@ public class ShootTriggerDetection : MMTriggerAndCollision, MMEventListener<MMGa
 #if UNITY_EDITOR
             _debugLineColor = Color.red;
 #endif
-            HandleWeaponAbility.ShootStart();
-            HandleSecondaryWeaponAbility.ShootStart();
             EnemyDetectEvent.Trigger(enemyGameObject.transform.position, isFromSecondaryWeapon);
         }
         else
@@ -67,16 +65,6 @@ public class ShootTriggerDetection : MMTriggerAndCollision, MMEventListener<MMGa
 #if UNITY_EDITOR
             _debugLineColor = Color.yellow;
 #endif
-        }
-    }
-
-    protected override void OnTriggerExit(Collider collider)
-    {
-        base.OnTriggerExit(collider);
-
-        if (TriggerLayerMask.MMContains(collider.gameObject))
-        {
-            DisableAutoShoot();
         }
     }
 
@@ -96,14 +84,8 @@ public class ShootTriggerDetection : MMTriggerAndCollision, MMEventListener<MMGa
 
     private void EnableAutoShoot()
     {
-        HandleWeaponAbility.ForceAlwaysShoot = true;
-        HandleSecondaryWeaponAbility.ForceAlwaysShoot = true;
-    }
-
-    private void DisableAutoShoot()
-    {
-        HandleWeaponAbility.ForceAlwaysShoot = false;
-        HandleSecondaryWeaponAbility.ForceAlwaysShoot = false;
+        HandleWeaponAbility.ShootStart();
+        HandleSecondaryWeaponAbility.ShootStart();
     }
 
     public void OnMMEvent(MMGameEvent eventType)
@@ -111,7 +93,6 @@ public class ShootTriggerDetection : MMTriggerAndCollision, MMEventListener<MMGa
         if (eventType.EventName.Equals("EnemyDeath", System.StringComparison.OrdinalIgnoreCase))
         {
             Debug.Log("Enemy die");
-            DisableAutoShoot();
         }
     }
 

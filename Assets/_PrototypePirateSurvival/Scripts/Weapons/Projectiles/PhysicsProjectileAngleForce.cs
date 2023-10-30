@@ -6,9 +6,13 @@ public class PhysicsProjectileAngleForce : PhysicsProjectile
 {
     public override void SetDirection(Vector3 newDirection, Quaternion newRotation, bool spawnerIsFacingRight = true)
     {
-        if (InitialForce is float.NaN || newDirection.x is float.NaN || newDirection.y is float.NaN || newDirection.z is float.NaN)
+        if (newDirection.x is float.NaN || newDirection.y is float.NaN || newDirection.z is float.NaN)
         {
             base.SetDirection(newDirection, newRotation, spawnerIsFacingRight);
+            return;
+        }
+        else if (InitialForce is float.NaN)
+        {
             return;
         }
 

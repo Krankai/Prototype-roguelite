@@ -9,60 +9,64 @@ public class ProjectileWeaponAngle : ProjectileWeapon
     [Header("Shoot Angle")]
     // the range of shooting angle (in degrees) to apply for each projectile spawn
     [Tooltip("the range of shooting angle (in degrees) to apply for each projectile spawn")]
-    public Vector3 FromShootAngle = Vector3.zero;
-    public Vector3 ToShootAngle = Vector3.zero;
+    //public Vector3 FromShootAngle = Vector3.zero;
+    //public Vector3 ToShootAngle = Vector3.zero;
+    public Vector3 ShootAngle = Vector3.zero;
 
     [Header("Sub Projectile")]
     public List<RangeShootAngle> ListShootAngles;
+    [Tooltip("local positions")]
+    public List<Vector3> ListStartOffsets;
 
 
-    public virtual void AdjustProjectileFormation(float originFromAngle, float originToAngle, float arcHeightAngle, float shootingRangeAngle)
+    public virtual void AdjustProjectilesAngle(float originAngle, float arcHeightAngle, float shootingRangeAngle)
     {
         // Main projectil
-        var angle = FromShootAngle;
+        var angle = ShootAngle;
         angle.x = arcHeightAngle;
-        angle.y = originFromAngle;
-        FromShootAngle = angle;
+        angle.y = originAngle;
+        ShootAngle = angle;
 
-        angle = ToShootAngle;
-        angle.x = arcHeightAngle;
-        angle.y = originToAngle;
-        ToShootAngle = angle;
+        //angle = ToShootAngle;
+        //angle.x = arcHeightAngle;
+        //angle.y = originAngle;
+        //ToShootAngle = angle;
 
 
         // Sub-projectiles
-        if (ListShootAngles.Count <= 0)
+        if (ListShootAngles == default)
         {
-            return;
+            ListShootAngles = new();
+            for (int i = 0, count = ProjectilesPerShot - 1; i < count; ++i)
+            {
+                ListShootAngles.Add(new());
+            }
+        }
+        else
+        {
+            while (ListShootAngles.Count < ProjectilesPerShot - 1)
+            {
+                ListShootAngles.Add(new());
+            }
         }
 
         for (int i = 0, count = ListShootAngles.Count; i < count; ++i)
         {
             var angleRangeData = ListShootAngles[i];
 
-            if (i % ProjectilesPerShot == 0)
+            if (i % 2 == 0)
             {
-                angle = angleRangeData.FromShootAngle;
+                angle = angleRangeData.ShootAngle;
                 angle.x = arcHeightAngle;
-                angle.y = originFromAngle - shootingRangeAngle / 2f;
-                angleRangeData.FromShootAngle = angle;
-
-                angle = angleRangeData.ToShootAngle;
-                angle.x = arcHeightAngle;
-                angle.y = originToAngle - shootingRangeAngle / 2f;
-                angleRangeData.ToShootAngle = angle;
+                angle.y = originAngle - shootingRangeAngle / 2f * (i / 2 + 1);
+                angleRangeData.ShootAngle = angle;
             }
-            else if (i % ProjectilesPerShot == 1)
+            else // if (i % 2 == 1)
             {
-                angle = angleRangeData.FromShootAngle;
+                angle = angleRangeData.ShootAngle;
                 angle.x = arcHeightAngle;
-                angle.y = originFromAngle + shootingRangeAngle / 2f;
-                angleRangeData.FromShootAngle = angle;
-
-                angle = angleRangeData.ToShootAngle;
-                angle.x = arcHeightAngle;
-                angle.y = originToAngle + shootingRangeAngle / 2f;
-                angleRangeData.ToShootAngle = angle;
+                angle.y = originAngle + shootingRangeAngle / 2f * (i / 2 + 1);
+                angleRangeData.ShootAngle = angle;
             }
 
             ListShootAngles[i] = angleRangeData;
@@ -81,95 +85,156 @@ public class ProjectileWeaponAngle : ProjectileWeapon
 
         if (projectileIndex == 0)
         {
-            var angleX = UnityEngine.Random.Range(FromShootAngle.x, ToShootAngle.x);
-            var rotateX = Quaternion.AngleAxis(angleX, transform.right);
-
-            var angleY = UnityEngine.Random.Range(FromShootAngle.y, ToShootAngle.y);
-            var rotateY = Quaternion.AngleAxis(angleY, transform.up);
-
-            var angleZ = UnityEngine.Random.Range(FromShootAngle.z, ToShootAngle.z);
-            var rotateZ = Quaternion.AngleAxis(angleZ, transform.forward);
+            var rotateX = Quaternion.AngleAxis(ShootAngle.x, transform.right);
+            var rotateY = Quaternion.AngleAxis(ShootAngle.y, transform.up);
+            var rotateZ = Quaternion.AngleAxis(ShootAngle.z, transform.forward);
 
             var direction = rotateX * rotateY * rotateZ * transform.forward;
             projectile.SetDirection(direction, transform.rotation, true);
         }
         else if (ListShootAngles.Count > 0)
         {
-            CheckSettingAngleForProjectileDirection(projectile, projectileIndex, totalProjectiles);
+            SetupSubProjectilesDirection(projectile, projectileIndex);
         }
 
         return projectileGameObject;
     }
 
-    public void CheckSettingAngleForProjectileDirection(Projectile projectile, int projectileIndex, int totalProjectiles)
+    public void SetupSubProjectilesDirection(Projectile projectile, int projectileIndex)
     {
-        var matchedIndexAngle = projectileIndex % (totalProjectiles - 1);
-        var shootAngleRange = (matchedIndexAngle < ListShootAngles.Count)
-            ? ListShootAngles[matchedIndexAngle]
-            : new RangeShootAngle() { FromShootAngle = Vector3.zero, ToShootAngle = Vector3.zero };
+        var indexListAngles = (projectileIndex - 1) % ListShootAngles.Count;
+        var shootAngleRange = ListShootAngles[indexListAngles];
 
-
-        var fromShootAngle = shootAngleRange.FromShootAngle;
-        var toShootAngle = shootAngleRange.ToShootAngle;
-
-        var angleX = UnityEngine.Random.Range(fromShootAngle.x, toShootAngle.x);
+        var angleX = shootAngleRange.ShootAngle.x;
         var rotateX = Quaternion.AngleAxis(angleX, transform.right);
 
-        var angleY = UnityEngine.Random.Range(fromShootAngle.y, toShootAngle.y);
+        var angleY = shootAngleRange.ShootAngle.y;
         var rotateY = Quaternion.AngleAxis(angleY, transform.up);
 
-        var angleZ = UnityEngine.Random.Range(fromShootAngle.z, toShootAngle.z);
+        var angleZ = shootAngleRange.ShootAngle.z;
         var rotateZ = Quaternion.AngleAxis(angleZ, transform.forward);
 
         var direction = rotateX * rotateY * rotateZ * transform.forward;
         projectile.SetDirection(direction, transform.rotation, true);
+
+        Debug.Log($"Index: {projectileIndex}, Rotation: {angleX}, {angleY}, {angleZ}");
     }
 
-    //private void SetAngleForProjectileDirection(GameObject projectileGameObject, Vector3 fromShootAngle, Vector3 toShootAngle)
-    //{
-    //    var projectile = projectileGameObject.MMGetComponentNoAlloc<Projectile>();
-    //    if (projectile == default)
-    //    {
-    //        return;
-    //    }
+    public override void WeaponUse()
+    {
+        ApplyRecoil();
+        TriggerWeaponUsedFeedback();
 
-    //    var angleX = UnityEngine.Random.Range(fromShootAngle.x, toShootAngle.x);
-    //    var rotateX = Quaternion.AngleAxis(angleX, transform.right);
+        DetermineSpawnPosition();
+        AdjustProjectilesOffset(ProjectilesPerShot);
 
-    //    var angleY = UnityEngine.Random.Range(fromShootAngle.y, toShootAngle.y);
-    //    var rotateY = Quaternion.AngleAxis(angleY, transform.up);
+        for (int i = 0; i < ProjectilesPerShot; i++)
+        {
+            // Setup offset
+            if (i > 0)
+            {
+                SpawnPosition = OffsetSubProjectileSpawnPosition(i);
+            }
 
-    //    var angleZ = UnityEngine.Random.Range(fromShootAngle.z, toShootAngle.z);
-    //    var rotateZ = Quaternion.AngleAxis(angleZ, transform.forward);
+            Debug.Log($"Spawn projectile {i}");
 
-    //    var direction = rotateX * rotateY * rotateZ * transform.forward;
-    //    projectile.SetDirection(direction, transform.rotation, true);
-    //}
+            SpawnProjectile(SpawnPosition, i, ProjectilesPerShot, true);
+            PlaySpawnFeedbacks();
+        }
+    }
 
-    //public override void WeaponUse()
-    //{
-    //    base.WeaponUse();
+    private readonly Vector3 Vector3Zero = Vector3.zero;
 
-    //    // For now, only 1 instance of sub-projectiles is fired
-    //    if (ListShootAngles.Count <= 0)
-    //    {
-    //        return;
-    //    }
+    private void AdjustProjectilesOffset(int totalProjectiles)
+    {
+        if (ListStartOffsets != default && ListStartOffsets.Count >= totalProjectiles - 1)
+        {
+            return;
+        }
 
-    //    int projectileIndex = ProjectilesPerShot;
-    //    for (int i = 0, count = ListShootAngles.Count; i < count; ++i)
-    //    {
-    //        var rangeShootAngle = ListShootAngles[i];
-    //        var projectileGameObject = SpawnProjectile(SpawnPosition, projectileIndex++, 1, true);
+        if (ListStartOffsets == default)
+        {
+            ListStartOffsets = new();
+        }
 
-    //        SetAngleForProjectileDirection(projectileGameObject, rangeShootAngle.FromShootAngle, rangeShootAngle.ToShootAngle);
-    //    }
-    //}
+        int indexAddedNew = ListStartOffsets.Count;
+        while (ListStartOffsets.Count < totalProjectiles - 1)
+        {
+            ListStartOffsets.Add(new());
+        }
+
+        Vector3 lastValue, lastLastValue;
+        for (int i = 0, count = ListStartOffsets.Count; i < count; ++i)
+        {
+            if (i < indexAddedNew)
+            {
+                continue;
+            }
+
+            //if (i % 2 == 0)
+            //{
+            //    lastLastValue = (i >= 4) ? ListStartOffsets[i - 4] : Vector3Zero;
+            //    lastValue = (i >= 2) ? ListStartOffsets[i - 2] : Vector3Zero;
+            //}
+            //else
+            //{
+            //    lastLastValue = (i >= 4) ? ListStartOffsets[i - 4] : Vector3Zero;
+            //    lastValue = (i >= 2) ? ListStartOffsets[i - 2] : Vector3Zero;
+            //}
+
+            // Check in group of 2 (i.e. even and odd index)
+            lastLastValue = (i >= 4) ? ListStartOffsets[i - 4] : Vector3Zero;
+            lastValue = (i >= 2) ? ListStartOffsets[i - 2] : Vector3Zero;
+
+            var offset = ListStartOffsets[i];
+            offset.x = lastValue.x + (lastValue.x - lastLastValue.x);
+            offset.y = lastValue.y + (lastValue.y - lastLastValue.y);
+            offset.z = lastValue.z + (lastValue.z - lastLastValue.z);
+
+            ListStartOffsets[i] = offset;
+        }
+    }
+
+    private Vector3 OffsetSubProjectileSpawnPosition(int projectileIndex)
+    {
+        Vector3 spawnPosition;
+        var indexListOffsets = (projectileIndex - 1) % ListStartOffsets.Count;
+
+        var startPositionOffset = ListStartOffsets[indexListOffsets];
+        //startPositionOffset.x += Mathf.FloorToInt((projectileIndex - 1) / 2f) * startPositionOffset.x;
+        //startPositionOffset.y += Mathf.FloorToInt((projectileIndex - 1) / 2f) * startPositionOffset.y;
+        //startPositionOffset.z += Mathf.FloorToInt((projectileIndex - 1) / 2f) * startPositionOffset.z;
+
+        Debug.Log($"Index: {projectileIndex}, Offset: {startPositionOffset}");
+
+        if (Flipped)
+        {
+            if (FlipWeaponOnCharacterFlip)
+            {
+                var flippedStartPositionOffset = startPositionOffset;
+                flippedStartPositionOffset.y = -flippedStartPositionOffset.y;
+
+                spawnPosition = this.transform.position - this.transform.rotation * flippedStartPositionOffset;
+            }
+            else
+            {
+                spawnPosition = this.transform.position - this.transform.rotation * startPositionOffset;
+            }
+        }
+        else
+        {
+            spawnPosition = this.transform.position + this.transform.rotation * startPositionOffset;
+        }
+
+        return spawnPosition;
+    }
 }
 
 [System.Serializable]
 public struct RangeShootAngle
 {
-    public Vector3 FromShootAngle;
-    public Vector3 ToShootAngle;
+    //public Vector3 FromShootAngle;
+    //public Vector3 ToShootAngle;
+
+    public Vector3 ShootAngle;
 }
