@@ -23,6 +23,9 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
     // shooting range radius
     [Tooltip("shooting range radius")]
     public float ShootingRangeRadius;
+    // shooting range detection arc angle
+    [Tooltip("shooting range detection arc angle")]
+    public float DetectionRangeArcAngle = 60;
     // rotation angle for shooting range arc around Y axis
     [Tooltip("rotation angle for shooting range arc around Y axis")]
     public float ShootingRangeAngle = 60f;
@@ -174,7 +177,7 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
             }
             else if (floatControllerFeedback.Label.Equals("AngleController", System.StringComparison.OrdinalIgnoreCase))
             {
-                floatControllerFeedback.ToDestinationValue = ShootingRangeAngle;
+                floatControllerFeedback.ToDestinationValue = DetectionRangeArcAngle;
             }
         }
 

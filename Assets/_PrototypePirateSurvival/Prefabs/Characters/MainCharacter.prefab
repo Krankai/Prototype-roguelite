@@ -3127,8 +3127,8 @@ MonoBehaviour:
   HandleSecondaryWeaponAbility: {fileID: 8481945162106303344}
   ShootingRangeFeedbacks: {fileID: 165676092384484428}
   ShootingRangeRadius: 6
-  ShootingRangeAngle: 60
-  ShootingRangeArcHeightAngle: -50
+  ShootingRangeAngle: 30
+  ShootingRangeArcHeightAngle: -15
   InitialForce: 0
   ProjectileAngleY: 0
   _initialVelocity: 0
