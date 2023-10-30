@@ -1388,20 +1388,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1555356233}
     m_Modifications:
-    - target: {fileID: 560457600765445106, guid: b38bd22e060a7e245af0593a88d66da3,
-        type: 3}
-      propertyPath: InitialHealth
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 560457600765445106, guid: b38bd22e060a7e245af0593a88d66da3,
-        type: 3}
-      propertyPath: MaximumHealth
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 1173586363836793820, guid: b38bd22e060a7e245af0593a88d66da3,
         type: 3}
       propertyPath: m_Name
-      value: NPC
+      value: EnemyCharacter
       objectReference: {fileID: 0}
     - target: {fileID: 5742665378475600335, guid: b38bd22e060a7e245af0593a88d66da3,
         type: 3}
@@ -1674,7 +1664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1555356233}
   m_Layer: 0
-  m_Name: NPCs
+  m_Name: Enemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
