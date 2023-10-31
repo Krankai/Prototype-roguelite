@@ -212,9 +212,9 @@ GameObject:
   - component: {fileID: 7579324933328962880}
   - component: {fileID: -4139110431289933113}
   - component: {fileID: 2877269531164155219}
-  - component: {fileID: -6632892441098476638}
+  - component: {fileID: -6937837875342857157}
   m_Layer: 0
-  m_Name: PrototypeInvisibleCannon
+  m_Name: PrototypeLongitudinalCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -312,7 +312,7 @@ MonoBehaviour:
   Flipped: 0
   ProjectileSpawnOffset: {x: 0, y: 0, z: 0}
   DefaultProjectileDirection: {x: 0, y: 0, z: 1}
-  ProjectilesPerShot: 3
+  ProjectilesPerShot: 5
   SpawnTransforms: []
   SpawnTransformsMode: 1
   Spread: {x: 0, y: 0, z: 0}
@@ -349,7 +349,7 @@ MonoBehaviour:
   PoolSize: 10
   PoolCanExpand: 1
   AppliedInitialForce: 0
---- !u!114 &-6632892441098476638
+--- !u!114 &-6937837875342857157
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -358,13 +358,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 946555796988062069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a39bdf0c2fb28aa4ea8e4da0a9d39699, type: 3}
+  m_Script: {fileID: 11500000, guid: cdbe32b2cef47e24485a803fe86ac4dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AimControl: 4
   AimControlActive: 1
   RotationMode: 0
-  WeaponRotationSpeed: 100
+  WeaponRotationSpeed: 1
   MinimumAngle: -180
   MaximumAngle: 180
   MinimumMagnitude: 0.2
@@ -388,7 +388,7 @@ MonoBehaviour:
     m_Bits: 9
   MaximumSlopeElevation: 50
   AvoidNullAim: 1
-  IsFaceRight: 1
+  IsFaceForward: 1
   IsSecondaryWeapon: 0
 --- !u!1 &2737003305881226661
 GameObject:

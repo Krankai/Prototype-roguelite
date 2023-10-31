@@ -1282,8 +1282,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2477664489363036139}
+  m_Children: []
   m_Father: {fileID: 5742665378475600335}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &649533276354338061
@@ -1588,7 +1587,9 @@ MonoBehaviour:
   BlockingWeaponStates: 
   HandleWeaponAbility: {fileID: 7935839355413988617}
   HandleSecondaryWeaponAbility: {fileID: 0}
+  ListHandleSubWeaponAbilities: []
   ShootingRangeFeedbacks: {fileID: 6549961870819082762}
+  ShootingStyle: 0
   ShootingRangeRadius: 0
   DetectionRangeArcAngle: 60
   ShootingRangeAngle: 60
@@ -1987,55 +1988,6 @@ MonoBehaviour:
   StopBlinkingButton: 0
   Active: 0
   CurrentPhaseIndex: 0
---- !u!1 &8065223245700992287
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2477664489363036139}
-  - component: {fileID: 6166231716883818315}
-  m_Layer: 13
-  m_Name: DualWeaponHandle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2477664489363036139
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8065223245700992287}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6540608815943264365}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6166231716883818315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8065223245700992287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d4ba60c907627f49bb68c60f96922b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _character: {fileID: 0}
-  _handleWeaponAbility: {fileID: 7935839355413988617}
-  _isWeaponFaceRight: 1
-  _handleSecondaryWeaponAbility: {fileID: 525513603970272891}
-  _isSecondaryWeaponFaceRight: 0
 --- !u!1 &8874175887212433176
 GameObject:
   m_ObjectHideFlags: 0

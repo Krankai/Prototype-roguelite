@@ -1,11 +1,9 @@
+using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using UnityEngine;
 
-public class ShootingRangeVisualization : MonoBehaviour
+public class ShootingRangeVisualization : MonoBehaviour, MMEventListener<MMGameEvent>
 {
     [Header("Bindings")]
     [SerializeField]
@@ -18,9 +16,12 @@ public class ShootingRangeVisualization : MonoBehaviour
     public float Elevation = 0f;
     [Tooltip("Angle for the shooting cone")]
     public float RangeAngle = 360f;
-    [SerializeField]
-    private bool IsFaceRight;
-    [SerializeField]
+
+    [Space]
+    public bool IsActivated;
+    public bool IsFaceRight;
+
+    [Space, SerializeField]
     private float MeshResolution = 0.5f;
 
     private Mesh _shootingRangeMesh;
@@ -32,21 +33,40 @@ public class ShootingRangeVisualization : MonoBehaviour
         _shootingRangeMesh = new Mesh { name = "Shooting Range Mesh" };
         _shootingRangeMeshFilter.mesh = _shootingRangeMesh;
 
-        Invoke(nameof(TriggerDrawing), 1f);
+        //Invoke(nameof(TriggerDrawing), 1f);
+    }
+
+    private void OnEnable()
+    {
+        this.MMEventStartListening();
+    }
+
+    private void OnDisable()
+    {
+        this.MMEventStopListening();
     }
 
     private void TriggerDrawing()
     {
         _isAllowedDrawing = true;
-    }
 
-    private void LateUpdate()
-    {
-        if (_isAllowedDrawing)
+        if (IsActivated)
         {
             DrawMeshShootingRange();
         }
+        else
+        {
+            EraseDrawnMeshShootingRange();
+        }
     }
+
+    //private void LateUpdate()
+    //{
+    //    //if (_isAllowedDrawing && IsActivated)
+    //    //{
+    //    //    DrawMeshShootingRange();
+    //    //}
+    //}
 
     private void DrawMeshShootingRange()
     {
@@ -71,7 +91,10 @@ public class ShootingRangeVisualization : MonoBehaviour
             pointInArc.x = x;
             pointInArc.z = z;
 
-            viewPoints.Add(pointInArc);
+            if (pointInArc.x is  not float.NaN && pointInArc.z is not float.NaN)
+            {
+                viewPoints.Add(pointInArc);
+            }
         }
 
         var vertexCount = viewPoints.Count + 1;
@@ -99,6 +122,23 @@ public class ShootingRangeVisualization : MonoBehaviour
         _shootingRangeMesh.triangles = triangles;
         _shootingRangeMesh.RecalculateNormals();
     }
+
+    private void EraseDrawnMeshShootingRange()
+    {
+        _shootingRangeMesh.Clear();
+        _shootingRangeMesh.vertices = default;
+        _shootingRangeMesh.triangles = default;
+        _shootingRangeMesh.RecalculateNormals();
+    }
+
+    public void OnMMEvent(MMGameEvent eventType)
+    {
+        if (eventType.EventName.Equals("DrawShootingRange", System.StringComparison.OrdinalIgnoreCase))
+        {
+            TriggerDrawing();
+        }
+    }
+
 
     //private void OnDrawGizmos()
     //{

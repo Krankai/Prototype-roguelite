@@ -19,7 +19,7 @@ public class ProjectileWeaponAngle : ProjectileWeapon
 
     public virtual void AdjustProjectilesAngle(float originAngle, float arcHeightAngle, float shootingRangeAngle)
     {
-        // Main projectil
+        // Main projectile
         var angle = ShootAngle;
         angle.x = arcHeightAngle;
         angle.y = originAngle;

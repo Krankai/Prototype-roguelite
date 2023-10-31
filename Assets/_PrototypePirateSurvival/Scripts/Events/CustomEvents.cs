@@ -1,4 +1,5 @@
 using MoreMountains.Tools;
+using MoreMountains.TopDownEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,20 +28,20 @@ public class CustomEvents : MonoBehaviour
     public struct EnemyDetectEvent
     {
         public Vector3 EnemyPosition;
-        public bool IsFromSecondaryWeapon;
+        public CharacterHandleWeapon HandleWeaponAbility;
 
-        public EnemyDetectEvent(Vector3 position, bool isFromSecondaryWeapon)
+        public EnemyDetectEvent(Vector3 position, CharacterHandleWeapon ability)
         {
             EnemyPosition = position;
-            IsFromSecondaryWeapon = isFromSecondaryWeapon;
+            HandleWeaponAbility = ability;
         }
 
         static EnemyDetectEvent e;
 
-        public static void Trigger(Vector3 position, bool isFromSecondaryWeapon)
+        public static void Trigger(Vector3 position, CharacterHandleWeapon ability)
         {
             e.EnemyPosition = position;
-            e.IsFromSecondaryWeapon = isFromSecondaryWeapon;
+            e.HandleWeaponAbility = ability;
 
             MMEventManager.TriggerEvent(e);
         }

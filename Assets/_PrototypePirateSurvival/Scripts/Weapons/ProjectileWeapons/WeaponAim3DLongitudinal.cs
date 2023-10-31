@@ -1,13 +1,18 @@
 using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponAim3DHorizontal : WeaponAim3D
+/// <summary>
+/// Means, depth
+/// </summary>
+public class WeaponAim3DLongitudinal : WeaponAim3D
 {
-    [Header("Horizontal Direction")]
-    // whether the weapon locks its aim to the right
-    [Tooltip("whether the weapon locks its aim to the right")]
-    public bool IsFaceRight;
+    [Header("Longitudial Direction")]
+    // whether the weapon locks its aim to the front
+    [Tooltip("whether the weapon locks its aim to the front")]
+    public bool IsFaceForward;
 
     // to modify main or secondary weapon
     [HideInInspector]
@@ -53,26 +58,16 @@ public class WeaponAim3DHorizontal : WeaponAim3D
     [SerializeField, MMReadOnly]
     private Transform _weaponAttachment;
 
-
     public override void GetScriptAim()
     {
-        //if (HandleWeaponAbility == default || HandleWeaponAbility.WeaponAttachment == default)
-        //{
-        //    base.GetScriptAim();
-        //    return;
-        //}
-
-        //var directionFactor = IsFaceRight ? 1 : -1;
-        //_currentAim = directionFactor * HandleWeaponAbility.WeaponAttachment.right;
-
         if (WeaponAttachment == default)
         {
             base.GetScriptAim();
             return;
         }
 
-        var directionFactor = IsFaceRight ? 1 : -1;
-        _currentAim = directionFactor * WeaponAttachment.right;
+        var directionFactor = IsFaceForward ? 1 : -1;
+        _currentAim = directionFactor * WeaponAttachment.forward;
 
         base.GetScriptAim();
     }
