@@ -10,16 +10,6 @@ using static CustomEvents;
 public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<EnemyDetectEvent>, MMEventListener<MMGameEvent>
 {
     [Header("Abilities")]
-    //// handle weapon ability
-    //[Tooltip("handle weapon ability")]
-    //public CharacterHandleWeapon HandleWeaponAbility;
-    //// handle secondary weapon ability
-    //[Tooltip("handle secondary weapon ability")]
-    //public CharacterHandleSecondaryWeapon HandleSecondaryWeaponAbility;
-    //// list of handle sub-weapons ability
-    //[Tooltip("list of handle sub-weapons ability")]
-    //public List<CharacterHandleSubWeapon> ListHandleSubWeaponAbilities;
-
     [SerializeField, MMReadOnly]
     private List<CharacterHandleWeapon> ListActivatedWeaponAbilities;
 
@@ -103,14 +93,6 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
 
                 ability.ForceAlwaysShoot = false;
             }
-
-            //HandleWeaponAbility.ForceAlwaysShoot = false;
-            //HandleSecondaryWeaponAbility.ForceAlwaysShoot = false;
-
-            //for (int i = 0, count = ListHandleSubWeaponAbilities.Count; i < count; ++i)
-            //{
-            //    ListHandleSubWeaponAbilities[i].ForceAlwaysShoot = false;
-            //}
         }
     }
 
@@ -120,12 +102,12 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
 
         if (ShootingStyle == ShootingStyle.LockedAimInRange)
         {
-            EnableColliderTriggerFeedback();
+            //EnableColliderTriggerFeedback();
             this.MMEventStartListening<EnemyDetectEvent>();
         }
         else
         {
-            DisableColliderTriggerFeedback();
+            //DisableColliderTriggerFeedback();
             this.MMEventStopListening<EnemyDetectEvent>();
         }
 
@@ -152,6 +134,7 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
         Initialization();
     }
 
+    // TODO: consider changing to computing range based on InitialForce instead
     private void ComputeRequiredInitialForce(float range)
     {
         // v = sqrt(x * g / sin2a) -> F = v * mass / Time.fixedDeltaTime
@@ -159,23 +142,29 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
         var gravityModifier = Physics.gravity.magnitude;
         _gravityModifier = gravityModifier;
 
+        if (_projectilePhysics is PhysicsProjectileAngleForce)
+        {
+            _gravityModifier *= (_projectilePhysics as PhysicsProjectileAngleForce).GravityScale;
+        }
+
         var angle = (_weapon is ProjectileWeaponAngle) ? (_weapon as ProjectileWeaponAngle).ShootAngle.x : 0;
         _angle = Mathf.Abs(angle);
 
         _weapon.DetermineSpawnPosition();
 
+        // h = 0.5 * g * t^2 -> t = sqr(2h/g)
+        // d = v * t = v * sqr(2h/g)
         var distanceTillHitGround = _weapon.SpawnPosition.y / Mathf.Tan(_angle * Mathf.Deg2Rad);
 
         var relativeWeaponPositionX = _weapon.SpawnPosition.x - _character.transform.position.x;
-        var relativeWeaponPositionZ = _weapon.SpawnPosition.z - _character.transform.position.z;
-        var relativeWeaponOffset = Mathf.Max(relativeWeaponPositionX, relativeWeaponPositionZ);
+        //var relativeWeaponPositionZ = _weapon.SpawnPosition.z - _character.transform.position.z;
+        //var relativeWeaponOffset = Mathf.Max(relativeWeaponPositionX, relativeWeaponPositionZ);
 
         // TODO: temporary; find correct solution later!!!
         var maxDistanceProjectile = (range >= distanceTillHitGround)
-            ? range - distanceTillHitGround - relativeWeaponOffset
-            : range - relativeWeaponOffset;
-        //var maxDistanceProjectile = range - relativeWeaponOffset;
-        maxDistanceProjectile += 0.5f;
+            ? range - distanceTillHitGround - relativeWeaponPositionX
+            : range - relativeWeaponPositionX;
+        //maxDistanceProjectile += 0.5f;
 
         if (maxDistanceProjectile < 0)
         {
@@ -186,31 +175,14 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
         InitialForce = _initialVelocity * _projectileRigidBody.mass / Time.fixedDeltaTime;
     }
 
+    private void ComputeRequireRangeRadius()
+    {
+        // x = (v0^2 * sin(2a)) / g
+        // TODO: ...
+    }
+
     private void SetForceToGetToShootingRange()
     {
-        //var dynamicForceObjectPooler = HandleWeaponAbility.CurrentWeapon.gameObject.MMGetComponentNoAlloc<DynamicForcePhysicObjectPooler>();
-        //if (dynamicForceObjectPooler != default)
-        //{
-        //    dynamicForceObjectPooler.AppliedInitialForce = InitialForce;
-        //}
-
-        //dynamicForceObjectPooler = HandleSecondaryWeaponAbility.CurrentWeapon.gameObject.MMGetComponentNoAlloc<DynamicForcePhysicObjectPooler>();
-        //if (dynamicForceObjectPooler != default)
-        //{
-        //    dynamicForceObjectPooler.AppliedInitialForce = InitialForce;
-        //}
-
-        //for (int i = 0, count = ListHandleSubWeaponAbilities.Count; i < count; ++i)
-        //{
-        //    var handleSubWeaponAbility = ListHandleSubWeaponAbilities[i];
-
-        //    dynamicForceObjectPooler = handleSubWeaponAbility.CurrentWeapon.gameObject.MMGetComponentNoAlloc<DynamicForcePhysicObjectPooler>();
-        //    if (dynamicForceObjectPooler != default)
-        //    {
-        //        dynamicForceObjectPooler.AppliedInitialForce = InitialForce;
-        //    }
-        //}
-
         for (int i = 0, count = ListActivatedWeaponAbilities.Count; i < count; ++i)
         {
             var ability = ListActivatedWeaponAbilities[i];
@@ -240,32 +212,8 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
         ProjectileAngleY = Vector3.SignedAngle(weaponAimDirection, distanceDirectionToEnemy, _weapon.transform.up);
     }
 
-    // TODO: re-check ProjectileAngleY
     private void SetAngleToLineUpProjectile()
     {
-        //if (HandleWeaponAbility.CurrentWeapon is ProjectileWeaponAngle)
-        //{
-        //    var weapon = HandleWeaponAbility.CurrentWeapon as ProjectileWeaponAngle;
-        //    weapon.AdjustProjectilesAngle(ProjectileAngleY, ShootingRangeArcHeightAngle, ShootingRangeAngle);
-        //}
-
-        //if (HandleSecondaryWeaponAbility.CurrentWeapon is ProjectileWeaponAngle)
-        //{
-        //    var weapon = HandleSecondaryWeaponAbility.CurrentWeapon as ProjectileWeaponAngle;
-        //    weapon.AdjustProjectilesAngle(ProjectileAngleY, ShootingRangeArcHeightAngle, ShootingRangeAngle);
-        //}
-
-        //for (int i = 0, count = ListHandleSubWeaponAbilities.Count; i < count; ++i)
-        //{
-        //    var handleSubWeaponAbility = ListHandleSubWeaponAbilities[i];
-
-        //    if (handleSubWeaponAbility.CurrentWeapon is ProjectileWeaponAngle)
-        //    {
-        //        var weapon = handleSubWeaponAbility.CurrentWeapon as ProjectileWeaponAngle;
-        //        weapon.AdjustProjectilesAngle(ProjectileAngleY, ShootingRangeArcHeightAngle, ShootingRangeAngle);
-        //    }
-        //}
-
         for (int i = 0, count = ListActivatedWeaponAbilities.Count; i < count; ++i)
         {
             var ability = ListActivatedWeaponAbilities[i];
@@ -378,14 +326,6 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
 
         ComputeRequiredInitialForce(Mathf.Abs(ShootingRangeRadius));
         SetForceToGetToShootingRange();
-
-        //HandleWeaponAbility.ForceAlwaysShoot = true;
-        //HandleSecondaryWeaponAbility.ForceAlwaysShoot = true;
-
-        //for (int i = 0, count = ListHandleSubWeaponAbilities.Count; i < count; ++i)
-        //{
-        //    ListHandleSubWeaponAbilities[i].ForceAlwaysShoot = true;
-        //}
 
         var handleWeaponAbilities = _character.FindAbilities<CharacterHandleWeapon>();
         for (int i = 0, count = handleWeaponAbilities.Count; i < count; ++i)

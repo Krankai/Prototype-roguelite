@@ -249,13 +249,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828816176363ea142b4384bb6fd86211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponName: InvisibleCannon
+  WeaponName: Cannon
   WeaponCurrentlyActive: 1
   InputAuthorized: 1
   TriggerMode: 1
   DelayBeforeUse: 0
   DelayBeforeUseReleaseInterruption: 0
-  TimeBetweenUses: 1.5
+  TimeBetweenUses: 3
   TimeBetweenUsesReleaseInterruption: 0
   UseBurstMode: 0
   BurstLength: 3

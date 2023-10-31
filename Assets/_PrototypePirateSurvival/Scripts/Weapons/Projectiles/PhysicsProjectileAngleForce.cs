@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PhysicsProjectileAngleForce : PhysicsProjectile
 {
+    // [Header("Physics")]
+    public float GravityScale = 1f;
+
+
     public override void SetDirection(Vector3 newDirection, Quaternion newRotation, bool spawnerIsFacingRight = true)
     {
         if (newDirection.x is float.NaN || newDirection.y is float.NaN || newDirection.z is float.NaN)
@@ -67,5 +71,11 @@ public class PhysicsProjectileAngleForce : PhysicsProjectile
         {
             _rigidBody2D.AddForce(newDirection * InitialForce, InitialForceMode2D);
         }
+    }
+
+    protected override void FixedUpdate()
+    {
+        //base.FixedUpdate();
+        _rigidBody.AddForce(Physics.gravity * GravityScale, ForceMode.Acceleration);
     }
 }
