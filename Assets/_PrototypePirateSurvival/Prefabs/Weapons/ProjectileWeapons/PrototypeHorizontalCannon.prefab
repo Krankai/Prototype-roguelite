@@ -312,7 +312,7 @@ MonoBehaviour:
   Flipped: 0
   ProjectileSpawnOffset: {x: 0, y: 0, z: 0}
   DefaultProjectileDirection: {x: 0, y: 0, z: 1}
-  ProjectilesPerShot: 5
+  ProjectilesPerShot: 3
   SpawnTransforms: []
   SpawnTransformsMode: 1
   Spread: {x: 0, y: 0, z: 0}
@@ -390,6 +390,7 @@ MonoBehaviour:
   AvoidNullAim: 1
   IsFaceRight: 1
   IsSecondaryWeapon: 0
+  _weaponAttachment: {fileID: 0}
 --- !u!1 &2737003305881226661
 GameObject:
   m_ObjectHideFlags: 0

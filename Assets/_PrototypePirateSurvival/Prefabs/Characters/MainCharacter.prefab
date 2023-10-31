@@ -4237,6 +4237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2073865382499739808}
   - component: {fileID: 8092329118455346907}
+  - component: {fileID: 4162106218922641432}
   m_Layer: 10
   m_Name: ShootController
   m_TagString: Untagged
@@ -4277,14 +4278,27 @@ MonoBehaviour:
     IsActivated: 1
     IsFaceRight: 1
   - Ability: {fileID: 8481945162106303344}
-    IsActivated: 0
+    IsActivated: 1
     IsFaceRight: 0
   - Ability: {fileID: 8129068447639202972}
-    IsActivated: 1
+    IsActivated: 0
     IsFaceRight: 1
   - Ability: {fileID: 6103204713591612044}
     IsActivated: 0
     IsFaceRight: 0
+--- !u!114 &4162106218922641432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670851968481885200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8f3fe2946db774ea8c1c55eb827d8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListBulletCounts: 03000000050000000700000009000000
 --- !u!1 &6054372477390018638
 GameObject:
   m_ObjectHideFlags: 0
@@ -4712,13 +4726,20 @@ MonoBehaviour:
   BlockingWeaponStates: 
   ListActivatedWeaponAbilities: []
   ShootingRangeFeedbacks: {fileID: 165676092384484428}
-  ShootingStyle: 20
-  ShootingRangeRadius: 6
+  ShootingStyle: 10
+  ShootingRangeRadius: 3
   DetectionRangeArcAngle: 60
   ShootingRangeAngle: 16
   ShootingRangeArcHeightAngle: -16
   InitialForce: 0
   ProjectileAngleY: 0
+  ListRadiuses:
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
   _initialVelocity: 0
   _angle: 0
   _gravityModifier: 0

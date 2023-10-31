@@ -51,6 +51,8 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
     public float ProjectileAngleY;
 
     [Header("Debug")]
+    [SerializeField]
+    private List<float> ListRadiuses = new() { 5, 5.5f, 6, 6.5f, 7, 7.5f };
     [SerializeField, MMReadOnly]
     private float _initialVelocity;
     [SerializeField, MMReadOnly]
@@ -62,7 +64,10 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
     private PhysicsProjectile _projectilePhysics;
     private Rigidbody _projectileRigidBody;
 
+    private int _indexRadius = 0;
 
+
+    [ContextMenu("Initialization")]
     protected override void Initialization()
     {
         base.Initialization();
@@ -139,6 +144,14 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
         this.MMEventStopListening<MMGameEvent>();
     }
 
+    public virtual void UpdateShootingRangeRadius()
+    {
+        _indexRadius = (_indexRadius + 1) % ListRadiuses.Count;
+        ShootingRangeRadius = ListRadiuses[_indexRadius];
+
+        Initialization();
+    }
+
     private void ComputeRequiredInitialForce(float range)
     {
         // v = sqrt(x * g / sin2a) -> F = v * mass / Time.fixedDeltaTime
@@ -158,11 +171,11 @@ public class CharacterHandleShootingRange : CharacterAbility, MMEventListener<En
         var relativeWeaponOffset = Mathf.Max(relativeWeaponPositionX, relativeWeaponPositionZ);
 
         // TODO: temporary; find correct solution later!!!
-        //var maxDistanceProjectile = (range >= distanceTillHitGround)
-        //    ? range - distanceTillHitGround - relativeWeaponOffset
-        //    : range - relativeWeaponOffset;
-        var maxDistanceProjectile = range - relativeWeaponOffset;
-        //maxDistanceProjectile += 0.5f;
+        var maxDistanceProjectile = (range >= distanceTillHitGround)
+            ? range - distanceTillHitGround - relativeWeaponOffset
+            : range - relativeWeaponOffset;
+        //var maxDistanceProjectile = range - relativeWeaponOffset;
+        maxDistanceProjectile += 0.5f;
 
         if (maxDistanceProjectile < 0)
         {

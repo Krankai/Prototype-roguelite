@@ -21,7 +21,7 @@ public class ShootTriggerDetection : MMTriggerAndCollision, MMEventListener<MMGa
     private Coroutine _coroutineTrigger;
     private WaitForSeconds _wfsTrigger;
 
-    private readonly float _delayLockingAim = 1f;
+    private readonly float _delayLockingAim = .2f;
 
 
     private void Start()
@@ -220,6 +220,11 @@ public class ShootTriggerDetection : MMTriggerAndCollision, MMEventListener<MMGa
 
     private void OnDrawGizmos()
     {
+        if (Player == default)
+        {
+            return;
+        }
+
         var handleShootingRange = Player.FindAbility<CharacterHandleShootingRange>();
         if (handleShootingRange == default || handleShootingRange.ShootingStyle != ShootingStyle.LockedAimInRange)
         {

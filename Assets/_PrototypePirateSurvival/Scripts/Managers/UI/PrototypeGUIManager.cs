@@ -9,6 +9,12 @@ public class PrototypeGUIManager : GUIManager
     // the switch button to change player's shooting style
     [Tooltip("the switch button to change player's shooting style")]
     public Button ShootingSwitchButton;
+    // the button to advance number of bullet count
+    [Tooltip("the button to advance number of bullet count")]
+    public Button UpdateBulletButton;
+    // the button to update shooting range radius
+    [Tooltip("the button to update shooting range radius")]
+    public Button UpdateRangeRadiusButton;
     // the buttons to enable/disable corresponding weapons
     public Button RightWeaponButton;
     public Button LeftWeaponButton;
@@ -17,6 +23,7 @@ public class PrototypeGUIManager : GUIManager
 
     private CharacterHandleShootingRange _handleShootingRangeAbility;
     private MultiWeaponHandle _multiWeaponHandle;
+    private ShootingBulletController _shootingBulletController;
 
 
     protected override void Initialization()
@@ -51,7 +58,12 @@ public class PrototypeGUIManager : GUIManager
             _isLeftWeaponOn = _multiWeaponHandle.IsWeaponOn(Vector3.left);
             _isForwardWeaponOn = _multiWeaponHandle.IsWeaponOn(Vector3.forward);
             _isBackWeaponOn = _multiWeaponHandle.IsWeaponOn(Vector3.back);
+
+            _shootingBulletController = _multiWeaponHandle.gameObject.MMGetComponentNoAlloc<ShootingBulletController>();
         }
+
+        UpdateBulletButton.gameObject.SetActive(true);
+        UpdateRangeRadiusButton.gameObject.SetActive(true);
 
         RightWeaponButton.gameObject.SetActive(true);
         LeftWeaponButton.gameObject.SetActive(true);
@@ -68,6 +80,22 @@ public class PrototypeGUIManager : GUIManager
         }
 
         _handleShootingRangeAbility.ToggleShootingStyle();
+    }
+
+    public void OnUpdateShootingRadius()
+    {
+        if (_handleShootingRangeAbility == default)
+        {
+            MMDebug.LogDebugToConsole("Error: no ability of type CharacterHandleShootingRange found", "yello", 3, true);
+            return;
+        }
+
+        _handleShootingRangeAbility.UpdateShootingRangeRadius();
+    }
+
+    public void OnAdvanceBulletCount()
+    {
+        _shootingBulletController.AdvanceBulletCount();
     }
 
     private bool _isRightWeaponOn = true;

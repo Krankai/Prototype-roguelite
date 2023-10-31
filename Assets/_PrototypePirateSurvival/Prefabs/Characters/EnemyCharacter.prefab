@@ -371,7 +371,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.9979325, z: 0, w: 0.064271174}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 15473606382911374}
@@ -398,7 +398,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.9
+  m_Height: 0.85
   m_Radius: 0.55
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -1585,9 +1585,7 @@ MonoBehaviour:
   BlockingMovementStates: 
   BlockingConditionStates: 
   BlockingWeaponStates: 
-  HandleWeaponAbility: {fileID: 7935839355413988617}
-  HandleSecondaryWeaponAbility: {fileID: 0}
-  ListHandleSubWeaponAbilities: []
+  ListActivatedWeaponAbilities: []
   ShootingRangeFeedbacks: {fileID: 6549961870819082762}
   ShootingStyle: 0
   ShootingRangeRadius: 0
