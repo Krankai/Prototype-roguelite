@@ -185,7 +185,7 @@ public class MultiWeaponHandle : MonoBehaviour, MMEventListener<MMGameEvent>
         {
             var handleWeaponAbility = ListActivatedHandleWeaponAbilities[i];
             handleWeaponAbility.ShootStop();
-            handleWeaponAbility.CurrentWeapon.WeaponState.ChangeState(Weapon.WeaponStates.WeaponIdle);
+            //handleWeaponAbility.CurrentWeapon.WeaponState.ChangeState(Weapon.WeaponStates.WeaponIdle);
         }
     }
 
