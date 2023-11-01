@@ -2,19 +2,46 @@ using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ProjectileWeaponAngle : ProjectileWeapon
 {
+    #region Data Structures
+    [System.Serializable]
+    public struct RangeShootAngle
+    {
+        public Vector3 ShootAngle;
+    }
+
+    [System.Serializable]
+    public struct ProjectileShootAngleRange
+    {
+        [Tooltip("in degrees")]
+        public Vector3 FromAngle;
+        [Tooltip("in degrees")]
+        public Vector3 ToAngle;
+    }
+    #endregion Data Structures
+
     [MMInspectorGroup("Projectiles", true, 22)]
-    [Header("Shoot Angle")]
+    [Header("Main")]
     // the range of shooting angle (in degrees) to apply for each projectile spawn
     [Tooltip("the range of shooting angle (in degrees) to apply for each projectile spawn")]
     public Vector3 ShootAngle = Vector3.zero;
 
-    [Header("Sub Projectile")]
+    [Header("Sub-Projectiles")]
+    [Tooltip("offsets relative to main projectile spawn position"), FormerlySerializedAs("ListStartOffsets")]
+    public List<Vector3> ListSubSpawnOffsets;
     public List<RangeShootAngle> ListShootAngles;
-    [Tooltip("local positions")]
-    public List<Vector3> ListStartOffsets;
+
+
+    [Header("Multi Projectiles")]
+    [MMInformation("\nThis setting will override Projectile Spawn Offset\n", MoreMountains.Tools.MMInformationAttribute.InformationType.Info, false)]
+    public bool IsAppliedMultiProjectile = false;
+
+    public List<Vector3> ListProjectileSpawnOffsets;
+    public List<ProjectileShootAngleRange> ListProjectileShootAngleRanges;
+
 
 
     public virtual void AdjustProjectilesAngle(float originAngle, float arcHeightAngle, float shootingRangeAngle)
@@ -75,18 +102,40 @@ public class ProjectileWeaponAngle : ProjectileWeapon
             return projectileGameObject;
         }
 
-        if (projectileIndex == 0)
+        if (IsAppliedMultiProjectile)
         {
-            var rotateX = Quaternion.AngleAxis(ShootAngle.x, transform.right);
-            var rotateY = Quaternion.AngleAxis(ShootAngle.y, transform.up);
-            var rotateZ = Quaternion.AngleAxis(ShootAngle.z, transform.forward);
+            for (int i = 0, count = ListProjectileShootAngleRanges.Count; i < count; ++i)
+            {
+                var angleRange = ListProjectileShootAngleRanges[i];
 
-            var direction = rotateX * rotateY * rotateZ * transform.forward;
-            projectile.SetDirection(direction, transform.rotation, true);
+                var randomizedAngle = UnityEngine.Random.Range(angleRange.FromAngle.x, angleRange.ToAngle.x);
+                var rotateX = Quaternion.AngleAxis(randomizedAngle, transform.right);
+
+                randomizedAngle = UnityEngine.Random.Range(angleRange.FromAngle.y, angleRange.ToAngle.y);
+                var rotateY = Quaternion.AngleAxis(randomizedAngle, transform.up);
+
+                randomizedAngle = UnityEngine.Random.Range(angleRange.FromAngle.z, angleRange.ToAngle.z);
+                var rotateZ = Quaternion.AngleAxis(randomizedAngle, transform.forward);
+
+                var direction = rotateX * rotateY * rotateZ * transform.forward;
+                projectile.SetDirection(direction, transform.rotation, true);
+            }
         }
-        else if (ListShootAngles.Count > 0)
+        else
         {
-            SetupSubProjectilesDirection(projectile, projectileIndex);
+            if (projectileIndex == 0)
+            {
+                var rotateX = Quaternion.AngleAxis(ShootAngle.x, transform.right);
+                var rotateY = Quaternion.AngleAxis(ShootAngle.y, transform.up);
+                var rotateZ = Quaternion.AngleAxis(ShootAngle.z, transform.forward);
+
+                var direction = rotateX * rotateY * rotateZ * transform.forward;
+                projectile.SetDirection(direction, transform.rotation, true);
+            }
+            else if (ListShootAngles.Count > 0)
+            {
+                SetupSubProjectilesDirection(projectile, projectileIndex);
+            }
         }
 
         return projectileGameObject;
@@ -108,8 +157,6 @@ public class ProjectileWeaponAngle : ProjectileWeapon
 
         var direction = rotateX * rotateY * rotateZ * transform.forward;
         projectile.SetDirection(direction, transform.rotation, true);
-
-        //Debug.Log($"Index: {projectileIndex}, Rotation: {angleX}, {angleY}, {angleZ}");
     }
 
     public override void WeaponUse()
@@ -118,12 +165,24 @@ public class ProjectileWeaponAngle : ProjectileWeapon
         TriggerWeaponUsedFeedback();
 
         DetermineSpawnPosition();
-        AdjustProjectilesOffset(ProjectilesPerShot);
+
+        if (IsAppliedMultiProjectile)
+        {
+            // TODO ?
+        }
+        else
+        {
+            AdjustProjectilesOffset(ProjectilesPerShot);
+        }
 
         for (int i = 0; i < ProjectilesPerShot; i++)
         {
             // Setup offset
-            if (i > 0)
+            if (IsAppliedMultiProjectile)
+            {
+                SpawnPosition = OffsetProjectSpawnedPosition(i);
+            }
+            else if (i > 0)
             {
                 SpawnPosition = OffsetSubProjectileSpawnPosition(i);
             }
@@ -137,24 +196,24 @@ public class ProjectileWeaponAngle : ProjectileWeapon
 
     private void AdjustProjectilesOffset(int totalProjectiles)
     {
-        if (ListStartOffsets != default && ListStartOffsets.Count >= totalProjectiles - 1)
+        if (ListSubSpawnOffsets != default && ListSubSpawnOffsets.Count >= totalProjectiles - 1)
         {
             return;
         }
 
-        if (ListStartOffsets == default)
+        if (ListSubSpawnOffsets == default)
         {
-            ListStartOffsets = new();
+            ListSubSpawnOffsets = new();
         }
 
-        int indexAddedNew = ListStartOffsets.Count;
-        while (ListStartOffsets.Count < totalProjectiles - 1)
+        int indexAddedNew = ListSubSpawnOffsets.Count;
+        while (ListSubSpawnOffsets.Count < totalProjectiles - 1)
         {
-            ListStartOffsets.Add(new());
+            ListSubSpawnOffsets.Add(new());
         }
 
         Vector3 lastValue, lastLastValue;
-        for (int i = 0, count = ListStartOffsets.Count; i < count; ++i)
+        for (int i = 0, count = ListSubSpawnOffsets.Count; i < count; ++i)
         {
             if (i < indexAddedNew)
             {
@@ -162,23 +221,23 @@ public class ProjectileWeaponAngle : ProjectileWeapon
             }
 
             // Check in group of 2 (i.e. even and odd index)
-            lastLastValue = (i >= 4) ? ListStartOffsets[i - 4] : Vector3Zero;
-            lastValue = (i >= 2) ? ListStartOffsets[i - 2] : Vector3Zero;
+            lastLastValue = (i >= 4) ? ListSubSpawnOffsets[i - 4] : Vector3Zero;
+            lastValue = (i >= 2) ? ListSubSpawnOffsets[i - 2] : Vector3Zero;
 
-            var offset = ListStartOffsets[i];
+            var offset = ListSubSpawnOffsets[i];
             offset.x = lastValue.x + (lastValue.x - lastLastValue.x);
             offset.y = lastValue.y + (lastValue.y - lastLastValue.y);
             offset.z = lastValue.z + (lastValue.z - lastLastValue.z);
 
-            ListStartOffsets[i] = offset;
+            ListSubSpawnOffsets[i] = offset;
         }
     }
 
     private Vector3 OffsetSubProjectileSpawnPosition(int projectileIndex)
     {
         Vector3 spawnPosition;
-        var indexListOffsets = (projectileIndex - 1) % ListStartOffsets.Count;
-        var startPositionOffset = ListStartOffsets[indexListOffsets];
+        var indexListOffsets = (projectileIndex - 1) % ListSubSpawnOffsets.Count;
+        var startPositionOffset = ListSubSpawnOffsets[indexListOffsets];
 
         if (Flipped)
         {
@@ -201,10 +260,79 @@ public class ProjectileWeaponAngle : ProjectileWeapon
 
         return spawnPosition;
     }
-}
 
-[System.Serializable]
-public struct RangeShootAngle
-{
-    public Vector3 ShootAngle;
+
+
+
+    public void ShootStartOnDetectEnemy()
+    {
+        MMGameEvent.Trigger("DualShoot");
+    }
+
+    private Vector3 OffsetProjectSpawnedPosition(int projectileIndex)
+    {
+        Vector3 spawnPosition;
+        var indexOffset = projectileIndex % ListProjectileSpawnOffsets.Count;
+        var offset = ListProjectileSpawnOffsets[indexOffset];
+
+        if (Flipped)
+        {
+            if (FlipWeaponOnCharacterFlip)
+            {
+                var flippedStartPositionOffset = offset;
+                flippedStartPositionOffset.y = -flippedStartPositionOffset.y;
+
+                spawnPosition = this.transform.position - this.transform.rotation * flippedStartPositionOffset;
+            }
+            else
+            {
+                spawnPosition = this.transform.position - this.transform.rotation * offset;
+            }
+        }
+        else
+        {
+            spawnPosition = this.transform.position + this.transform.rotation * offset;
+        }
+
+        return spawnPosition;
+    }
+
+
+    #region Debug Visualization
+    private void OnDrawGizmos()
+    {
+        if (IsAppliedMultiProjectile)
+        {
+            var direction = transform.forward;
+
+            for (int i = 0, count = ListProjectileSpawnOffsets.Count; i < count; ++i)
+            {
+                var origin = transform.TransformPoint(transform.localPosition + ListProjectileSpawnOffsets[i]);
+
+                Gizmos.color = Color.green;
+                Gizmos.DrawLine(origin, origin + 2 * direction);
+
+                if (i < ListProjectileShootAngleRanges.Count)
+                {
+                    var angleRange = ListProjectileShootAngleRanges[i];
+
+                    Gizmos.color = Color.yellow;
+                    var limitDirection = Quaternion.AngleAxis(angleRange.FromAngle.y, transform.up) * direction;
+                    Gizmos.DrawLine(origin, origin + 2 * limitDirection);
+                    
+                    limitDirection = Quaternion.AngleAxis(angleRange.ToAngle.y, transform.up) * direction;
+                    Gizmos.DrawLine(origin, origin + 2 * limitDirection);
+
+
+                    Gizmos.color = Color.red;
+                    limitDirection = Quaternion.AngleAxis(angleRange.FromAngle.x, transform.right) * direction;
+                    Gizmos.DrawLine(origin, origin + 2 * limitDirection);
+
+                    limitDirection = Quaternion.AngleAxis(angleRange.ToAngle.x, transform.right) * direction;
+                    Gizmos.DrawLine(origin, origin + 2 * limitDirection);
+                }
+            }
+        }
+    }
+    #endregion Debug Visualization
 }

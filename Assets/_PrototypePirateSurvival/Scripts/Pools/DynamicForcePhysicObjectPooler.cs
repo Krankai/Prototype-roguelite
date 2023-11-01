@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DynamicForcePhysicObjectPooler : MMSimpleObjectPooler
 {
-    [Space, MMReadOnly]
+    [Space]
     public float AppliedInitialForce = 0f;
 
 

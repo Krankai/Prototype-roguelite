@@ -7,7 +7,9 @@ using static CustomEvents;
 
 public class ShootTriggerDetection : MMTriggerAndCollision, MMEventListener<MMGameEvent>
 {
-    private Character Player => LevelManager.Instance.Players[0];
+    private Character Player => (LevelManager.Instance != default && LevelManager.Instance.Players.Count > 0)
+        ? LevelManager.Instance.Players[0]
+        : default;
 
     public float DetectionAngleHalfArc => DetectionAngle / 2f;
     public float DetectionAngle = 30f;
@@ -263,67 +265,6 @@ public class ShootTriggerDetection : MMTriggerAndCollision, MMEventListener<MMGa
                 Gizmos.DrawLine(weaponPoint, enemyContactSameHeight);
             }
         }
-
-
-        //if (HandleWeaponAbility != default && HandleWeaponAbility.CurrentWeapon != default)
-        //{
-        //    var weaponContact = HandleWeaponAbility.CurrentWeapon.transform.position;
-        //    var weaponDirection = HandleWeaponAbility.CurrentWeapon.transform.forward;
-
-        //    Gizmos.color = _debugLineColor;
-        //    Gizmos.DrawLine(weaponContact, weaponContact + 10 * weaponDirection);
-
-        //    var limitDirection = Quaternion.AngleAxis(DetectionAngleHalfArc, HandleWeaponAbility.CurrentWeapon.transform.up) * weaponDirection;
-        //    Gizmos.DrawLine(weaponContact, weaponContact + 10 * limitDirection);
-
-        //    limitDirection = Quaternion.AngleAxis(-DetectionAngleHalfArc, HandleWeaponAbility.CurrentWeapon.transform.up) * weaponDirection;
-        //    Gizmos.DrawLine(weaponContact, weaponContact + 10 * limitDirection);
-
-
-        //    var enemyGameObject = GameObject.Find("NPC");
-        //    if (enemyGameObject != default)
-        //    {
-        //        var weaponPoint = HandleWeaponAbility.CurrentWeapon.transform.position;
-
-        //        var enemyContactSameHeight = enemyGameObject.transform.position;
-        //        enemyContactSameHeight.y = weaponPoint.y;
-
-        //        var distanceDirectionToEnemy = (enemyContactSameHeight - weaponPoint).normalized;
-
-        //        Gizmos.color = Color.blue;
-        //        Gizmos.DrawLine(weaponPoint, weaponPoint + 10 * distanceDirectionToEnemy.normalized);
-        //    }
-        //}
-
-        //if (HandleSecondaryWeaponAbility != default && HandleSecondaryWeaponAbility.CurrentWeapon != default)
-        //{
-        //    var weaponContact = HandleSecondaryWeaponAbility.CurrentWeapon.transform.position;
-        //    var weaponDirection = HandleSecondaryWeaponAbility.CurrentWeapon.transform.forward;
-
-        //    Gizmos.color = _debugLineColor;
-        //    Gizmos.DrawLine(weaponContact, weaponContact + 10 * weaponDirection);
-
-        //    var limitDirection = Quaternion.AngleAxis(DetectionAngleHalfArc, HandleSecondaryWeaponAbility.CurrentWeapon.transform.up) * weaponDirection;
-        //    Gizmos.DrawLine(weaponContact, weaponContact + 10 * limitDirection);
-
-        //    limitDirection = Quaternion.AngleAxis(-DetectionAngleHalfArc, HandleSecondaryWeaponAbility.CurrentWeapon.transform.up) * weaponDirection;
-        //    Gizmos.DrawLine(weaponContact, weaponContact + 10 * limitDirection);
-
-
-        //    var enemyGameObject = GameObject.Find("NPC");
-        //    if (enemyGameObject != default)
-        //    {
-        //        var weaponPoint = HandleSecondaryWeaponAbility.CurrentWeapon.transform.position;
-
-        //        var enemyContactSameHeight = enemyGameObject.transform.position;
-        //        enemyContactSameHeight.y = weaponPoint.y;
-
-        //        var distanceDirectionToEnemy = (enemyContactSameHeight - weaponPoint).normalized;
-
-        //        Gizmos.color = Color.blue;
-        //        Gizmos.DrawLine(weaponPoint, weaponPoint + 10 * distanceDirectionToEnemy.normalized);
-        //    }
-        //}
     }
 #endif // UNITY_EDITOR
 }

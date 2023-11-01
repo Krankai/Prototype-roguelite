@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -7701923094772466035}
   - component: {fileID: 8591524857899335740}
   m_Layer: 0
-  m_Name: PrototypeCannonBall
+  m_Name: PrototypeCannonBallVelocity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,9 +218,9 @@ MonoBehaviour:
   ProjectileIsFacingRight: 1
   InitialInvulnerabilityDuration: 0
   DamageOwner: 0
-  InitialForce: 600
+  InitialForce: 4
   InitialRotation: {x: 0, y: 0, z: 0}
-  InitialForceMode: 0
+  InitialForceMode: 2
   InitialForceMode2D: 1
   GravityScale: 0.32
 --- !u!114 &-7701923094772466035
