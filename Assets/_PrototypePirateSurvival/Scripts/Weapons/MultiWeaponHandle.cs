@@ -34,7 +34,7 @@ public class MultiWeaponHandle : MonoBehaviour, MMEventListener<MMGameEvent>
 
     protected void OnEnable()
     {
-        if (_character != default && _character.CharacterType == Character.CharacterTypes.Player)
+        if (_character != default)
         {
             this.MMEventStartListening();
         }
@@ -42,7 +42,7 @@ public class MultiWeaponHandle : MonoBehaviour, MMEventListener<MMGameEvent>
 
     protected void OnDisable()
     {
-        if (_character != default && _character.CharacterType == Character.CharacterTypes.Player)
+        if (_character != default)
         {
             this.MMEventStopListening();
         }
@@ -170,12 +170,22 @@ public class MultiWeaponHandle : MonoBehaviour, MMEventListener<MMGameEvent>
         }
     }
 
-    protected virtual void ShootAllWeapons()
+    public virtual void ShootAllWeapons()
     {
         for (int i = 0, count = ListActivatedHandleWeaponAbilities.Count; i < count; ++i)
         {
             var handleWeaponAbility = ListActivatedHandleWeaponAbilities[i];
             handleWeaponAbility.ShootStart();
+        }
+    }
+
+    public virtual void StopAllWeapons()
+    {
+        for (int i = 0, count = ListActivatedHandleWeaponAbilities.Count; i < count; ++i)
+        {
+            var handleWeaponAbility = ListActivatedHandleWeaponAbilities[i];
+            handleWeaponAbility.ShootStop();
+            handleWeaponAbility.CurrentWeapon.WeaponState.ChangeState(Weapon.WeaponStates.WeaponIdle);
         }
     }
 

@@ -1,4 +1,5 @@
 using MoreMountains.Tools;
+using MoreMountains.TopDownEngine;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -63,6 +64,13 @@ public class WeaponFieldOfView3D : MonoBehaviour, MMEventListener<MMGameEvent>
         float stepAngleSize = ArcCentralAngle / stepCount;
 
         var viewPoints = new List<Vector3>();
+
+        var character = transform.GetComponentInParent<Character>();
+        //var elevation = (character != default) ? character.transform.position.y : -0.5f;
+
+        // TODO: auto-set this
+        var elevation = (character.CharacterType == Character.CharacterTypes.Player) ? -0.5f : -1.5f;
+
         var pointInArc = Vector3.zero;
 
         var originPoint = transform.position;
@@ -90,12 +98,13 @@ public class WeaponFieldOfView3D : MonoBehaviour, MMEventListener<MMGameEvent>
         var triangles = new int[(vertexCount - 2) * 3];
 
         vertices[0] = transform.InverseTransformPoint(originPoint);
-        vertices[0].y = 0;
+        vertices[0].y = elevation;
 
         for (int i = 0, count = vertexCount - 1; i < count; ++i)
         {
             var localViewPoint = transform.InverseTransformPoint(viewPoints[i]);
             vertices[i + 1] = localViewPoint;
+            vertices[i + 1].y = elevation;
 
             if (i < vertexCount - 2)
             {

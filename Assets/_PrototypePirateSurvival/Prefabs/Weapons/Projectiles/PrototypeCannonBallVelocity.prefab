@@ -109,7 +109,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.5
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8458183850248997376
 Rigidbody:
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetLayerMask:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 9216
   Owner: {fileID: 0}
   TriggerFilter: 195
   MinDamageCaused: 100
@@ -218,11 +218,11 @@ MonoBehaviour:
   ProjectileIsFacingRight: 1
   InitialInvulnerabilityDuration: 0
   DamageOwner: 0
-  InitialForce: 4
+  InitialForce: 6
   InitialRotation: {x: 0, y: 0, z: 0}
   InitialForceMode: 2
   InitialForceMode2D: 1
-  GravityScale: 0.32
+  GravityScale: 0.28
 --- !u!114 &-7701923094772466035
 MonoBehaviour:
   m_ObjectHideFlags: 0

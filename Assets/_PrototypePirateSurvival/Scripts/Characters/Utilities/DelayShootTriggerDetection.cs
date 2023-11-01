@@ -1,4 +1,5 @@
 using MoreMountains.Tools;
+using MoreMountains.TopDownEngine;
 using System.Collections;
 using UnityEngine;
 
@@ -12,16 +13,41 @@ public class DelayShootTriggerDetection : MMTriggerAndCollision
     private Coroutine _coroutineTrigger;
     private WaitForSeconds _wfsTrigger;
 
+    private Character _ownerCharacter;
+
 
     private void Start()
     {
         _wfsTrigger = new WaitForSeconds(_delayChargingShoot);
     }
 
+    private void RefreshOwner()
+    {
+        if (_ownerCharacter != default)
+        {
+            return;
+        }
+
+        _ownerCharacter = gameObject.GetComponentInParent<Character>();
+    }
+
     protected override void OnTriggerStay(Collider collider)
     {
         if (TriggerLayerMask.MMContains(collider.gameObject))
         {
+            RefreshOwner();
+
+            if (_ownerCharacter == default)
+            {
+                return;
+            }
+
+            bool isAlly = _ownerCharacter.gameObject.layer == collider.gameObject.layer;
+            if (isAlly)
+            {
+                return;
+            }
+
             if (_isFinishedCharge)
             {
                 OnTriggerStayEvent?.Invoke();
@@ -37,12 +63,16 @@ public class DelayShootTriggerDetection : MMTriggerAndCollision
     {
         base.OnTriggerExit(collider);
 
-        if (!TriggerLayerMask.MMContains(collider.gameObject))
+        if (TriggerLayerMask.MMContains(collider.gameObject))
         {
-            return;
-        }
+            //if (collider.gameObject == LevelManager.Instance.Players[0].gameObject)
+            //{
+            //    CancelChargingShoot();
+            //    OnTriggerExitEvent?.Invoke();
+            //}
 
-        CancelChargingShoot();
+            CancelChargingShoot();
+        }
     }
 
     private IEnumerator CoroutineTriggerDetectEvent()

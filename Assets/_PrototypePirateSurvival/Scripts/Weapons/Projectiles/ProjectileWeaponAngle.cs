@@ -266,33 +266,48 @@ public class ProjectileWeaponAngle : ProjectileWeapon
 
     public void ShootStartOnDetectEnemy()
     {
-        MMGameEvent.Trigger("DualShoot");
+        var multiWeaponHandle = Owner.AdditionalAbilityNodes[0].GetComponentInChildren<MultiWeaponHandle>();
+        if (multiWeaponHandle != default)
+        {
+            multiWeaponHandle.ShootAllWeapons();
+        }
+    }
+
+    public void ShootStopOnEnemyExit()
+    {
+        var multiWeaponHandle = Owner.AdditionalAbilityNodes[0].GetComponentInChildren<MultiWeaponHandle>();
+        if (multiWeaponHandle != default)
+        {
+            multiWeaponHandle.StopAllWeapons();
+        }
     }
 
     private Vector3 OffsetProjectSpawnedPosition(int projectileIndex)
     {
         Vector3 spawnPosition;
         var indexOffset = projectileIndex % ListProjectileSpawnOffsets.Count;
+
         var offset = ListProjectileSpawnOffsets[indexOffset];
+        spawnPosition = transform.TransformPoint(transform.localPosition + offset);
 
-        if (Flipped)
-        {
-            if (FlipWeaponOnCharacterFlip)
-            {
-                var flippedStartPositionOffset = offset;
-                flippedStartPositionOffset.y = -flippedStartPositionOffset.y;
+        //if (Flipped)
+        //{
+        //    if (FlipWeaponOnCharacterFlip)
+        //    {
+        //        var flippedStartPositionOffset = offset;
+        //        flippedStartPositionOffset.y = -flippedStartPositionOffset.y;
 
-                spawnPosition = this.transform.position - this.transform.rotation * flippedStartPositionOffset;
-            }
-            else
-            {
-                spawnPosition = this.transform.position - this.transform.rotation * offset;
-            }
-        }
-        else
-        {
-            spawnPosition = this.transform.position + this.transform.rotation * offset;
-        }
+        //        spawnPosition = this.transform.position - this.transform.rotation * flippedStartPositionOffset;
+        //    }
+        //    else
+        //    {
+        //        spawnPosition = this.transform.position - this.transform.rotation * offset;
+        //    }
+        //}
+        //else
+        //{
+        //    spawnPosition = this.transform.position + this.transform.rotation * offset;
+        //}
 
         return spawnPosition;
     }
