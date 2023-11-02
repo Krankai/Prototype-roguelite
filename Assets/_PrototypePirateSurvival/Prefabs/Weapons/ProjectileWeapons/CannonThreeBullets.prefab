@@ -132,15 +132,15 @@ MonoBehaviour:
   IsAppliedMultiProjectile: 1
   ListProjectileSpawnOffsets:
   - {x: 0, y: 0, z: 0}
-  - {x: -0.8, y: 0, z: 0}
-  - {x: 0.8, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
   ListProjectileShootAngleRanges:
-  - FromAngle: {x: -5, y: -10, z: 0}
-    ToAngle: {x: -5, y: 10, z: 0}
-  - FromAngle: {x: -5, y: -10, z: 0}
-    ToAngle: {x: -5, y: 10, z: 0}
-  - FromAngle: {x: -5, y: -10, z: 0}
-    ToAngle: {x: -5, y: 10, z: 0}
+  - FromAngle: {x: -5, y: -15, z: 0}
+    ToAngle: {x: -5, y: 15, z: 0}
+  - FromAngle: {x: -5, y: -15, z: 0}
+    ToAngle: {x: -5, y: 15, z: 0}
+  - FromAngle: {x: -5, y: -15, z: 0}
+    ToAngle: {x: -5, y: 15, z: 0}
 --- !u!114 &2877269531164155219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
   MutualizeWaitingPools: 1
   NestWaitingPool: 1
   NestUnderThis: 0
-  GameObjectToPool: {fileID: 1770188937709924190, guid: fdab763dd83dbc04982ee620df83c33a,
+  GameObjectToPool: {fileID: 1770188937709924190, guid: 47b5006603d617748bdd1c26320e8e06,
     type: 3}
   PoolSize: 10
   PoolCanExpand: 1
@@ -455,7 +455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsActivated: 1
   ArcRadius: 5
-  ArcCentralAngle: 60
+  ArcCentralAngle: 90
   _fovMeshFilter: {fileID: 1287331971053043749}
   _meshResolution: 0.5
   _meshCollider: {fileID: 0}

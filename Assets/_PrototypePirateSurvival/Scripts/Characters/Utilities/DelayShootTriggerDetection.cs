@@ -80,9 +80,9 @@ public class DelayShootTriggerDetection : MMTriggerAndCollision
         _isChargingShoot = true;
         _isFinishedCharge = false;
 
-        Debug.LogError("Start locking aim...");
+        //Debug.LogError("Start locking aim...");
         yield return _wfsTrigger;
-        Debug.LogError("Finish locking aim");
+        //Debug.LogError("Finish locking aim");
 
         OnTriggerStayEvent?.Invoke();
 
@@ -103,7 +103,7 @@ public class DelayShootTriggerDetection : MMTriggerAndCollision
             _isFinishedCharge = false;
 
 
-            Debug.LogError("Cancel locking aim and/or shooting");
+            //Debug.LogError("Cancel locking aim and/or shooting");
         }
     }
 }

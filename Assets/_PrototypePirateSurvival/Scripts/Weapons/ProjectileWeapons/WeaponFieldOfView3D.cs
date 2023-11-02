@@ -66,10 +66,10 @@ public class WeaponFieldOfView3D : MonoBehaviour, MMEventListener<MMGameEvent>
         var viewPoints = new List<Vector3>();
 
         var character = transform.GetComponentInParent<Character>();
-        //var elevation = (character != default) ? character.transform.position.y : -0.5f;
+        var elevation = (character != default) ? character.transform.position.y - 0.6f : 0f;
 
         // TODO: auto-set this
-        var elevation = (character.CharacterType == Character.CharacterTypes.Player) ? -0.5f : -1.5f;
+        //var elevation = (character.CharacterType == Character.CharacterTypes.Player) ? -0.5f : -1.5f;
 
         var pointInArc = Vector3.zero;
 

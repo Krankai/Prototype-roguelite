@@ -109,7 +109,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.6
+  m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8458183850248997376
 Rigidbody:
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetLayerMask:
     serializedVersion: 2
-    m_Bits: 9216
+    m_Bits: 8192
   Owner: {fileID: 0}
   TriggerFilter: 195
   MinDamageCaused: 100
@@ -206,7 +206,7 @@ MonoBehaviour:
   ExecuteOnDisable:
     m_PersistentCalls:
       m_Calls: []
-  LifeTime: 3
+  LifeTime: 4
   FaceDirection: 1
   FaceMovement: 0
   MovementVector: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   ImmuneToKnockbackIfZeroDamage: 0
   KnockbackForceMultiplier: 1
   DestroyOnDeath: 1
-  DelayBeforeDestruction: 0
+  DelayBeforeDestruction: 0.5
   PointsWhenDestroyed: 0
   RespawnAtInitialLocation: 0
   DisableControllerOnDeath: 1

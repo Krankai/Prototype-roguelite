@@ -153,7 +153,7 @@ MonoBehaviour:
   MutualizeWaitingPools: 1
   NestWaitingPool: 1
   NestUnderThis: 0
-  GameObjectToPool: {fileID: 1770188937709924190, guid: fdab763dd83dbc04982ee620df83c33a,
+  GameObjectToPool: {fileID: 1770188937709924190, guid: 47b5006603d617748bdd1c26320e8e06,
     type: 3}
   PoolSize: 10
   PoolCanExpand: 1
