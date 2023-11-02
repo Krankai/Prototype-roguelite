@@ -183,6 +183,18 @@ namespace MoreMountains.TopDownEngine
 
 			if (InputAuthorized)
 			{
+				// ==
+				//var prevHorizontalInput = _horizontalInput;
+				//var prevVerticalInput = _verticalInput;
+
+				//const float speed = 0.1f;
+				//var horizontalInput = Mathf.Lerp(prevHorizontalInput, _horizontalInput, speed * Time.deltaTime);
+				//_horizontalInput = horizontalInput;
+
+				//var verticalInput = Mathf.Lerp(prevVerticalInput, _verticalInput, speed * Time.deltaTime);
+				//_verticalInput = prevVerticalInput;
+				// ==
+
 				_horizontalMovement = _horizontalInput;
 				_verticalMovement = _verticalInput;
 			}
@@ -403,13 +415,22 @@ namespace MoreMountains.TopDownEngine
 		/// </summary>
 		protected virtual void SetMovement()
 		{
+			//// ==
+			//var prevCurrentInput = _currentInput;
+			//const float speed = 0.8f;
+			//// ==
+
 			_movementVector = Vector3.zero;
 			_currentInput = Vector2.zero;
 
 			_currentInput.x = _horizontalMovement;
 			_currentInput.y = _verticalMovement;
-            
-			_normalizedInput = _currentInput.normalized;
+
+            //// ==
+            //_currentInput = Vector2.Lerp(prevCurrentInput, _currentInput, speed * Time.deltaTime);
+            //// ==
+
+            _normalizedInput = _currentInput.normalized;
 
 			float interpolationSpeed = 1f;
             
