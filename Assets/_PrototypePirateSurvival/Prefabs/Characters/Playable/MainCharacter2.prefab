@@ -4101,11 +4101,9 @@ MonoBehaviour:
   ForcedRotation: 0
   ForcedRotationDirection: {x: 0, y: 0, z: 0}
   IsAppliedShipPhysics: 1
-  ExclusiveRotateToFaceMovementDirectionSpeeds:
-  - ThresholdAngle: 80
-    RotationSpeed: 0.5
-    RotationAcceleration: 0
-  ListRotationsOnIncrease: []
+  ThresholdAngle: 90
+  SpeedRotateDirectionVector: 1
+  AccelerationRotateDirectionVector: 0
 --- !u!114 &5263057074404569947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4167,7 +4165,7 @@ MonoBehaviour:
   InputAuthorized: 1
   AnalogInput: 0
   ScriptDrivenInput: 0
-  WalkSpeed: 2
+  WalkSpeed: 3
   ShouldSetMovement: 1
   IdleThreshold: 0.05
   Acceleration: 10
@@ -4177,9 +4175,15 @@ MonoBehaviour:
   TouchTheGroundParticles: []
   TouchTheGroundSfx: []
   IsAppliedShipPhysics: 1
-  InertiaResistance: 3
-  InertiaDeacceleration: 0.2
-  LimitToCancelInertia: 0.15
+  ThresholdAngle: 10
+  IsMovementInertia: 1
+  MovementInertiaResistance: 3
+  MovementInertiaDeceleration: 0.1
+  LimitToCancelInertia: 0.1
+  IsInputInertia: 0
+  InputInertiaResistance: 2
+  InputInertiaDeacceleration: 0.2
+  LimitToCancelInputInertia: 0.2
 --- !u!114 &976841630916487840
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,134 +1,108 @@
+using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static CharacterOrientation3DShipPhysics;
 
 public class CharacterOrientation3DShipPhysics : CharacterOrientation3D
 {
-    [System.Serializable]
-    public struct ExclusiveRotationSpeedForAngle
-    {
-        public float ThresholdAngle;
-        public float RotationSpeed;
-        public float RotationAcceleration;
-    }
-
-
     [Header("Ship Physics")]
+    [MMInformation("\nThe following settings are only applied if rotation mode is Movement Direction\n", MMInformationAttribute.InformationType.Info, false)]
     // whether to apply modifications made for real-life ship physics simulation
     [Tooltip("whether to apply modifications made for real-life ship physics simulation")]
     public bool IsAppliedShipPhysics;
 
-    // the list of exclusive rotation speeds (to face movement) for rotation above specified set of angles only (in degrees)
-    [Tooltip("the list of exclusive rotation speeds (to face movement) for rotation above specified set of angles only (in degrees)")]
-    public List<ExclusiveRotationSpeedForAngle> ExclusiveRotateToFaceMovementDirectionSpeeds = new();
+    // the threshold angle (in degrees) between successive input direction, above which an exclusive rotate speed was used to rotate the model
+    [Tooltip("the threshold angle (in degrees) between successive input direction, above which an exclusive rotate speed was used to rotate the model")]
+    public float ThresholdAngle = 100f;
 
-    public List<ExclusiveRotationSpeedForAngle> ListRotationsOnIncrease = new();
+    // the rotation speed for rotating direction vector an angle exceeding the threshold
+    [Tooltip("the rotation speed for rotating direction vector an angle exceeding the threshold")]
+    public float SpeedRotateDirectionVector = 0.5f;
 
+    // the acceleration (or deacceleration if negative) for rotating direction vector
+    [Tooltip("the acceleration (or deacceleration if negative) for rotating direction vector")]
+    public float AccelerationRotateDirectionVector = -0.05f;
 
-    //// the threshold angle (in degrees) above which a separate speed was used to rotate the model
-    //[Tooltip("the threshold angle (in degrees) above which a separate speed was used to rotate the model")]
-    //public float ThresholdAngle = 50f;
+    protected Vector3 _previousDirection = Vector3.zero;
+    protected Vector3 _currentControllerDirection = Vector3.zero;
 
-    //// the exclusive rotation speed (to face movement) only applied for rotation above the threshold angle
-    //[Tooltip("the exclusive rotation speed only applied for rotation above the threshold angle")]
-    //public float ExclusiveRotateToFaceMovementDirectionSpeed = 0.4f;
+    protected Vector2 _previousInput = Vector2.zero;
+    protected Vector2 _currentInput = Vector2.zero;
 
-    internal ExclusiveRotationSpeedForAngleComparer _comparer;
-    protected float _previousAngle = 0f;
-
-
-    protected override void Initialization()
-    {
-        base.Initialization();
-
-        _comparer = new();
-        ExclusiveRotateToFaceMovementDirectionSpeeds.Sort(_comparer);
-        ListRotationsOnIncrease.Sort(_comparer);
-    }
 
     protected override void RotateToFaceMovementDirection()
     {
+        _previousDirection = _currentDirection;
+
         base.RotateToFaceMovementDirection();
 
-        if (!IsAppliedShipPhysics)
+        if (!IsAppliedShipPhysics || !ShouldRotateToFaceMovementDirection)
         {
             return;
         }
 
-        float angle = 0f;
-
-        if (MovementRotationSpeed == RotationSpeeds.Smooth)
+        if ((RotationMode != RotationModes.MovementDirection) && (RotationMode != RotationModes.Both))
         {
-            if (_currentDirection != Vector3.zero)
-            {
-                angle = Quaternion.Angle(MovementRotatingModel.transform.rotation, _tmpRotation);
-            }
+            return;
         }
 
-        if (MovementRotationSpeed == RotationSpeeds.SmoothAbsolute)
-        {
-            if (_lastMovement != Vector3.zero)
-            {
-                angle = Quaternion.Angle(MovementRotatingModel.transform.rotation, _tmpRotation);
-            }
-        }
+        // TODO: ...
 
-        //if (angle > ThresholdAngle)
+
+        //_previousDirection = _currentControllerDirection;
+        //_previousInput = _currentInput;
+
+        //_currentControllerDirection = _controller.CurrentDirection;
+        //_currentInput.x = _horizontalInput;
+        //_currentInput.y = _verticalInput;
+
+        // TODO: lerp angle instead
+        //var originRotation = Quaternion.identity;
+        //var targetAngle = Vector2.SignedAngle(_previousInput, _currentInput);
+        //Debug.Log($"Target angle: {targetAngle}");
+        //var targetRotation = Quaternion.AngleAxis(targetAngle, transform.up);
+
+
+        //var baseSpeed = SpeedRotateDirectionVector;
+        //var acceleration = AccelerationRotateDirectionVector;
+
+        //var speed = Mathf.Lerp(baseSpeed, baseSpeed * (1 + acceleration), Mathf.Abs(acceleration) * Time.deltaTime);
+
+        //var lerpRotation = Quaternion.Lerp(originRotation, targetRotation, 0.1f * Time.deltaTime);
+        ////_currentControllerDirection = lerpRotation * _previousDirection;
+        ////_currentInput = lerpRotation * _previousInput;
+
+        //var rotation = Quaternion.RotateTowards(originRotation, targetRotation, 0.1f * 2 * Mathf.PI);
+        //_currentControllerDirection = rotation * _previousDirection;
+        //_currentInput = rotation * _previousInput;
+
+        // 
+
+
+
+
+        //Debug.Log($"Angle: {Vector3.Angle(_currentInput, _previousInput)}");
+        //if (Vector3.Angle(_currentControllerDirection, _previousDirection) >= ThresholdAngle)
+        //if (Vector3.Angle(_currentInput, _previousInput) >= ThresholdAngle)
         //{
-        //    _newMovementQuaternion = Quaternion.Slerp(MovementRotatingModel.transform.rotation, _tmpRotation, Time.deltaTime * ExclusiveRotateToFaceMovementDirectionSpeed);
+        //    var baseSpeed = SpeedRotateDirectionVector;
+        //    var acceleration = AccelerationRotateDirectionVector;
+
+        //    var speed = Mathf.Lerp(baseSpeed, baseSpeed * (1 + acceleration), Time.deltaTime);
+        //    Debug.Log($"Speed: {speed * Time.deltaTime}");
+
+        //    _currentControllerDirection = Vector3.Lerp(_previousDirection, _currentControllerDirection, speed * Time.deltaTime);
+        //    _currentInput = Vector2.Lerp(_previousInput, _currentInput, speed * Time.deltaTime);
         //}
 
-        if (_previousAngle < angle && !Mathf.Approximately(angle, 0f))
-        {
-            // increase
-            for (int i = 0, count = ListRotationsOnIncrease.Count; i < count; ++i)
-            {
-                var rotationSpeedForAngle = ListRotationsOnIncrease[i];
+        //_controller.CurrentDirection = _currentControllerDirection;
 
-                if (angle <= rotationSpeedForAngle.ThresholdAngle)
-                {
-                    Debug.Log($"[Increase] Applied: {angle} with threshold: {rotationSpeedForAngle.ThresholdAngle}");
-
-                    var speed = rotationSpeedForAngle.RotationSpeed + rotationSpeedForAngle.RotationAcceleration * Time.deltaTime;
-                    speed = Mathf.Clamp(speed, 0, speed);
-
-                    _newMovementQuaternion = Quaternion.Slerp(MovementRotatingModel.transform.rotation, _tmpRotation, speed * Time.deltaTime);
-
-                    break;
-                }
-            }
-        }
-        else if (_previousAngle >= angle && !Mathf.Approximately(angle, 0f))
-        {
-            // decrease
-            for (int i = ExclusiveRotateToFaceMovementDirectionSpeeds.Count - 1; i >= 0; --i)
-            {
-                var rotationSpeedForAngle = ExclusiveRotateToFaceMovementDirectionSpeeds[i];
-
-                if (angle >= rotationSpeedForAngle.ThresholdAngle)
-                {
-                    Debug.Log($"[Decrease] Applied: {angle} with threshold: {rotationSpeedForAngle.ThresholdAngle}");
-
-                    var speed = rotationSpeedForAngle.RotationSpeed + rotationSpeedForAngle.RotationAcceleration * Time.deltaTime;
-                    speed = Mathf.Clamp(speed, 0, speed);
-
-                    _newMovementQuaternion = Quaternion.Slerp(MovementRotatingModel.transform.rotation, _tmpRotation, speed * Time.deltaTime);
-
-                    break;
-                }
-            }
-        }
-
-        _previousAngle = angle;
+        //base.RotateToFaceMovementDirection();
     }
-}
 
-internal class ExclusiveRotationSpeedForAngleComparer : IComparer<ExclusiveRotationSpeedForAngle>
-{
-    public int Compare(ExclusiveRotationSpeedForAngle x, ExclusiveRotationSpeedForAngle y)
+    private void OnDrawGizmos()
     {
-        return x.ThresholdAngle.CompareTo(y.ThresholdAngle);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position, transform.position + 3 * _currentControllerDirection);
+        //Gizmos.DrawLine(transform.position, transform.position + 3 * _currentInput);
     }
 }

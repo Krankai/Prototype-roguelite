@@ -34,7 +34,6 @@ public class AIDecisionRotationAligned : AIDecision
         if (Direction == TargetDirection.Vertical)
         {
             var angle = Vector3.Angle(_characterOrientation3D.ModelDirection, _brain.Target.transform.forward);
-            Debug.Log($"Rotation: {angle}");
             return (angle <= ThresholdAngle || (180 - angle) <= ThresholdAngle);
         }
         else
