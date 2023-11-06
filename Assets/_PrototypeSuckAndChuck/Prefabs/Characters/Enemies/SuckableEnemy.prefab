@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4586608631069042}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4564073364419608}
   - {fileID: 4819508536344129920}
@@ -48,9 +48,9 @@ GameObject:
   - component: {fileID: 114060530881921866}
   - component: {fileID: 114839196621103566}
   - component: {fileID: 114072752581488692}
-  m_Layer: 10
-  m_Name: MainCharacter
-  m_TagString: Player
+  m_Layer: 13
+  m_Name: SuckableEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,7 +89,7 @@ CharacterController:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Height: 0.66
   m_Radius: 0.23
@@ -97,7 +97,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.4, z: 0}
+  m_Center: {x: 0, y: 0.21, z: 0}
 --- !u!54 &54182602704540828
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167761570092420}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c88994d153c654449e4c5012ac55def, type: 3}
   m_Name: 
@@ -215,8 +215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterDimension: 0
-  CharacterType: 0
-  PlayerID: Player1
+  CharacterType: 1
+  PlayerID: 
   CharacterAnimator: {fileID: 0}
   UseDefaultMecanim: 1
   RunAnimatorSanityChecks: 0
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 4794836682858754}
   - component: {fileID: 33928155771172226}
   - component: {fileID: 23125405360769016}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 23574501634781586}
   - component: {fileID: 8420661262967169989}
   - component: {fileID: 5941778534522576749}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: MinimalDude
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ Transform:
   m_GameObject: {fileID: 1768778062450486}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 50.000015, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -420,7 +420,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6a0c390c0547638469f1f2a92e44065d, type: 2}
+  - {fileID: 2100000, guid: 8381496784d42b841a499bae12a18214, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -517,7 +517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4564073364419608}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: WeaponAttachment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,8 +559,7 @@ GameObject:
   - component: {fileID: 2717271642743271122}
   - component: {fileID: 6285370067767774273}
   - component: {fileID: 8329143584531508651}
-  - component: {fileID: 3597796598499004898}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Abilities
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,10 +606,10 @@ MonoBehaviour:
   RotationMode: 1
   CharacterRotationAuthorized: 1
   ShouldRotateToFaceMovementDirection: 1
-  MovementRotationSpeed: 2
+  MovementRotationSpeed: 1
   MovementRotatingModel: {fileID: 0}
-  RotateToFaceMovementDirectionSpeed: 2
-  AbsoluteThresholdMovement: 0.8
+  RotateToFaceMovementDirectionSpeed: 5
+  AbsoluteThresholdMovement: 0.5
   ModelDirection: {x: 0, y: 0, z: 0}
   ModelAngles: {x: 0, y: 0, z: 0}
   ShouldRotateToFaceWeaponDirection: 0
@@ -648,7 +647,7 @@ MonoBehaviour:
   InputAuthorized: 1
   AnalogInput: 0
   ScriptDrivenInput: 0
-  WalkSpeed: 2.2
+  WalkSpeed: 3
   ShouldSetMovement: 1
   IdleThreshold: 0.05
   Acceleration: 10
@@ -870,7 +869,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994617329061095493}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a07c6668aa55403790d27b575279549, type: 3}
   m_Name: 
@@ -910,7 +909,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994617329061095493}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05b56d00552d6cd44b46000232e9d83a, type: 3}
   m_Name: 
@@ -960,49 +959,6 @@ MonoBehaviour:
   PhysicsInteractionsRaycastLength: 0.05
   PhysicsInteractionsRaycastOffset: {x: 0, y: 0, z: 0}
   PushPower: 1850
---- !u!114 &3597796598499004898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994617329061095493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a050fd1b15da83c4f964976797d2af3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilityStartSfx: {fileID: 0}
-  AbilityInProgressSfx: {fileID: 0}
-  AbilityStopSfx: {fileID: 0}
-  AbilityStartFeedbacks: {fileID: 0}
-  AbilityStopFeedbacks: {fileID: 0}
-  AbilityPermitted: 1
-  BlockingMovementStates: 
-  BlockingConditionStates: 
-  BlockingWeaponStates: 
-  ListScaleMultipliers:
-  - Value: 1.2
-    ConditionCount: 2
-  - Value: 1.4
-    ConditionCount: 4
-  - Value: 1.8
-    ConditionCount: 8
-  - Value: 2
-    ConditionCount: 12
-  _easeType: 9
-  _duration: 1
-  IsAdjustConeOfVision: 1
-  CharacterConeOfVision: {fileID: 1128730897720240566}
-  ListRadius:
-  - Value: 5.2
-    ConditionCount: 2
-  - Value: 5.4
-    ConditionCount: 4
-  - Value: 5.8
-    ConditionCount: 8
-  - Value: 6
-    ConditionCount: 12
 --- !u!1 &3696826735528893278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,15 +970,13 @@ GameObject:
   - component: {fileID: 1484716048566423651}
   - component: {fileID: 2211587997027237587}
   - component: {fileID: 5206943363672757629}
-  - component: {fileID: 1128730897720240566}
-  - component: {fileID: 861469375730065082}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: ConeOfVision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1484716048566423651
 Transform:
   m_ObjectHideFlags: 0
@@ -1088,49 +1042,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3696826735528893278}
   m_Mesh: {fileID: 0}
---- !u!114 &1128730897720240566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3696826735528893278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fb9c8af0fcd0514e89d35554b6cae77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  VisionRadius: 5
-  VisionAngle: 120
-  Direction: {x: 0, y: 0, z: 0}
-  EulerAngles: {x: 0, y: 0, z: 0}
-  Offset: {x: 0, y: 0, z: 0}
-  ShouldScanForTargets: 1
-  TargetMask:
-    serializedVersion: 2
-    m_Bits: 8448
-  ScanFrequencyInSeconds: 1
-  VisibleTargets: []
-  ShouldDrawMesh: 1
-  MeshDensity: 0.2
-  EdgePrecision: 3
-  EdgeThreshold: 0.5
-  VisionMeshFilter: {fileID: 5206943363672757629}
---- !u!114 &861469375730065082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3696826735528893278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9f7aa72bc091f346ae27e33844c93b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6336412089925851823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,7 +1051,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4819508536344129920}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: WeaponAttachment (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
