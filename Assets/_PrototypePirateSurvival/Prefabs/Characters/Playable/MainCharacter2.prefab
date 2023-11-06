@@ -4178,12 +4178,13 @@ MonoBehaviour:
   MovementInertiaResistance: 2
   MovementInertiaSpeed: {x: 0.5, y: 0.5}
   MovementInertiaDeceleration: {x: 0.2, y: 0.2}
-  LimitToCancelInertia: {x: 0.1, y: 0.1}
+  LimitToCancelInertia: {x: 0.15, y: 0.15}
   IsLargeAngleModified: 1
   ThresholdAngle: 90
   ModifierIncreaseMovement: {x: 4, y: 1.5}
   SpecializedMovementInertiaSpeed: {x: 0.1, y: 0.1}
   SpecializedMovementInertiaDeceleration: {x: 0.1, y: 0.1}
+  IsClampMagnitude: 0
 --- !u!114 &976841630916487840
 MonoBehaviour:
   m_ObjectHideFlags: 0

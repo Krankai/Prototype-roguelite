@@ -37,6 +37,7 @@ public class CharacterMovementShipPhysics : CharacterMovement
     // the threshold angle (in degrees) between successive movement/input vectors, above which movement vector modifications will be applied
     [MMCondition(nameof(IsLargeAngleModified), Hidden = true)]
     [Tooltip("the threshold angle (in degrees) between successive movement/input vectors, above which extra intertia modifications will be applied")]
+    [Range(0, 180)]
     public float ThresholdAngle = 0f;
 
     // the modifiers for the movement vector increase in case of large angles
@@ -93,18 +94,17 @@ public class CharacterMovementShipPhysics : CharacterMovement
 
         base.SetMovement();
 
-        bool isCancelMovementX = Mathf.Approximately(_horizontalMovement, 0f);
-        bool isCancelMovementZ = Mathf.Approximately(_verticalMovement, 0f);
-
         var vector3CurrentInput = new Vector3(_currentInput.x, 0, _currentInput.y);
         vector3CurrentInput = Vector3.ClampMagnitude(vector3CurrentInput, _previousMovementVector.magnitude);
 
-        var angle = Vector3.Angle(vector3CurrentInput, _previousMovementVector);
+        //var angle = Vector3.Angle(vector3CurrentInput, _previousMovementVector);
+        var angle = Vector3.SignedAngle(_previousMovementVector, _movementVector, transform.up);
 
         // TODO: check how to turn ship from stationary (or near zero movement)
-        var isBackwardFromStationary = _previousMovementVector.magnitude <= 0.5f && _currentInput.magnitude >= 0.5f;
+        //var isBackwardFromStationary = _previousMovementVector.magnitude <= 0.5f && _currentInput.magnitude >= 0.5f;
+        var isBackwardFromStationary = false;
 
-        if (IsLargeAngleModified && (angle >= ThresholdAngle || isBackwardFromStationary))
+        if (IsLargeAngleModified && (Mathf.Abs(angle) >= ThresholdAngle || isBackwardFromStationary))
         {
             //Debug.LogError($"Angle: {angle}");
 
@@ -131,15 +131,15 @@ public class CharacterMovementShipPhysics : CharacterMovement
             _specializedInertiaSpeed.y = Mathf.Lerp(_specializedInertiaSpeed.y, _specializedInertiaSpeed.y + (1 + acceleration), acceleration * Time.deltaTime);
 
 
-            if (Mathf.Abs(_previousMovementVector.x) <= 0.5f)
-            {
-                _previousMovementVector.x = 0.5f;
-            }
+            //if (Mathf.Abs(_previousMovementVector.x) <= 0.5f)
+            //{
+            //    _previousMovementVector.x = 0.5f;
+            //}
 
-            if (Mathf.Abs(_previousMovementVector.z) <= 0.2f)
-            {
-                _previousMovementVector.z = 0.2f;
-            }
+            //if (Mathf.Abs(_previousMovementVector.z) <= 0.2f)
+            //{
+            //    _previousMovementVector.z = 0.2f;
+            //}
 
             _newMovementVector.x = Mathf.Lerp(_previousMovementVector.x, modifiedMovementVector.x, _specializedInertiaSpeed.x * Time.deltaTime);
             _newMovementVector.z = Mathf.Lerp(_previousMovementVector.z, modifiedMovementVector.z, _specializedInertiaSpeed.y * Time.deltaTime);
@@ -156,8 +156,13 @@ public class CharacterMovementShipPhysics : CharacterMovement
             _newMovementVector.z = Mathf.Lerp(_previousMovementVector.z, _movementVector.z, _inertiaSpeed.y * Time.deltaTime);
         }
 
-        _movementVector.x = isCancelMovementX && Mathf.Abs(_newMovementVector.x) < LimitToCancelInertia.x ? _movementVector.x : _newMovementVector.x;
-        _movementVector.z = isCancelMovementZ && Mathf.Abs(_newMovementVector.z) < LimitToCancelInertia.y ? _movementVector.z : _newMovementVector.z;
+        //_movementVector.x = isCancelMovementX && Mathf.Abs(_newMovementVector.x) < LimitToCancelInertia.x ? _movementVector.x : _newMovementVector.x;
+        //_movementVector.z = isCancelMovementZ && Mathf.Abs(_newMovementVector.z) < LimitToCancelInertia.y ? _movementVector.z : _newMovementVector.z;
+
+        bool isCancelHorizontalMovement = Mathf.Approximately(_horizontalMovement, 0f) && (_newMovementVector.x <= LimitToCancelInertia.x);
+        bool isCancelVerticalMovement = Mathf.Approximately(_verticalMovement, 0f) && (_newMovementVector.z <= LimitToCancelInertia.y);
+
+        _movementVector = (isCancelHorizontalMovement && isCancelVerticalMovement) ? Vector3.zero : _newMovementVector;
 
         _controller.SetMovement(_movementVector);
     }
