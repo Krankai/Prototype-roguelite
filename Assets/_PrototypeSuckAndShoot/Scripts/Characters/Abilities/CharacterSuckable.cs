@@ -10,6 +10,9 @@ namespace SpiritBomb.Prototype.SuckAndShoot
     /// </summary>
     public class CharacterSuckable : MonoBehaviour
     {
+        public float DistanceToSucker => _currentSucker != default
+            ? Vector3.Distance(transform.position, _currentSucker.transform.position) : 0f;
+
         [MMReadOnly]
         public bool IsBeingSucked = false;
 
@@ -79,7 +82,8 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         {
             if (_currentSucker != default)
             {
-                _currentSucker.OnGainPoints(Points);
+                //_currentSucker.OnGainPoints(Points);
+                _currentSucker.OnSuckComplete(this);
             }
 
             if (SuckingFeedback != default)
@@ -130,6 +134,11 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         public virtual void CancelSucking()
         {
+            if (!IsBeingSucked)
+            {
+                return;
+            }
+
             bool isCancellable = SuckingFeedback.ElapsedTime < RatioTimeMaxCancellable * SuckingFeedback.TotalDuration;
             if (SuckingFeedback.IsPlaying && isCancellable)
             {
@@ -137,11 +146,11 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
                 SuckingFeedback.StopFeedbacks();
                 SuckingFeedback.RestoreInitialValues();
+            }
 
-                if (IsStaticOnSucking && _projectileMotionControl)
-                {
-                    _projectileMotionControl.ResumeControl();
-                }
+            if (IsStaticOnSucking && _projectileMotionControl)
+            {
+                _projectileMotionControl.ResumeControl();
             }
         }
     }

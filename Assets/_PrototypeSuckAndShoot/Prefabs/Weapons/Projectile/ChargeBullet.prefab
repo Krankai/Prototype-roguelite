@@ -129,7 +129,7 @@ MonoBehaviour:
   ExecuteOnDisable:
     m_PersistentCalls:
       m_Calls: []
-  LifeTime: 5
+  LifeTime: 6
   FaceDirection: 1
   FaceMovement: 0
   MovementVector: 0

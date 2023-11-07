@@ -31,7 +31,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [SerializeField]
         protected UnityEvent<int> OnGainPointsEvent;
 
-
+        protected CharacterSuckableDistanceComparer _comparer = new();
         protected List<CharacterSuckable> _listSucking = new();
         protected List<CharacterSuckable> _tempListSucked = new();
 
@@ -61,30 +61,55 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 var suckable = target.gameObject.MMGetComponentNoAlloc<CharacterSuckable>();
                 if (suckable == default)
                 {
-                    continue;
+                    suckable = target.gameObject.GetComponentInParent<CharacterSuckable>();
+                    if (suckable == default)
+                    {
+                        continue;
+                    }
                 }
 
-                if (_tempListSucked.Count < CountSucking)
-                {
-                    _tempListSucked.Add(suckable);
-                }
+                //if (_tempListSucked.Count < CountSucking)
+                //{
+                //    _tempListSucked.Add(suckable);
+                //}
+                _tempListSucked.Add(suckable);
             }
 
             for (int i = 0, count = _listSucking.Count; i < count; ++i)
             {
                 var sucking = _listSucking[i];
-                if (_tempListSucked.Count <= 0 || !_tempListSucked.Contains(sucking))
+                if (!_tempListSucked.Contains(sucking))
                 {
                     sucking.CancelSucking();
                 }
             }
 
+            _tempListSucked.Sort(_comparer);
+            //while (_tempListSucked.Count > CountSucking)
+            //{
+            //    var suckable = _tempListSucked[0];
+            //    if (suckable != default)
+            //    {
+            //        suckable.CancelSucking();
+            //    }
+            //    //_tempListSucked.RemoveAt(0);
+            //}
+
             for (int i = 0, count = _tempListSucked.Count; i < count; ++i)
             {
                 var sucked = _tempListSucked[i];
-                if (!_listSucking.Contains(sucked))
+                //if (!_listSucking.Contains(sucked))
+                //{
+                //    Suck(sucked);
+                //}
+
+                if (i < CountSucking)
                 {
                     Suck(sucked);
+                }
+                else
+                {
+                    sucked.CancelSucking();
                 }
             }
 
@@ -107,12 +132,27 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             suckable.OnSucking(this);
         }
 
-        public virtual void OnGainPoints(int points)
-        {
-            // TODO
-            Debug.Log($"Gain points: {points}");
+        //public virtual void OnGainPoints(int points)
+        //{
+        //    // TODO
+        //    Debug.Log($"Gain points: {points}");
 
-            OnGainPointsEvent?.Invoke(points);
+        //    OnGainPointsEvent?.Invoke(points);
+        //}
+
+        public virtual void OnSuckComplete(CharacterSuckable suckable)
+        {
+            OnGainPointsEvent?.Invoke(suckable.Points);
+            //_listSucking.Remove(suckable);
+        }
+    }
+
+    // Compare to sort in decending order (i.e. farther distance first)
+    public class CharacterSuckableDistanceComparer : IComparer<CharacterSuckable>
+    {
+        public int Compare(CharacterSuckable x, CharacterSuckable y)
+        {
+            return y.DistanceToSucker.CompareTo(x.DistanceToSucker);
         }
     }
 }
