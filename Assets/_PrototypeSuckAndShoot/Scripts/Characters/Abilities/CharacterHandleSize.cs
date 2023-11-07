@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using MoreMountains.Tools;
+using MoreMountains.Feedbacks;
 
 namespace SpiritBomb.Prototype.SuckAndShoot
 {
@@ -56,6 +57,11 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [MMCondition(nameof(IsAdjustConeOfVision), true)]
         [Tooltip("the list of cone-of-vision radius")]
         public List<FloatOnCondition> ListRadius = new();
+
+
+        [Header("Feedbacks")]
+        public MMF_Player EnableShootingFeedback;
+        public MMF_Player DisableShootingFeedback;
 
 
 
@@ -121,11 +127,24 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         public virtual void OnUpdateSize(int addedCount)
         {
             Debug.LogError($"Added count: {addedCount}");
+
+            if (_currentCount <= 0 && _currentCount + addedCount > 0)
+            {
+                EnableShootingFeedback.PlayFeedbacks();
+            }
             _currentCount += addedCount;
 
             UpdateModelScale(_currentCount);
             UpdateConeOfVisionRadius(_currentCount);
             UpdateProjectileScale(_currentCount);
+        }
+
+        public virtual void ResetSize()
+        {
+            _currentCount = 0;
+            OnUpdateSize(0);
+
+            DisableShootingFeedback.PlayFeedbacks();
         }
 
         protected virtual float GetLargestMatchingScale(int countForScale)
@@ -210,20 +229,6 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             }
 
             return _originalRadius;
-        }
-
-
-        int[] list = new int[] { 1, 3, 5, 7, 9, 12, 15 };
-        int index = 0;
-
-        [ContextMenu("TestUpdateSize")]
-        private void TestUpdateSize()
-        {
-            var count = list[index++ % list.Length];
-            Debug.Log($"Count: {count}");
-
-            UpdateModelScale(count);
-            UpdateConeOfVisionRadius(count);
         }
     }
 

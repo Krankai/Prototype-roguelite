@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
 using System.Collections;
@@ -6,13 +7,18 @@ using UnityEngine;
 
 namespace SpiritBomb.Prototype.SuckAndShoot
 {
+    [MMHiddenProperties("AbilityStartFeedbacks", "AbilityStopFeedbacks")]
     public class CharacterShootOnStop : CharacterAbility
     {
         [MMReadOnly]
         public bool IsCharging = false;
+        [MMReadOnly]
+        public bool IsCanShoot = false;
+
 
         [Header("Bindings")]
         public CharacterHandleWeapon HandleWeapon;
+
 
         [Header("Input")]
         // the threshold input to determine if weapon is 'charged' on player movement
@@ -22,6 +28,10 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         // the threshold input to determine if trigger 'shoot' on weapon when player stops
         [Tooltip("the threshold input to determine if trigger 'shoot' on weapon when player stops")]
         public Vector2 ThresholdInputShoot = Vector2.zero;
+
+
+        [Header("Feedback")]
+        public MMF_Player ShootFeedback;
 
         protected Vector2 _currentInput = Vector2.zero;
 
@@ -55,10 +65,10 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             }
 
             bool isPassThresholdShoot = _currentInput.magnitude <= ThresholdInputCharge.magnitude;
-            bool isReleaseInput = Lean.Touch.LeanTouch.Fingers.Count <= 0;
-            if (IsCharging && HandleWeapon.CurrentWeapon.InputAuthorized && isReleaseInput && isPassThresholdShoot)
+            bool isReleaseInput = HandleWeapon.CurrentWeapon.InputAuthorized && Lean.Touch.LeanTouch.Fingers.Count <= 0;
+            if (IsCharging && isReleaseInput && isPassThresholdShoot)
             {
-                Shoot();
+                AttemptShoot();
             }
         }
 
@@ -68,11 +78,19 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             IsCharging = true;
         }
 
-        protected virtual void Shoot()
+        protected virtual void AttemptShoot()
         {
-            Debug.LogWarning("Shoot");
-            HandleWeapon.ShootStart();
+            if (IsCanShoot)
+            {
+                Debug.LogWarning("Shoot");
+
+                HandleWeapon.CurrentWeapon.WeaponUsedMMFeedback = ShootFeedback;
+                HandleWeapon.ShootStart();
+                //ShootFeedback.PlayFeedbacks();
+            }
+
             IsCharging = false;
+            IsCanShoot = false;
         }
     }
 }
