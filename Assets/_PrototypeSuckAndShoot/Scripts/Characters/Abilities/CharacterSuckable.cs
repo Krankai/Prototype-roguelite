@@ -3,7 +3,7 @@ using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
 using UnityEngine;
 
-namespace SpiritBomb.Prototype.SuckAndChuck
+namespace SpiritBomb.Prototype.SuckAndShoot
 {
     /// <summary>
     /// To be used with CharacterSuckOnSight. Object with this component can be sucked
@@ -52,8 +52,6 @@ namespace SpiritBomb.Prototype.SuckAndChuck
             if (SuckingFeedback != default)
             {
                 SuckingFeedback.Events.OnPlay.AddListener(() => OnStart(suckOnSight));
-                SuckingFeedback.Events.OnComplete.AddListener(OnSuckingComplete);
-
                 SuckingFeedback.PlayFeedbacks();
             }
             else
@@ -62,7 +60,7 @@ namespace SpiritBomb.Prototype.SuckAndChuck
             }
         }
 
-        protected virtual void OnSuckingComplete()
+        public virtual void OnSuckingComplete()
         {
             if (_currentSucker != default)
             {
@@ -72,10 +70,9 @@ namespace SpiritBomb.Prototype.SuckAndChuck
             if (SuckingFeedback != default)
             {
                 SuckingFeedback.Events.OnPlay.RemoveAllListeners();
-                SuckingFeedback.Events.OnComplete.RemoveListener(OnSuckingComplete);
 
                 //SuckingFeedback.StopFeedbacks();
-                SuckingFeedback.RestoreInitialValues();
+                //SuckingFeedback.RestoreInitialValues();
             }
 
             _health.Kill();
@@ -96,6 +93,15 @@ namespace SpiritBomb.Prototype.SuckAndChuck
             IsBeingSucked = false;
             _currentSucker = default;
         }
+
+        //public float time;
+        //public float total;
+
+        //private void LateUpdate()
+        //{
+        //    time = SuckingFeedback.ElapsedTime;
+        //    total = SuckingFeedback.TotalDuration;
+        //}
 
         public virtual void CancelSucking()
         {

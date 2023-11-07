@@ -183,18 +183,6 @@ namespace MoreMountains.TopDownEngine
 
 			if (InputAuthorized)
 			{
-				// ==
-				//var prevHorizontalInput = _horizontalInput;
-				//var prevVerticalInput = _verticalInput;
-
-				//const float speed = 0.1f;
-				//var horizontalInput = Mathf.Lerp(prevHorizontalInput, _horizontalInput, speed * Time.deltaTime);
-				//_horizontalInput = horizontalInput;
-
-				//var verticalInput = Mathf.Lerp(prevVerticalInput, _verticalInput, speed * Time.deltaTime);
-				//_verticalInput = prevVerticalInput;
-				// ==
-
 				_horizontalMovement = _horizontalInput;
 				_verticalMovement = _verticalInput;
 			}

@@ -1376,6 +1376,64 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1007582312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1007582313}
+  - component: {fileID: 1007582314}
+  m_Layer: 0
+  m_Name: LeanTouch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1007582313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007582312}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.5, y: -1.5, z: -9.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1918232351}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1007582314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007582312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc98219a83dff145947365dc914d06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tapThreshold: 0.2
+  swipeThreshold: 100
+  referenceDpi: 200
+  guiLayers:
+    serializedVersion: 2
+    m_Bits: 32
+  useTouch: 1
+  useHover: 0
+  useMouse: 1
+  useSimulator: 0
+  disableMouseEmulation: 1
+  recordFingers: 1
+  recordThreshold: 5
+  recordLimit: 10
 --- !u!1 &1015704714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,76 +1580,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 193708206212576457, guid: 857af49599bb05e47b9ff573223704f5,
-        type: 3}
-      propertyPath: RatioTimeMaxCancellable
-      value: 0.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
-        type: 3}
-      propertyPath: InitialDelay
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
-        type: 3}
-      propertyPath: CooldownDuration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
-        type: 3}
-      propertyPath: OnlyPlayIfWithinRange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
-        type: 3}
-      propertyPath: Events.TriggerMMFeedbacksEvents
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
-        type: 3}
-      propertyPath: managedReferences[464073214464360449].FlickerDuration
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
-        type: 3}
-      propertyPath: managedReferences[464073214464360454].AnimateScaleDuration
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
-        type: 3}
-      propertyPath: Events.OnRestoreInitialValues.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
-        type: 3}
-      propertyPath: Events.OnRestoreInitialValues.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
-        type: 3}
-      propertyPath: Events.OnRestoreInitialValues.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1139958840}
-    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
-        type: 3}
-      propertyPath: Events.OnRestoreInitialValues.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
-        type: 3}
-      propertyPath: Events.OnRestoreInitialValues.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnRestore
-      objectReference: {fileID: 0}
-    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
-        type: 3}
-      propertyPath: Events.OnRestoreInitialValues.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SpiritBomb.Prototype.SuckAndChuck.CharacterSuckable, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
-        type: 3}
-      propertyPath: Events.OnRestoreInitialValues.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1603,18 +1591,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1069737616}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1139958840 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 193708206212576457, guid: 857af49599bb05e47b9ff573223704f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1069737616}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f284b1acf12f67d47b5fd52609198646, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1291175414
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,6 +1978,7 @@ Transform:
   - {fileID: 1919321264}
   - {fileID: 612343371}
   - {fileID: 1457489131}
+  - {fileID: 1007582313}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1919321263

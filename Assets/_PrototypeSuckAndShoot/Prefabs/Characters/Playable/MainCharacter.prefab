@@ -533,7 +533,7 @@ Transform:
   m_GameObject: {fileID: 1839541656858402}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0.52}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -560,6 +560,7 @@ GameObject:
   - component: {fileID: 6285370067767774273}
   - component: {fileID: 8329143584531508651}
   - component: {fileID: 3597796598499004898}
+  - component: {fileID: 4554647178635016817}
   m_Layer: 10
   m_Name: Abilities
   m_TagString: Untagged
@@ -608,9 +609,9 @@ MonoBehaviour:
   RotationMode: 1
   CharacterRotationAuthorized: 1
   ShouldRotateToFaceMovementDirection: 1
-  MovementRotationSpeed: 2
+  MovementRotationSpeed: 1
   MovementRotatingModel: {fileID: 0}
-  RotateToFaceMovementDirectionSpeed: 2
+  RotateToFaceMovementDirectionSpeed: 5
   AbsoluteThresholdMovement: 1
   ModelDirection: {x: 0, y: 0, z: 0}
   ModelAngles: {x: 0, y: 0, z: 0}
@@ -649,7 +650,7 @@ MonoBehaviour:
   InputAuthorized: 1
   AnalogInput: 0
   ScriptDrivenInput: 0
-  WalkSpeed: 2.2
+  WalkSpeed: 2
   ShouldSetMovement: 1
   IdleThreshold: 0.05
   Acceleration: 10
@@ -885,7 +886,8 @@ MonoBehaviour:
   BlockingMovementStates: 
   BlockingConditionStates: 
   BlockingWeaponStates: 
-  InitialWeapon: {fileID: 0}
+  InitialWeapon: {fileID: 8276156064095734258, guid: a80c40d90f663b242ab77c0518e05116,
+    type: 3}
   CanPickupWeapons: 0
   WeaponUseFeedback: {fileID: 0}
   WeaponAttachment: {fileID: 4564073364419608}
@@ -982,6 +984,7 @@ MonoBehaviour:
   BlockingMovementStates: 
   BlockingConditionStates: 
   BlockingWeaponStates: 
+  _currentCount: 0
   ListScaleMultipliers:
   - Value: 1.2
     ConditionCount: 2
@@ -991,7 +994,19 @@ MonoBehaviour:
     ConditionCount: 8
   - Value: 2
     ConditionCount: 12
-  _easeType: 9
+  HandleWeapon: {fileID: 2717271642743271122}
+  ListProjectileScaleMultipliers:
+  - Value: 2
+    ConditionCount: 1
+  - Value: 4
+    ConditionCount: 2
+  - Value: 6
+    ConditionCount: 3
+  - Value: 8
+    ConditionCount: 4
+  - Value: 10
+    ConditionCount: 5
+  _easeType: 27
   _duration: 1
   IsAdjustConeOfVision: 1
   CharacterConeOfVision: {fileID: 1128730897720240566}
@@ -1004,6 +1019,31 @@ MonoBehaviour:
     ConditionCount: 8
   - Value: 6
     ConditionCount: 12
+--- !u!114 &4554647178635016817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994617329061095493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a18c90c9a67ce499cb79e5d6ee3936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityStartSfx: {fileID: 0}
+  AbilityInProgressSfx: {fileID: 0}
+  AbilityStopSfx: {fileID: 0}
+  AbilityStartFeedbacks: {fileID: 0}
+  AbilityStopFeedbacks: {fileID: 0}
+  AbilityPermitted: 1
+  BlockingMovementStates: 
+  BlockingConditionStates: 
+  BlockingWeaponStates: 
+  IsCharging: 0
+  HandleWeapon: {fileID: 0}
+  ThresholdInputCharge: {x: 0.05, y: 0.05}
+  ThresholdInputShoot: {x: 0, y: 0}
 --- !u!1 &2344489005843289288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,7 +1090,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SuckConeOfVision: {fileID: 1128730897720240566}
   CountSucking: 1
-  FrameInterval: 3
+  FrameInterval: 5
+  OnGainPointsEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3597796598499004898}
+        m_TargetAssemblyTypeName: SpiritBomb.Prototype.SuckAndChuck.CharacterHandleSize,
+          Assembly-CSharp
+        m_MethodName: OnUpdateSize
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &3696826735528893278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,7 +1216,7 @@ MonoBehaviour:
   TargetMask:
     serializedVersion: 2
     m_Bits: 8448
-  ScanFrequencyInSeconds: 1
+  ScanFrequencyInSeconds: 0.2
   VisibleTargets: []
   ShouldDrawMesh: 1
   MeshDensity: 0.2

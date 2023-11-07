@@ -2,14 +2,16 @@ using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace SpiritBomb.Prototype.SuckAndChuck
+namespace SpiritBomb.Prototype.SuckAndShoot
 {
     /// <summary>
     /// To be used with CharacterSuckable. Object with this component will suck 
     /// </summary>
     public class CharacterSuckOnSight : MonoBehaviour
     {
+        [Header("Sucking")]
         // the cone of vision used to detect suckable objects
         [Tooltip("the cone of vision used to detect suckable objects")]
         public MMConeOfVision SuckConeOfVision;
@@ -23,6 +25,12 @@ namespace SpiritBomb.Prototype.SuckAndChuck
         [Tooltip("the frame interval to scan for sucking targets")]
         [Min(1), Range(1, 30)]
         public int FrameInterval = 3;
+
+
+        [Header("Callbacks")]
+        [SerializeField]
+        protected UnityEvent<int> OnGainPointsEvent;
+
 
         protected List<CharacterSuckable> _listSucking = new();
         protected List<CharacterSuckable> _tempListSucked = new();
@@ -56,7 +64,10 @@ namespace SpiritBomb.Prototype.SuckAndChuck
                     continue;
                 }
 
-                _tempListSucked.Add(suckable);
+                if (_tempListSucked.Count < CountSucking)
+                {
+                    _tempListSucked.Add(suckable);
+                }
             }
 
             for (int i = 0, count = _listSucking.Count; i < count; ++i)
@@ -100,6 +111,8 @@ namespace SpiritBomb.Prototype.SuckAndChuck
         {
             // TODO
             Debug.Log($"Gain points: {points}");
+
+            OnGainPointsEvent?.Invoke(points);
         }
     }
 }

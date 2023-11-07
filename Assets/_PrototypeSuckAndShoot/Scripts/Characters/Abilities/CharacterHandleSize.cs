@@ -5,15 +5,29 @@ using UnityEngine;
 using DG.Tweening;
 using MoreMountains.Tools;
 
-namespace SpiritBomb.Prototype.SuckAndChuck
+namespace SpiritBomb.Prototype.SuckAndShoot
 {
     [MMHiddenProperties("AbilityStartFeedbacks", "AbilityStopFeedbacks")]
     public class CharacterHandleSize : CharacterAbility
     {
+        [Header("Points")]
+        [MMReadOnly, SerializeField]
+        // the current count value used to determine model's scale and cone of vision's radius
+        [Tooltip("the current count value used to determine model's scale and cone of vision's radius")]
+        protected int _currentCount;
+
         [Header("Scale")]
         // the list of scale multipliers
         [Tooltip("the list of scale multipliers")]
         public List<FloatOnCondition> ListScaleMultipliers = new();
+
+        // the associated handle weapon whose projectile will need to be scaled
+        [Tooltip("the associated handle weapon whose projectile will need to be scaled")]
+        public CharacterHandleWeapon HandleWeapon;
+
+        // the list of scale multipliers for projectile
+        [Tooltip("the list of scale multipliers for projectile")]
+        public List<FloatOnCondition> ListProjectileScaleMultipliers = new();
 
 
         [Header("Animation")]
@@ -47,6 +61,7 @@ namespace SpiritBomb.Prototype.SuckAndChuck
 
         protected CharacterConditionCountComparer _comparer;
         protected Vector3 _originalScale = Vector3.one;
+        protected Vector3 _originalProjectileScale = Vector3.one;
         protected float _originalRadius = 1f;
 
 
@@ -54,26 +69,41 @@ namespace SpiritBomb.Prototype.SuckAndChuck
         {
             base.Initialization();
 
+            _currentCount = 0;
             _comparer = new();
 
-            if (ListScaleMultipliers.Count >= 0)
+            ListScaleMultipliers.Sort(_comparer);
+            ListRadius.Sort(_comparer);
+            ListProjectileScaleMultipliers.Sort(_comparer);
+
+            if (HandleWeapon == default)
             {
-                ListScaleMultipliers.Sort(_comparer);
+                HandleWeapon = _character.FindAbility<CharacterHandleWeapon>();
             }
 
-            if (ListRadius.Count >= 0)
-            {
-                ListRadius.Sort(_comparer);
-            }
-
-            Invoke(nameof(LateCacheData), 1f);
+            Invoke(nameof(LateInitialization), 1f);
         }
 
-        protected virtual void LateCacheData()
+        protected virtual void LateInitialization()
         {
             if (_character.CharacterModel != default)
             {
                 _originalScale = _character.CharacterModel.transform.localScale;
+            }
+
+            if (HandleWeapon != default && HandleWeapon.CurrentWeapon != default)
+            {
+                var pooler = HandleWeapon.CurrentWeapon.gameObject.MMGetComponentNoAlloc<DynamicScaleObjectPooler>();
+                if (pooler != default)
+                {
+                    var poolableObject = pooler.GameObjectToPool.MMGetComponentNoAlloc<MMPoolableObject>();
+                    if (poolableObject != default)
+                    {
+                        _originalProjectileScale = poolableObject.transform.localScale;
+                    }
+
+                    pooler.DynamicScale = _originalProjectileScale;
+                }
             }
 
             if (CharacterConeOfVision == default)
@@ -85,6 +115,17 @@ namespace SpiritBomb.Prototype.SuckAndChuck
             {
                 _originalRadius = CharacterConeOfVision.VisionRadius;
             }
+
+        }
+
+        public virtual void OnUpdateSize(int addedCount)
+        {
+            Debug.LogError($"Added count: {addedCount}");
+            _currentCount += addedCount;
+
+            UpdateModelScale(_currentCount);
+            UpdateConeOfVisionRadius(_currentCount);
+            UpdateProjectileScale(_currentCount);
         }
 
         protected virtual float GetLargestMatchingScale(int countForScale)
@@ -101,7 +142,7 @@ namespace SpiritBomb.Prototype.SuckAndChuck
             return 1f;
         }
 
-        public virtual void UpdateModelScale(int countForScale)
+        protected virtual void UpdateModelScale(int countForScale)
         {
             var newScale = GetLargestMatchingScale(countForScale);
             var scaleModel = _character.CharacterModel;
@@ -112,6 +153,38 @@ namespace SpiritBomb.Prototype.SuckAndChuck
             }
 
             scaleModel.transform.DOScale(newScale, _duration).SetEase(_easeType);
+        }
+
+        protected virtual float GetLargestMatchingProjectileScale(int countForScale)
+        {
+            for (int i = 0, count = ListProjectileScaleMultipliers.Count; i < count; ++i)
+            {
+                var scaleConditionData = ListProjectileScaleMultipliers[i];
+                if (scaleConditionData.ConditionCount <= countForScale)
+                {
+                    return scaleConditionData.Value;
+                }
+            }
+
+            return 1f;
+        }
+
+        protected virtual void UpdateProjectileScale(int countForScale)
+        {
+            if (HandleWeapon.CurrentWeapon == default)
+            {
+                return;
+            }
+
+            var newScale = GetLargestMatchingProjectileScale(countForScale);
+
+            var pooler = HandleWeapon.CurrentWeapon.gameObject.MMGetComponentNoAlloc<DynamicScaleObjectPooler>();
+            if (pooler == default)
+            {
+                return;
+            }
+
+            pooler.DynamicScale = newScale * _originalProjectileScale;
         }
 
         protected virtual void UpdateConeOfVisionRadius(int countForRadius)
