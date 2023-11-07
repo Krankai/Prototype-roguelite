@@ -48,6 +48,8 @@ GameObject:
   - component: {fileID: 114060530881921866}
   - component: {fileID: 114839196621103566}
   - component: {fileID: 114072752581488692}
+  - component: {fileID: 193708206212576457}
+  - component: {fileID: 8267513195958442435}
   m_Layer: 13
   m_Name: SuckableEnemy
   m_TagString: Enemy
@@ -90,7 +92,7 @@ CharacterController:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Height: 0.66
   m_Radius: 0.23
@@ -247,7 +249,7 @@ MonoBehaviour:
   InitialHealth: 100
   MaximumHealth: 100
   ResetHealthOnEnable: 1
-  ImmuneToDamage: 1
+  ImmuneToDamage: 0
   DamageMMFeedbacks: {fileID: 0}
   FeedbackIsProportionalToDamage: 0
   PreventTakeSelfDamage: 0
@@ -257,7 +259,7 @@ MonoBehaviour:
   DestroyOnDeath: 1
   DelayBeforeDestruction: 0
   PointsWhenDestroyed: 0
-  RespawnAtInitialLocation: 0
+  RespawnAtInitialLocation: 1
   DisableControllerOnDeath: 1
   DisableModelOnDeath: 1
   DisableCollisionsOnDeath: 1
@@ -274,6 +276,44 @@ MonoBehaviour:
   TargetDamageResistanceProcessor: {fileID: 0}
   TargetAnimator: {fileID: 0}
   DisableAnimatorLogs: 1
+--- !u!114 &193708206212576457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167761570092420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f284b1acf12f67d47b5fd52609198646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsBeingSucked: 0
+  Points: 1
+  SuckingFeedback: {fileID: 2790088620587620045}
+--- !u!114 &8267513195958442435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167761570092420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbbe51f9806750489b5fe08d7a19729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RespawnOnPlayerRespawn: 0
+  RepositionToInitOnPlayerRespawn: 0
+  DisableAllComponentsOnKill: 1
+  DisableGameObjectOnKill: 1
+  IgnoreCheckpointsAlwaysRespawn: 1
+  AssociatedCheckpoints: []
+  AutoRespawnDuration: 3
+  AutoRespawnAmount: -1
+  AutoRespawnRemainingAmount: 3
+  RespawnEffect: {fileID: 0}
+  RespawnSfx: {fileID: 0}
 --- !u!1 &1749803945586204
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +325,7 @@ GameObject:
   - component: {fileID: 4794836682858754}
   - component: {fileID: 33928155771172226}
   - component: {fileID: 23125405360769016}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +410,7 @@ GameObject:
   - component: {fileID: 23574501634781586}
   - component: {fileID: 8420661262967169989}
   - component: {fileID: 5941778534522576749}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: MinimalDude
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -998,7 +1038,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1484716048566423651}
-  - {fileID: 6445857380242129145}
   m_Father: {fileID: 4161469876269846}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5007060740104825925
@@ -1461,52 +1500,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3696826735528893278}
   m_Mesh: {fileID: 0}
---- !u!1 &6297056338140178427
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6445857380242129145}
-  - component: {fileID: 8402394190511306216}
-  m_Layer: 13
-  m_Name: Suckable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6445857380242129145
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6297056338140178427}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 553683151751034539}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8402394190511306216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6297056338140178427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f284b1acf12f67d47b5fd52609198646, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Points: 1
-  SuckingFeedback: {fileID: 2790088620587620045}
 --- !u!1 &6336412089925851823
 GameObject:
   m_ObjectHideFlags: 0

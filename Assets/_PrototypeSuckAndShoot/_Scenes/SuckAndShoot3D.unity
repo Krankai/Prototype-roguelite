@@ -1522,6 +1522,76 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 193708206212576457, guid: 857af49599bb05e47b9ff573223704f5,
+        type: 3}
+      propertyPath: RatioTimeMaxCancellable
+      value: 0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
+        type: 3}
+      propertyPath: InitialDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
+        type: 3}
+      propertyPath: CooldownDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
+        type: 3}
+      propertyPath: OnlyPlayIfWithinRange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
+        type: 3}
+      propertyPath: Events.TriggerMMFeedbacksEvents
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
+        type: 3}
+      propertyPath: managedReferences[464073214464360449].FlickerDuration
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
+        type: 3}
+      propertyPath: managedReferences[464073214464360454].AnimateScaleDuration
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
+        type: 3}
+      propertyPath: Events.OnRestoreInitialValues.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
+        type: 3}
+      propertyPath: Events.OnRestoreInitialValues.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
+        type: 3}
+      propertyPath: Events.OnRestoreInitialValues.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1139958840}
+    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
+        type: 3}
+      propertyPath: Events.OnRestoreInitialValues.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
+        type: 3}
+      propertyPath: Events.OnRestoreInitialValues.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnRestore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
+        type: 3}
+      propertyPath: Events.OnRestoreInitialValues.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SpiritBomb.Prototype.SuckAndChuck.CharacterSuckable, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2790088620587620045, guid: 857af49599bb05e47b9ff573223704f5,
+        type: 3}
+      propertyPath: Events.OnRestoreInitialValues.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1533,6 +1603,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1069737616}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1139958840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 193708206212576457, guid: 857af49599bb05e47b9ff573223704f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1069737616}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f284b1acf12f67d47b5fd52609198646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1291175414
 GameObject:
   m_ObjectHideFlags: 0

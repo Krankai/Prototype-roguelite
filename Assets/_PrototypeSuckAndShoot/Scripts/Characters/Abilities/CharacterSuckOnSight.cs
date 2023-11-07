@@ -24,6 +24,9 @@ namespace SpiritBomb.Prototype.SuckAndChuck
         [Min(1), Range(1, 30)]
         public int FrameInterval = 3;
 
+        protected List<CharacterSuckable> _listSucking = new();
+        protected List<CharacterSuckable> _tempListSucked = new();
+
 
         protected virtual void LateUpdate()
         {
@@ -36,23 +39,67 @@ namespace SpiritBomb.Prototype.SuckAndChuck
         protected virtual void ScanForSuckTargets()
         {
             var listTargets = SuckConeOfVision.VisibleTargets;
+
+            _tempListSucked.Clear();
+
             for (int i = 0, count = listTargets.Count; i < count; ++i)
             {
+                var target = listTargets[i];
+                if (target.gameObject == default)
+                {
+                    continue;
+                }
 
+                var suckable = target.gameObject.MMGetComponentNoAlloc<CharacterSuckable>();
+                if (suckable == default)
+                {
+                    continue;
+                }
+
+                _tempListSucked.Add(suckable);
             }
+
+            for (int i = 0, count = _listSucking.Count; i < count; ++i)
+            {
+                var sucking = _listSucking[i];
+                if (_tempListSucked.Count <= 0 || !_tempListSucked.Contains(sucking))
+                {
+                    sucking.CancelSucking();
+                }
+            }
+
+            for (int i = 0, count = _tempListSucked.Count; i < count; ++i)
+            {
+                var sucked = _tempListSucked[i];
+                if (!_listSucking.Contains(sucked))
+                {
+                    Suck(sucked);
+                }
+            }
+
+            _listSucking.Clear();
+            _listSucking.AddRange(_tempListSucked);
         }
 
         protected virtual void Suck(CharacterSuckable suckable)
         {
             if (suckable.gameObject != default)
             {
+                //StartCoroutine(CoroutineSuckWithDelay(0.5f, suckable));
                 suckable.OnSucking(this);
             }
+        }
+
+        protected virtual IEnumerator CoroutineSuckWithDelay(float delay, CharacterSuckable suckable)
+        {
+            yield return new WaitForSeconds(delay);
+            suckable.OnSucking(this);
         }
 
         public virtual void OnGainPoints(int points)
         {
             // TODO
+            Debug.Log($"Gain points: {points}");
         }
     }
 }
