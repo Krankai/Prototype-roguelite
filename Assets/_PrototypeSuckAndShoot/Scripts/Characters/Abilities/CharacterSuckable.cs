@@ -18,6 +18,9 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Tooltip("the ratio of sucked time above which the suck action can no longer be cancelled")]
         [Range(0, 1)]
         public float RatioTimeMaxCancellable = 0.9f;
+        // whether to keep object stationary on being sucked
+        [Tooltip("whether to keep object stationary on being sucked")]
+        public bool IsStaticOnSucking = false;
 
         [Header("Points")]
         // the points received when successfully sucked in this object
@@ -32,6 +35,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         protected CharacterSuckOnSight _currentSucker;
         protected Health _health;
+        protected ProjectileMotionControl _projectileMotionControl;
 
 
         protected virtual void Start()
@@ -41,8 +45,19 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         protected virtual void Initialization()
         {
-            _health = gameObject.GetComponentInParent<Health>();
+            _health = gameObject.MMGetComponentNoAlloc<Health>();
+            if (_health == default)
+            {
+                _health = gameObject.GetComponentInParent<Health>();
+            }
+
             _health.OnRevive += OnRestore;
+
+
+            if (IsStaticOnSucking)
+            {
+                _projectileMotionControl = gameObject.MMGetComponentNoAlloc<ProjectileMotionControl>();
+            }
         }
 
         public virtual void OnSucking(CharacterSuckOnSight suckOnSight)
@@ -76,6 +91,11 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             }
 
             _health.Kill();
+
+            if (IsStaticOnSucking && _projectileMotionControl)
+            {
+                _projectileMotionControl.ResumeControl();
+            }
         }
 
         public virtual void OnStart(CharacterSuckOnSight suckOnSight)
@@ -86,6 +106,11 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
             IsBeingSucked = true;
             _currentSucker = suckOnSight;
+
+            if (IsStaticOnSucking && _projectileMotionControl)
+            {
+                _projectileMotionControl.PauseControl();
+            }
         }
 
         public virtual void OnRestore()
@@ -112,6 +137,11 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
                 SuckingFeedback.StopFeedbacks();
                 SuckingFeedback.RestoreInitialValues();
+
+                if (IsStaticOnSucking && _projectileMotionControl)
+                {
+                    _projectileMotionControl.ResumeControl();
+                }
             }
         }
     }

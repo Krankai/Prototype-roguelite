@@ -926,7 +926,7 @@ MonoBehaviour:
   InputAuthorized: 1
   AnalogInput: 0
   ScriptDrivenInput: 0
-  WalkSpeed: 2
+  WalkSpeed: 3
   ShouldSetMovement: 1
   IdleThreshold: 0.05
   Acceleration: 10
@@ -1774,7 +1774,7 @@ MonoBehaviour:
   ShouldScanForTargets: 1
   TargetMask:
     serializedVersion: 2
-    m_Bits: 8448
+    m_Bits: 16785408
   ScanFrequencyInSeconds: 0.2
   VisibleTargets: []
   ShouldDrawMesh: 1
