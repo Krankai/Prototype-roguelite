@@ -172,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AutoAttributePlayerIDs: 1
   PlayerPrefabs:
-  - {fileID: 114839196621103566, guid: 6200fd192fec54c46b70cf315f0bc228, type: 3}
+  - {fileID: 114839196621103566, guid: 831c8c66df891c54fa49b36cdb9cd450, type: 3}
   SceneCharacters: []
   InitialSpawnPoint: {fileID: 1618121293}
   CurrentCheckpoint: {fileID: 0}
@@ -1835,7 +1835,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 60, y: 31.544317, z: 14.012089}
-  m_Center: {x: 0, y: -5.927842, z: -34.16}
+  m_Center: {x: 0, y: -5.927842, z: -22.78}
 --- !u!1 &1457489129
 GameObject:
   m_ObjectHideFlags: 0
@@ -2683,40 +2683,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4666454685967645894, guid: bc15771ddc3b73348870f004dfcce07a,
+    - target: {fileID: 4149317058130418357, guid: bc15771ddc3b73348870f004dfcce07a,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 10.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4666454685967645894, guid: bc15771ddc3b73348870f004dfcce07a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -40.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4666454685967645894, guid: bc15771ddc3b73348870f004dfcce07a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.945774
-      objectReference: {fileID: 0}
-    - target: {fileID: 4666454685967645894, guid: bc15771ddc3b73348870f004dfcce07a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.32482547
-      objectReference: {fileID: 0}
-    - target: {fileID: 4666454685967645894, guid: bc15771ddc3b73348870f004dfcce07a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4666454685967645894, guid: bc15771ddc3b73348870f004dfcce07a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4666454685967645894, guid: bc15771ddc3b73348870f004dfcce07a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 37.91
+      propertyPath: FollowsAPlayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5066154857399317382, guid: bc15771ddc3b73348870f004dfcce07a,
         type: 3}
@@ -2726,36 +2696,46 @@ PrefabInstance:
     - target: {fileID: 7215146976062674864, guid: bc15771ddc3b73348870f004dfcce07a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.9
+      value: 22.5
       objectReference: {fileID: 0}
     - target: {fileID: 7215146976062674864, guid: bc15771ddc3b73348870f004dfcce07a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -40.1
+      value: -31
       objectReference: {fileID: 0}
     - target: {fileID: 7215146976062674864, guid: bc15771ddc3b73348870f004dfcce07a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.945774
+      value: 0.8555828
       objectReference: {fileID: 0}
     - target: {fileID: 7215146976062674864, guid: bc15771ddc3b73348870f004dfcce07a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.32482547
+      value: 0.5176661
       objectReference: {fileID: 0}
-    - target: {fileID: 8244395508275849097, guid: bc15771ddc3b73348870f004dfcce07a,
+    - target: {fileID: 7215146976062674864, guid: bc15771ddc3b73348870f004dfcce07a,
         type: 3}
-      propertyPath: m_Lens.FieldOfView
-      value: 60
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7215146976062674864, guid: bc15771ddc3b73348870f004dfcce07a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8552913779085578415, guid: bc15771ddc3b73348870f004dfcce07a,
         type: 3}
-      propertyPath: field of view
-      value: 60
+      propertyPath: far clip plane
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 8951019529516475288, guid: bc15771ddc3b73348870f004dfcce07a,
         type: 3}
       propertyPath: m_ShowDebugText
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8951019529516475288, guid: bc15771ddc3b73348870f004dfcce07a,
+        type: 3}
+      propertyPath: m_IgnoreTimeScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

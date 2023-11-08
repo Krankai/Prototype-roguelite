@@ -42,11 +42,11 @@ GameObject:
   m_Component:
   - component: {fileID: 839867589254982295}
   - component: {fileID: 8276156064095734258}
-  - component: {fileID: 236579968993929095}
-  - component: {fileID: 2371536431791783013}
-  - component: {fileID: 7300508903377970637}
+  - component: {fileID: 5413024613702666343}
+  - component: {fileID: 6368755311732790897}
+  - component: {fileID: 5004886423728215675}
   m_Layer: 0
-  m_Name: AutoShootGun
+  m_Name: ChargeGunAutoAim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,8 +83,8 @@ MonoBehaviour:
   WeaponName: 
   WeaponCurrentlyActive: 1
   InputAuthorized: 1
-  TriggerMode: 1
-  DelayBeforeUse: 0
+  TriggerMode: 0
+  DelayBeforeUse: 0.2
   DelayBeforeUseReleaseInterruption: 0
   TimeBetweenUses: 1
   TimeBetweenUsesReleaseInterruption: 0
@@ -150,10 +150,10 @@ MonoBehaviour:
   RotateWeaponOnSpread: 0
   RandomSpread: 1
   SpawnPosition: {x: 0, y: 0, z: 0}
-  ObjectPooler: {fileID: 236579968993929095}
+  ObjectPooler: {fileID: 5413024613702666343}
   SpawnFeedbacks: []
   TestShootButton: 0
---- !u!114 &236579968993929095
+--- !u!114 &5413024613702666343
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,17 +162,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6993551085734785580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b7277539b95c0d45895792ecc99ce66, type: 3}
+  m_Script: {fileID: 11500000, guid: e4fec9b694fd56e499dca3e3990147f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MutualizeWaitingPools: 0
+  MutualizeWaitingPools: 1
   NestWaitingPool: 1
   NestUnderThis: 0
-  GameObjectToPool: {fileID: 2770680601376600737, guid: 91ff7271bb7602b4fa8e2df7910804ae,
+  GameObjectToPool: {fileID: 2770680601376600737, guid: 21cf14d9d35994b4382da3844ebc195c,
     type: 3}
   PoolSize: 5
   PoolCanExpand: 1
---- !u!114 &2371536431791783013
+  DynamicScale: {x: 1, y: 1, z: 1}
+--- !u!114 &6368755311732790897
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,10 +185,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0514d297deadac74fb15a7b7326ff0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimControl: 0
+  AimControl: 4
   AimControlActive: 1
   RotationMode: 0
-  WeaponRotationSpeed: 1
+  WeaponRotationSpeed: 0
   MinimumAngle: -180
   MaximumAngle: 180
   MinimumMagnitude: 0.2
@@ -211,7 +212,7 @@ MonoBehaviour:
     m_Bits: 9
   MaximumSlopeElevation: 50
   AvoidNullAim: 1
---- !u!114 &7300508903377970637
+--- !u!114 &5004886423728215675
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,11 +226,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetsMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 8192
   ObstacleMask:
     serializedVersion: 2
     m_Bits: 256
-  ScanRadius: 15
+  ScanRadius: 20
   LineOfFireBoxcastSize: {x: 0.1, y: 0.1}
   DurationBetweenScans: 1
   DetectionOriginOffset: {x: 0, y: 0, z: 0}
@@ -241,7 +242,8 @@ MonoBehaviour:
   CameraTargetMaxDistance: 10
   CameraTargetSpeed: 5
   MoveCameraToCharacterIfNoTarget: 0
-  AimMarkerPrefab: {fileID: 0}
+  AimMarkerPrefab: {fileID: 1944472696865073608, guid: d8fd18c1a225a184d9b3cba485de43df,
+    type: 3}
   DestroyAimMarkerOnWeaponDestroy: 1
   FirstTargetFoundFeedback: {fileID: 0}
   NewTargetFoundFeedback: {fileID: 0}

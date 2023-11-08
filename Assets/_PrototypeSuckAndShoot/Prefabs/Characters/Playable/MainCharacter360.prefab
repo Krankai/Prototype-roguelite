@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 114839196621103566}
   - component: {fileID: 114072752581488692}
   m_Layer: 10
-  m_Name: MainCharacter
+  m_Name: MainCharacter360
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1766,7 +1766,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   VisionRadius: 5
-  VisionAngle: 120
+  VisionAngle: 360
   Direction: {x: 0, y: 0, z: 0}
   EulerAngles: {x: 0, y: 0, z: 0}
   Offset: {x: 0, y: 0, z: 0}

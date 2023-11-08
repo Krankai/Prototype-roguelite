@@ -18,6 +18,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         [Header("Bindings")]
         public CharacterHandleWeapon HandleWeapon;
+        public CharacterOrientation3D OrientationThreeD;
 
 
         [Header("Input")]
@@ -30,10 +31,26 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         public Vector2 ThresholdInputShoot = Vector2.zero;
 
 
+        [Header("Rotation")]
+        // whether to rotate character facing shooting direction
+        [Tooltip("whether to rotate character facing shooting direction")]
+        public bool IsRotateFacingShootDirection;
+
+
+        [Header("Shoot")]
+        // the number of frames to be delayed before triggering the shoot action
+        [Tooltip("the number of frames to be delayed before triggering the shoot action")]
+        [Min(0)]
+        public int ShootDelayedFrameCount = 5;
+
+
         [Header("Feedback")]
         public MMF_Player ShootFeedback;
 
         protected Vector2 _currentInput = Vector2.zero;
+        protected bool _cachedForcedRotation = false;
+        protected bool _isTriggerShoot = false;
+
 
 
         protected override void Initialization()
@@ -43,6 +60,11 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             if (HandleWeapon == default)
             {
                 HandleWeapon = _character.FindAbility<CharacterHandleWeapon>();
+            }
+
+            if (OrientationThreeD == default)
+            {
+                OrientationThreeD = _character.FindAbility<CharacterOrientation3D>();
             }
         }
 
@@ -84,13 +106,45 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             {
                 Debug.LogWarning("Shoot");
 
-                HandleWeapon.CurrentWeapon.WeaponUsedMMFeedback = ShootFeedback;
-                HandleWeapon.ShootStart();
-                //ShootFeedback.PlayFeedbacks();
+                if (IsRotateFacingShootDirection)
+                {
+                    _cachedForcedRotation = OrientationThreeD.ForcedRotation;
+
+                    OrientationThreeD.ForcedRotation = true;
+                    OrientationThreeD.ShouldRotateToFaceWeaponDirection = true;
+                }
+
+                if (HandleWeapon.CurrentWeapon.WeaponUsedMMFeedback != ShootFeedback)
+                {
+                    HandleWeapon.CurrentWeapon.WeaponUsedMMFeedback = ShootFeedback;
+                }
+
+                ShootAfterFrames();
             }
 
             IsCharging = false;
             IsCanShoot = false;
+        }
+
+        protected virtual void ShootAfterFrames()
+        {
+            StartCoroutine(CoroutineActionAfterDelayedFrames(ShootDelayedFrameCount, HandleWeapon.ShootStart));
+        }
+
+        public virtual void OnResetForceRotation()
+        {
+            OrientationThreeD.ForcedRotation = _cachedForcedRotation;
+            OrientationThreeD.ShouldRotateToFaceWeaponDirection = false;
+        }
+
+        private IEnumerator CoroutineActionAfterDelayedFrames(int delayFrames, System.Action callbackAction)
+        {
+            while (delayFrames-- > 0)
+            {
+                yield return null;
+            }
+
+            callbackAction?.Invoke();
         }
     }
 }

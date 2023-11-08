@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7351127764417957129}
   - component: {fileID: 3273471126211626195}
   - component: {fileID: 686909902976330839}
+  - component: {fileID: 8381407745004511896}
+  - component: {fileID: 5859929482035467872}
   m_Layer: 13
   m_Name: AIBrain
   m_TagString: Untagged
@@ -47,6 +49,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Owner: {fileID: 0}
   States:
+  - StateName: Waiting
+    Actions:
+      array:
+      - {fileID: 5859929482035467872}
+    Transitions:
+      array:
+      - Decision: {fileID: 8381407745004511896}
+        TrueState: Shooting
+        FalseState: 
   - StateName: Shooting
     Actions:
       array:
@@ -83,6 +94,34 @@ MonoBehaviour:
   AimOrigin: 0
   ShootOffset: {x: 0, y: 0, z: 0}
   LockVerticalAim: 0
+--- !u!114 &8381407745004511896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453292094353491637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b145c49e93a5243bc218ef7582606f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: WaitInitialTime
+  AfterTime: 1.5
+--- !u!114 &5859929482035467872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453292094353491637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 561ab803e1e9aa94ab096724696e5475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationMode: 0
+  Label: DoNothing
 --- !u!1 &2583104637348331770
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,7 +861,7 @@ MonoBehaviour:
   UseSecondaryAxisThresholdToShoot: 0
   ForceWeaponAimControl: 0
   ForcedWeaponAimControl: 1
-  ForceAlwaysShoot: 1
+  ForceAlwaysShoot: 0
   BufferInput: 0
   NewInputExtendsBuffer: 0
   MaximumBufferDuration: 0.25

@@ -135,7 +135,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _OcclussionStrength: 1
-    - _Opacity: 0.1
+    - _Opacity: 0.05
     - _OpacityFresnelBias: 1
     - _OpacityFresnelPower: 1
     - _OpacityFresnelScale: 1
