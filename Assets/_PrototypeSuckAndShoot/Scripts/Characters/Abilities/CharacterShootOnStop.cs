@@ -19,6 +19,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Header("Bindings")]
         public CharacterHandleWeapon HandleWeapon;
         public CharacterOrientation3D OrientationThreeD;
+        public WeaponAutoAim3D AutoAimThreeD;
 
 
         [Header("Input")]
@@ -46,6 +47,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         [Header("Feedback")]
         public MMF_Player ShootFeedback;
+        public MMF_Player ShootStopFeedback;
 
         protected Vector2 _currentInput = Vector2.zero;
         protected bool _cachedForcedRotation = false;
@@ -60,12 +62,19 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             if (HandleWeapon == default)
             {
                 HandleWeapon = _character.FindAbility<CharacterHandleWeapon>();
+                HandleWeapon.OnWeaponChange += () =>
+                {
+                    HandleWeapon.CurrentWeapon.WeaponUsedMMFeedback = ShootFeedback;
+                    HandleWeapon.CurrentWeapon.WeaponStopMMFeedback = ShootStopFeedback;
+                };
             }
 
             if (OrientationThreeD == default)
             {
                 OrientationThreeD = _character.FindAbility<CharacterOrientation3D>();
             }
+
+            AutoAimThreeD = HandleWeapon.CurrentWeapon.gameObject.MMGetComponentNoAlloc<WeaponAutoAim3D>();
         }
 
         //private void Update()
@@ -114,10 +123,12 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                     OrientationThreeD.ShouldRotateToFaceWeaponDirection = true;
                 }
 
-                if (HandleWeapon.CurrentWeapon.WeaponUsedMMFeedback != ShootFeedback)
-                {
-                    HandleWeapon.CurrentWeapon.WeaponUsedMMFeedback = ShootFeedback;
-                }
+                //if (HandleWeapon.CurrentWeapon.WeaponUsedMMFeedback != ShootFeedback)
+                //{
+                //    HandleWeapon.CurrentWeapon.WeaponUsedMMFeedback = ShootFeedback;
+                //}
+                HandleWeapon.CurrentWeapon.WeaponUsedMMFeedback = ShootFeedback;
+                HandleWeapon.CurrentWeapon.WeaponStopMMFeedback = ShootStopFeedback;
 
                 ShootAfterFrames();
             }
@@ -128,11 +139,18 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         protected virtual void ShootAfterFrames()
         {
-            StartCoroutine(CoroutineActionAfterDelayedFrames(ShootDelayedFrameCount, HandleWeapon.ShootStart));
+            StartCoroutine(CoroutineActionAfterDelayedFrames(ShootDelayedFrameCount, () =>
+            {
+                AutoAimThreeD.enabled = false;
+
+                HandleWeapon.ShootStart();
+            }));
         }
 
         public virtual void OnResetForceRotation()
         {
+            AutoAimThreeD.enabled = true;
+
             OrientationThreeD.ForcedRotation = _cachedForcedRotation;
             OrientationThreeD.ShouldRotateToFaceWeaponDirection = false;
         }

@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 114839196621103566}
   - component: {fileID: 114072752581488692}
   m_Layer: 10
-  m_Name: MainCharacterAutoAim
+  m_Name: MainCharacter2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -671,7 +671,7 @@ MonoBehaviour:
     - rid: 464073238642425857
       type: {class: MMF_Property, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
       data:
-        Active: 1
+        Active: 0
         UniqueID: -1097489815
         Label: EnableShooting
         ChannelMode: 0
@@ -825,17 +825,14 @@ GameObject:
   - component: {fileID: 553683151751034539}
   - component: {fileID: 5007060740104825925}
   - component: {fileID: 4187923116287535712}
-  - component: {fileID: 2058830985240992396}
-  - component: {fileID: 4531686620683981166}
-  - component: {fileID: 3792379766859046508}
   - component: {fileID: 4109448606286040787}
   - component: {fileID: 3283487914975089020}
   - component: {fileID: 2913300218408983829}
   - component: {fileID: 2717271642743271122}
   - component: {fileID: 6285370067767774273}
-  - component: {fileID: 8329143584531508651}
   - component: {fileID: 3597796598499004898}
   - component: {fileID: 4554647178635016817}
+  - component: {fileID: 5406443451534108930}
   m_Layer: 10
   m_Name: Abilities
   m_TagString: Untagged
@@ -858,6 +855,7 @@ Transform:
   m_Children:
   - {fileID: 1484716048566423651}
   - {fileID: 5995646428745372825}
+  - {fileID: 5918068303732110884}
   m_Father: {fileID: 4161469876269846}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5007060740104825925
@@ -936,84 +934,6 @@ MonoBehaviour:
   TouchTheGroundParticles:
   - {fileID: 0}
   TouchTheGroundSfx: []
---- !u!114 &2058830985240992396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994617329061095493}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d103439fc2940e347937487a70ea01e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilityStartSfx: {fileID: 0}
-  AbilityInProgressSfx: {fileID: 0}
-  AbilityStopSfx: {fileID: 0}
-  AbilityStartFeedbacks: {fileID: 0}
-  AbilityStopFeedbacks: {fileID: 0}
-  AbilityPermitted: 1
-  BlockingMovementStates: 
-  BlockingConditionStates: 
-  BlockingWeaponStates: 
-  RunSpeed: 8
-  AutoRun: 0
-  AutoRunThreshold: 0.6
---- !u!114 &4531686620683981166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994617329061095493}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c752f2958a762a144a00333487ac892f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilityStartSfx: {fileID: 0}
-  AbilityInProgressSfx: {fileID: 0}
-  AbilityStopSfx: {fileID: 0}
-  AbilityStartFeedbacks: {fileID: 0}
-  AbilityStopFeedbacks: {fileID: 0}
-  AbilityPermitted: 1
-  BlockingMovementStates: 
-  BlockingConditionStates: 
-  BlockingWeaponStates: 
-  JumpProportionalToPress: 1
-  MinimumPressTime: 0.4
-  JumpForce: 800
-  JumpHeight: 4
-  CanJumpOnTooSteepSlopes: 1
-  ResetJumpsOnTooSteepSlopes: 0
-  NumberOfJumps: 1
-  NumberOfJumpsLeft: 0
-  JumpStartFeedback: {fileID: 0}
-  JumpStopFeedback: {fileID: 0}
---- !u!114 &3792379766859046508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994617329061095493}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a87ffdd7d8febb24b817b1d3d350bef7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilityStartSfx: {fileID: 0}
-  AbilityInProgressSfx: {fileID: 0}
-  AbilityStopSfx: {fileID: 0}
-  AbilityStartFeedbacks: {fileID: 0}
-  AbilityStopFeedbacks: {fileID: 0}
-  AbilityPermitted: 1
-  BlockingMovementStates: 
-  BlockingConditionStates: 
-  BlockingWeaponStates: 
-  PreventJumpInButtonActivatedZone: 1
-  ButtonActivatedZone: {fileID: 0}
 --- !u!114 &4109448606286040787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1161,7 +1081,7 @@ MonoBehaviour:
   BlockingMovementStates: 
   BlockingConditionStates: 
   BlockingWeaponStates: 
-  InitialWeapon: {fileID: 8276156064095734258, guid: b6511c3ce17652e41b49caec1ed75935,
+  InitialWeapon: {fileID: 8276156064095734258, guid: a80c40d90f663b242ab77c0518e05116,
     type: 3}
   CanPickupWeapons: 0
   WeaponUseFeedback: {fileID: 0}
@@ -1213,31 +1133,6 @@ MonoBehaviour:
   AutoEquipWeaponOnStart: {fileID: 0}
   AutoEquipOnlyIfMainInventoryIsEmpty: 0
   CharacterHandleWeapon: {fileID: 0}
---- !u!114 &8329143584531508651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994617329061095493}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e348c4f06a38d348be86f2f28cd124d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AbilityStartSfx: {fileID: 0}
-  AbilityInProgressSfx: {fileID: 0}
-  AbilityStopSfx: {fileID: 0}
-  AbilityStartFeedbacks: {fileID: 0}
-  AbilityStopFeedbacks: {fileID: 0}
-  AbilityPermitted: 1
-  BlockingMovementStates: 
-  BlockingConditionStates: 
-  BlockingWeaponStates: 
-  AllowPhysicsInteractions: 1
-  PhysicsInteractionsRaycastLength: 0.05
-  PhysicsInteractionsRaycastOffset: {x: 0, y: 0, z: 0}
-  PushPower: 1850
 --- !u!114 &3597796598499004898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1245,7 +1140,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994617329061095493}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a050fd1b15da83c4f964976797d2af3a, type: 3}
   m_Name: 
@@ -1272,7 +1167,7 @@ MonoBehaviour:
   - Value: 2.6
     ConditionCount: 5
   HandleWeapon: {fileID: 2717271642743271122}
-  IsAdjustProjectileScale: 0
+  IsAdjustProjectileScale: 1
   ListProjectileScaleMultipliers:
   - Value: 2
     ConditionCount: 1
@@ -1290,15 +1185,15 @@ MonoBehaviour:
   IsAdjustConeOfVision: 1
   CharacterConeOfVision: {fileID: 1128730897720240566}
   ListRadius:
-  - Value: 5.2
+  - Value: 4
     ConditionCount: 1
-  - Value: 5.4
+  - Value: 4.2
     ConditionCount: 2
-  - Value: 5.7
+  - Value: 4.4
     ConditionCount: 3
-  - Value: 6.1
+  - Value: 4.6
     ConditionCount: 4
-  - Value: 6.6
+  - Value: 4.8
     ConditionCount: 5
   EnableShootingFeedback: {fileID: 3377000303434219569}
   DisableShootingFeedback: {fileID: 325987961007529465}
@@ -1309,7 +1204,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994617329061095493}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26a18c90c9a67ce499cb79e5d6ee3936, type: 3}
   m_Name: 
@@ -1326,13 +1221,45 @@ MonoBehaviour:
   IsCharging: 0
   IsCanShoot: 0
   HandleWeapon: {fileID: 2717271642743271122}
-  OrientationThreeD: {fileID: 0}
+  OrientationThreeD: {fileID: 5007060740104825925}
+  AutoAimThreeD: {fileID: 0}
   ThresholdInputCharge: {x: 0.05, y: 0.05}
   ThresholdInputShoot: {x: 0, y: 0}
   IsRotateFacingShootDirection: 1
   ShootDelayedFrameCount: 5
   ShootFeedback: {fileID: 1697738060224539428}
-  ShootStopFeedback: {fileID: 3426639104972292301}
+  ShootStopFeedback: {fileID: 596278761425675572}
+--- !u!114 &5406443451534108930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994617329061095493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095dbbe51abf8f64fb433a74c7d2d18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityStartSfx: {fileID: 0}
+  AbilityInProgressSfx: {fileID: 0}
+  AbilityStopSfx: {fileID: 0}
+  AbilityStartFeedbacks: {fileID: 0}
+  AbilityStopFeedbacks: {fileID: 0}
+  AbilityPermitted: 1
+  BlockingMovementStates: 
+  BlockingConditionStates: 
+  BlockingWeaponStates: 
+  CurrentState: 0
+  NextAction: 0
+  ThresholdInputCharge: {x: 0.05, y: 0.05}
+  ThresholdInputTrigger: {x: 0, y: 0}
+  ShootAction: {fileID: 3866326512423039420}
+  SuckAction: {fileID: 488483498768945781}
+  SuckActionFeedback: {fileID: 0}
+  ShootActionFeedback: {fileID: 0}
+  IsSuckNext: 0
+  IsShootNext: 0
 --- !u!1 &1417451540443679600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,7 +1392,7 @@ MonoBehaviour:
     - rid: 464073238642425857
       type: {class: MMF_Property, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
       data:
-        Active: 1
+        Active: 0
         UniqueID: -1097489815
         Label: DisableShooting
         ChannelMode: 0
@@ -1624,7 +1551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5995646428745372825
 Transform:
   m_ObjectHideFlags: 0
@@ -1647,7 +1574,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2344489005843289288}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf2f3f8f19c62e8489a5cc73e95ea816, type: 3}
   m_Name: 
@@ -1673,6 +1600,85 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 1
   CurrentSuckedCount: 0
+--- !u!1 &3683309991002007493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5918068303732110884}
+  - component: {fileID: 488483498768945781}
+  - component: {fileID: 3866326512423039420}
+  m_Layer: 10
+  m_Name: SuckAndShoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5918068303732110884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3683309991002007493}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 553683151751034539}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &488483498768945781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3683309991002007493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 539bfe9b8a7b7f2409ca9722f7b61c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SuckVision: {fileID: 1128730897720240566}
+  CanSuckCount: 1
+  FrameCountInterval: 3
+  SuckStartFeedback: {fileID: 0}
+  SuckCompleteFeedback: {fileID: 0}
+  OnSuckStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSuckCompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _listSucking: []
+--- !u!114 &3866326512423039420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3683309991002007493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558c8302abc0e204e9e8671a855becbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShootProjectiles: []
+  HandleWeapon: {fileID: 2717271642743271122}
+  ShootStartFeedback: {fileID: 0}
+  ShootCompleteFeedback: {fileID: 6837227579258368060}
+  OnShootStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnShootCompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3696826735528893278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,8 +1779,8 @@ MonoBehaviour:
   ObstacleMask:
     serializedVersion: 2
     m_Bits: 0
-  VisionRadius: 5
-  VisionAngle: 360
+  VisionRadius: 4
+  VisionAngle: 120
   Direction: {x: 0, y: 0, z: 0}
   EulerAngles: {x: 0, y: 0, z: 0}
   Offset: {x: 0, y: 0, z: 0}
@@ -1936,7 +1942,7 @@ MonoBehaviour:
       data:
         Active: 1
         UniqueID: -754671677
-        Label: ResetSuckedCount
+        Label: ResetSuckCount
         ChannelMode: 0
         Channel: 0
         MMChannelDefinition: {fileID: 0}
@@ -2040,7 +2046,7 @@ MonoBehaviour:
     - rid: 464073238642425858
       type: {class: MMF_DebugLog, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
       data:
-        Active: 1
+        Active: 0
         UniqueID: 1788050201
         Label: Log
         ChannelMode: 0
@@ -2109,7 +2115,7 @@ MonoBehaviour:
         DebugMessage: Shoot
         DebugColor: {r: 0, g: 1, b: 1, a: 1}
         DisplayFrameCount: 1
---- !u!1 &6830412186794471166
+--- !u!1 &4850219111306410179
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2117,8 +2123,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5280815853266737692}
-  - component: {fileID: 3426639104972292301}
+  - component: {fileID: 4596724743334620420}
+  - component: {fileID: 596278761425675572}
   m_Layer: 10
   m_Name: WeaponStopFeedback
   m_TagString: Untagged
@@ -2126,13 +2132,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5280815853266737692
+--- !u!4 &4596724743334620420
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6830412186794471166}
+  m_GameObject: {fileID: 4850219111306410179}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -2141,13 +2147,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4556720968853831831}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3426639104972292301
+--- !u!114 &596278761425675572
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6830412186794471166}
+  m_GameObject: {fileID: 4850219111306410179}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
@@ -2304,7 +2310,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 3426639104972292301}
+        Owner: {fileID: 596278761425675572}
         DebugActive: 0
         PlayEvents:
           m_PersistentCalls:
@@ -2313,6 +2319,228 @@ MonoBehaviour:
               m_TargetAssemblyTypeName: SpiritBomb.Prototype.SuckAndShoot.CharacterShootOnStop,
                 Assembly-CSharp
               m_MethodName: OnResetForceRotation
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 1
+        StopEvents:
+          m_PersistentCalls:
+            m_Calls: []
+        InitializationEvents:
+          m_PersistentCalls:
+            m_Calls: []
+        ResetEvents:
+          m_PersistentCalls:
+            m_Calls: []
+--- !u!1 &5843143395894324599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3033234485941568508}
+  - component: {fileID: 6837227579258368060}
+  m_Layer: 10
+  m_Name: ShootActionCompleteFeedback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3033234485941568508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5843143395894324599}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4556720968853831831}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6837227579258368060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5843143395894324599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Feedbacks: []
+  InitializationMode: 2
+  AutoInitialization: 1
+  SafeMode: 3
+  Direction: 0
+  AutoChangeDirectionOnEnd: 0
+  AutoPlayOnStart: 0
+  AutoPlayOnEnable: 0
+  ForceTimescaleMode: 0
+  ForcedTimescaleMode: 1
+  DurationMultiplier: 1
+  RandomizeDuration: 0
+  RandomDurationMultiplier: {x: 0.5, y: 1.5}
+  DisplayFullDurationDetails: 0
+  PlayerTimescaleMode: 1
+  OnlyPlayIfWithinRange: 0
+  RangeCenter: {fileID: 0}
+  RangeDistance: 5
+  UseRangeFalloff: 0
+  RangeFalloff:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  RemapRangeFalloff: {x: 0, y: 1}
+  IgnoreRangeEvents: 0
+  CooldownDuration: 0
+  InitialDelay: 0
+  CanPlay: 1
+  CanPlayWhileAlreadyPlaying: 1
+  ChanceToPlay: 100
+  FeedbacksIntensity: 1
+  Events:
+    TriggerMMFeedbacksEvents: 0
+    TriggerUnityEvents: 1
+    OnPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    OnPause:
+      m_PersistentCalls:
+        m_Calls: []
+    OnResume:
+      m_PersistentCalls:
+        m_Calls: []
+    OnRevert:
+      m_PersistentCalls:
+        m_Calls: []
+    OnComplete:
+      m_PersistentCalls:
+        m_Calls: []
+    OnRestoreInitialValues:
+      m_PersistentCalls:
+        m_Calls: []
+    OnSkipToTheEnd:
+      m_PersistentCalls:
+        m_Calls: []
+  DebugActive: 0
+  FeedbacksList:
+  - rid: 464073255700398081
+  KeepPlayModeChanges: 0
+  PerformanceMode: 0
+  StopFeedbacksOnDisable: 0
+  PlayCount: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 464073255700398081
+      type: {class: MMF_Events, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
+      data:
+        Active: 1
+        UniqueID: 1417661444
+        Label: OnShootComplete
+        ChannelMode: 0
+        Channel: 0
+        MMChannelDefinition: {fileID: 0}
+        Chance: 100
+        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
+        Timing:
+          TimescaleMode: 0
+          ExcludeFromHoldingPauses: 0
+          ContributeToTotalDuration: 1
+          InitialDelay: 0
+          CooldownDuration: 0
+          InterruptsOnStop: 1
+          NumberOfRepeats: 0
+          RepeatForever: 0
+          DelayBetweenRepeats: 1
+          MMFeedbacksDirectionCondition: 0
+          PlayDirection: 0
+          ConstantIntensity: 0
+          UseIntensityInterval: 0
+          IntensityIntervalMin: 0
+          IntensityIntervalMax: 0
+          Sequence: {fileID: 0}
+          TrackID: 0
+          Quantized: 0
+          TargetBPM: 120
+        AutomatedTargetAcquisition:
+          Mode: 0
+          ChildIndex: 0
+        RandomizeOutput: 0
+        RandomMultiplier: {x: 0.8, y: 1}
+        RandomizeDuration: 0
+        RandomDurationMultiplier: {x: 0.5, y: 2}
+        UseRange: 0
+        RangeDistance: 5
+        UseRangeFalloff: 0
+        RangeFalloff:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        RemapRangeFalloff: {x: 0, y: 1}
+        Owner: {fileID: 6837227579258368060}
+        DebugActive: 0
+        PlayEvents:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3866326512423039420}
+              m_TargetAssemblyTypeName: SpiritBomb.Prototype.SuckAndShoot.CharacterShootAction,
+                Assembly-CSharp
+              m_MethodName: OnShootComplete
               m_Mode: 1
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
@@ -2361,8 +2589,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8873813133354006028}
-  - {fileID: 5280815853266737692}
+  - {fileID: 4596724743334620420}
   - {fileID: 249072255387859169}
   - {fileID: 7487319265314697028}
+  - {fileID: 3033234485941568508}
   m_Father: {fileID: 4161469876269846}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

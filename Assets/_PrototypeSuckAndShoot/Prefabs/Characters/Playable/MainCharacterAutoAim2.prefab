@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 114839196621103566}
   - component: {fileID: 114072752581488692}
   m_Layer: 10
-  m_Name: MainCharacterAutoAim
+  m_Name: MainCharacterAutoAim2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1161,7 +1161,7 @@ MonoBehaviour:
   BlockingMovementStates: 
   BlockingConditionStates: 
   BlockingWeaponStates: 
-  InitialWeapon: {fileID: 8276156064095734258, guid: b6511c3ce17652e41b49caec1ed75935,
+  InitialWeapon: {fileID: 8276156064095734258, guid: 5e0d2ef975fcfea439301ca7cc106663,
     type: 3}
   CanPickupWeapons: 0
   WeaponUseFeedback: {fileID: 0}
@@ -1284,21 +1284,21 @@ MonoBehaviour:
     ConditionCount: 4
   - Value: 10
     ConditionCount: 5
-  IsAdjustProjectileBurst: 0
+  IsAdjustProjectileBurst: 1
   _easeType: 27
   _duration: 1
   IsAdjustConeOfVision: 1
   CharacterConeOfVision: {fileID: 1128730897720240566}
   ListRadius:
-  - Value: 5.2
+  - Value: 4
     ConditionCount: 1
-  - Value: 5.4
+  - Value: 4.2
     ConditionCount: 2
-  - Value: 5.7
+  - Value: 4.4
     ConditionCount: 3
-  - Value: 6.1
+  - Value: 4.6
     ConditionCount: 4
-  - Value: 6.6
+  - Value: 4.8
     ConditionCount: 5
   EnableShootingFeedback: {fileID: 3377000303434219569}
   DisableShootingFeedback: {fileID: 325987961007529465}
@@ -1332,7 +1332,7 @@ MonoBehaviour:
   IsRotateFacingShootDirection: 1
   ShootDelayedFrameCount: 5
   ShootFeedback: {fileID: 1697738060224539428}
-  ShootStopFeedback: {fileID: 3426639104972292301}
+  ShootStopFeedback: {fileID: 596278761425675572}
 --- !u!1 &1417451540443679600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,7 +1773,7 @@ MonoBehaviour:
   ObstacleMask:
     serializedVersion: 2
     m_Bits: 0
-  VisionRadius: 5
+  VisionRadius: 4
   VisionAngle: 360
   Direction: {x: 0, y: 0, z: 0}
   EulerAngles: {x: 0, y: 0, z: 0}
@@ -1936,7 +1936,7 @@ MonoBehaviour:
       data:
         Active: 1
         UniqueID: -754671677
-        Label: ResetSuckedCount
+        Label: ResetSuckCount
         ChannelMode: 0
         Channel: 0
         MMChannelDefinition: {fileID: 0}
@@ -2109,7 +2109,7 @@ MonoBehaviour:
         DebugMessage: Shoot
         DebugColor: {r: 0, g: 1, b: 1, a: 1}
         DisplayFrameCount: 1
---- !u!1 &6830412186794471166
+--- !u!1 &4850219111306410179
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2117,8 +2117,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5280815853266737692}
-  - component: {fileID: 3426639104972292301}
+  - component: {fileID: 4596724743334620420}
+  - component: {fileID: 596278761425675572}
   m_Layer: 10
   m_Name: WeaponStopFeedback
   m_TagString: Untagged
@@ -2126,13 +2126,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5280815853266737692
+--- !u!4 &4596724743334620420
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6830412186794471166}
+  m_GameObject: {fileID: 4850219111306410179}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -2141,13 +2141,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4556720968853831831}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3426639104972292301
+--- !u!114 &596278761425675572
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6830412186794471166}
+  m_GameObject: {fileID: 4850219111306410179}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
@@ -2304,7 +2304,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 3426639104972292301}
+        Owner: {fileID: 596278761425675572}
         DebugActive: 0
         PlayEvents:
           m_PersistentCalls:
@@ -2361,7 +2361,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8873813133354006028}
-  - {fileID: 5280815853266737692}
+  - {fileID: 4596724743334620420}
   - {fileID: 249072255387859169}
   - {fileID: 7487319265314697028}
   m_Father: {fileID: 4161469876269846}

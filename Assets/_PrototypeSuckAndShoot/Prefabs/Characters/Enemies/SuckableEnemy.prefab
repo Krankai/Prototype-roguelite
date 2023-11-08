@@ -290,6 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsBeingSucked: 0
   RatioTimeMaxCancellable: 0.6
+  IsStaticOnSucking: 0
   Points: 1
   SuckingFeedback: {fileID: 2790088620587620045}
 --- !u!114 &8267513195958442435
@@ -820,7 +821,7 @@ MonoBehaviour:
         BoundRenderer: {fileID: 23574501634781586}
         Mode: 0
         PropertyName: _Tint
-        FlickerDuration: 1.5
+        FlickerDuration: 1.25
         FlickerOctave: 0.08
         FlickerColor: {r: 1, g: 0.078431375, b: 0.078431375, a: 1}
         MaterialIndexes: 
@@ -896,7 +897,7 @@ MonoBehaviour:
         DebugActive: 0
         Mode: 0
         AnimateScaleTarget: {fileID: 4586608631069042}
-        AnimateScaleDuration: 1.5
+        AnimateScaleDuration: 1.25
         RemapCurveZero: 1
         RemapCurveOne: 0
         Offset: 0
@@ -1144,7 +1145,7 @@ MonoBehaviour:
   InputAuthorized: 1
   AnalogInput: 0
   ScriptDrivenInput: 0
-  WalkSpeed: 3
+  WalkSpeed: 10
   ShouldSetMovement: 1
   IdleThreshold: 0.05
   Acceleration: 10

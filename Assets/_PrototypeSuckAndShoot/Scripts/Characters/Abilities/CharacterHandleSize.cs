@@ -26,9 +26,19 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Tooltip("the associated handle weapon whose projectile will need to be scaled")]
         public CharacterHandleWeapon HandleWeapon;
 
+
+        [Header("Projectile")]
+        // whether to adjust projectile scale
+        [Tooltip("whether to adjust projectile scale")]
+        public bool IsAdjustProjectileScale;
+
         // the list of scale multipliers for projectile
         [Tooltip("the list of scale multipliers for projectile")]
         public List<FloatOnCondition> ListProjectileScaleMultipliers = new();
+
+        // whether to adjust burst count
+        [Tooltip("whether to adjust burst count")]
+        public bool IsAdjustProjectileBurst;
 
 
         [Header("Animation")]
@@ -80,7 +90,11 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
             ListScaleMultipliers.Sort(_comparer);
             ListRadius.Sort(_comparer);
-            ListProjectileScaleMultipliers.Sort(_comparer);
+
+            if (IsAdjustProjectileScale)
+            {
+                ListProjectileScaleMultipliers.Sort(_comparer);
+            }
 
             if (HandleWeapon == default)
             {
@@ -137,6 +151,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             UpdateModelScale(_currentCount);
             UpdateConeOfVisionRadius(_currentCount);
             UpdateProjectileScale(_currentCount);
+            UpdateProjectileBurst(_currentCount);
         }
 
         public virtual void ResetSize()
@@ -190,7 +205,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         protected virtual void UpdateProjectileScale(int countForScale)
         {
-            if (HandleWeapon.CurrentWeapon == default)
+            if (!IsAdjustProjectileScale || HandleWeapon.CurrentWeapon == default)
             {
                 return;
             }
@@ -229,6 +244,20 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             }
 
             return _originalRadius;
+        }
+
+        protected virtual void UpdateProjectileBurst(int countForBurst)
+        {
+            if (!IsAdjustProjectileBurst)
+            {
+                return;
+            }
+
+            var projectile = HandleWeapon.CurrentWeapon.gameObject.MMGetComponentNoAlloc<ProjectileWeapon>();
+            if (projectile)
+            {
+                projectile.BurstLength = countForBurst;
+            }
         }
     }
 

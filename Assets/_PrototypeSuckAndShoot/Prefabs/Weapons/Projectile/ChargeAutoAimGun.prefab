@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 6368755311732790897}
   - component: {fileID: 5004886423728215675}
   m_Layer: 0
-  m_Name: ChargeGunAutoAim
+  m_Name: ChargeAutoAimGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

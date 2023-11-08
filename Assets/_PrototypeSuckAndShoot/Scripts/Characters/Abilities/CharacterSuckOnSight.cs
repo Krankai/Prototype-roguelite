@@ -21,6 +21,10 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Min(1)]
         public int CountSucking = 1;
 
+        // the maximum number of objects that can be sucked
+        [Tooltip("the maximum number of objects that can be sucked")]
+        public int SuckLimit = 5;
+
         // the frame interval to scan for sucking targets
         [Tooltip("the frame interval to scan for sucking targets")]
         [Min(1), Range(1, 30)]
@@ -30,6 +34,12 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Header("Callbacks")]
         [SerializeField]
         protected UnityEvent<int> OnGainPointsEvent;
+
+
+        [Header("Debug")]
+        [MMReadOnly]
+        public int CurrentSuckedCount = 0;
+
 
         protected CharacterSuckableDistanceComparer _comparer = new();
         protected List<CharacterSuckable> _listSucking = new();
@@ -103,7 +113,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 //    Suck(sucked);
                 //}
 
-                if (i < CountSucking)
+                if (i < CountSucking && CurrentSuckedCount < SuckLimit)
                 {
                     Suck(sucked);
                 }
@@ -142,8 +152,14 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         public virtual void OnSuckComplete(CharacterSuckable suckable)
         {
+            CurrentSuckedCount++;
             OnGainPointsEvent?.Invoke(suckable.Points);
             //_listSucking.Remove(suckable);
+        }
+
+        public virtual void OnReleaseAllSucked()
+        {
+            CurrentSuckedCount = 0;
         }
     }
 

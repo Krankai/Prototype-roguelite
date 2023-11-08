@@ -37,6 +37,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         public MMF_Player SuckingFeedback;
 
         protected CharacterSuckOnSight _currentSucker;
+        protected CharacterSuckAction _currentSuckerAction;
         protected Health _health;
         protected ProjectileMotionControl _projectileMotionControl;
 
@@ -78,12 +79,31 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             }
         }
 
+        public virtual void OnSucking(CharacterSuckAction suckAction)
+        {
+            if (IsBeingSucked) return;
+
+            if (SuckingFeedback != default)
+            {
+                SuckingFeedback.Events.OnPlay.AddListener(() => OnStartSucking(suckAction));
+                SuckingFeedback.PlayFeedbacks();
+            }
+            else
+            {
+                OnSuckingComplete();
+            }
+        }
+
         public virtual void OnSuckingComplete()
         {
             if (_currentSucker != default)
             {
-                //_currentSucker.OnGainPoints(Points);
                 _currentSucker.OnSuckComplete(this);
+            }
+
+            if (_currentSuckerAction != default)
+            {
+                _currentSuckerAction.OnSuckingComplete(this);
             }
 
             if (SuckingFeedback != default)
@@ -96,7 +116,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
             _health.Kill();
 
-            if (IsStaticOnSucking && _projectileMotionControl)
+            if (IsStaticOnSucking && _projectileMotionControl != default)
             {
                 _projectileMotionControl.ResumeControl();
             }
@@ -117,10 +137,19 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             }
         }
 
+        public virtual void OnStartSucking(CharacterSuckAction suckAction)
+        {
+            Debug.Log("Start sucking");
+
+            IsBeingSucked = true;
+            _currentSuckerAction = suckAction;
+        }
+
         public virtual void OnRestore()
         {
             IsBeingSucked = false;
             _currentSucker = default;
+            _currentSuckerAction = default;
         }
 
         //public float time;
