@@ -56,7 +56,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         public virtual void ShootAllSuckedTargets()
         {
-            // TODO: set projectile before shooting
+            // TODO: set projectile before shooting from Suckable
 
             if (ShootStartFeedback != default)
             {
@@ -66,13 +66,10 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
             HandleWeapon.CurrentWeapon.WeaponStopMMFeedback = ShootCompleteFeedback;
             HandleWeapon.ShootStart();
-
-            MMGameEvent.Trigger("ReleaseSuckingTargets");
         }
 
         public virtual void OnShootComplete()
         {
-            Debug.Log("Shoot complete");
             OnShootCompleteEvent?.Invoke();
         }
     }

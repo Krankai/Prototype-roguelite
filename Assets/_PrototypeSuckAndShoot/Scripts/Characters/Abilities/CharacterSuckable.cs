@@ -16,6 +16,8 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [MMReadOnly]
         public bool IsBeingSucked = false;
 
+
+        // === Suck
         [Header("Suck")]
         // the ratio of sucked time above which the suck action can no longer be cancelled
         [Tooltip("the ratio of sucked time above which the suck action can no longer be cancelled")]
@@ -25,12 +27,31 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Tooltip("whether to keep object stationary on being sucked")]
         public bool IsStaticOnSucking = false;
 
+
+        // === Points
         [Header("Points")]
         // the points received when successfully sucked in this object
         [Tooltip("the points received when successfully sucked in this object")]
         [Min(1)]
         public int Points;
 
+
+        // === As Projectile
+        [Header("As Projectile")]
+        // the associated model to be used as projectile once being sucked
+        [Tooltip("the associated model to be used as projectile once being sucked")]
+        public GameObject SuckableAsProjectilePrefab;
+
+        // the scale for the projectile prefab
+        [Tooltip("the scale for the projectile prefab")]
+        public Vector3 ScaleSuckableAsProjectile = Vector3.one;
+
+        // the offset position for the projectile prefab
+        [Tooltip("the offset position for the projectile prefab")]
+        public Vector3 OffsetSuckableAsProjectile = Vector3.zero;
+
+
+        // === Feedbacks
         [Header("Feedbacks")]
         // the feedback during sucking process
         [Tooltip("the feedback during sucking process")]

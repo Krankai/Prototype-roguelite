@@ -54,6 +54,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         protected bool IsShootNext = false;
 
         protected Vector2 _currentInput = Vector2.zero;
+        protected bool _isSwitchAction = false;
 
 
 
@@ -120,6 +121,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 bool suckResult = SuckAction.SuckTargets();
                 Debug.Log($"Trigger sucking: {suckResult}");
 
+                _isSwitchAction = suckResult;
                 if (!suckResult)
                 {
                     OnCompleteAction();
@@ -127,21 +129,27 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             }
             else
             {
-                ShootAction.ShootAllSuckedTargets();
                 Debug.Log("Trigger shooting");
-            }
 
-            //OnCompleteAction();
+                _isSwitchAction = true;
+                ShootAction.ShootAllSuckedTargets();
+            }
         }
 
 
         public virtual void OnCompleteAction()
         {
-            Debug.Log("OnCompleteAction");
             CurrentState = CharacterActionState.Idle;
 
-            var countEnums = System.Enum.GetValues(typeof(CharacterActionType)).Length;
-            NextAction = (CharacterActionType)(((int)NextAction + 1) % countEnums);
+            if (_isSwitchAction)
+            {
+                var countEnums = System.Enum.GetValues(typeof(CharacterActionType)).Length;
+                NextAction = (CharacterActionType)(((int)NextAction + 1) % countEnums);
+            }
+
+            Debug.Log($"OnCompleteAction: {NextAction}");
+
+            _isSwitchAction = false;
         }
     }
 

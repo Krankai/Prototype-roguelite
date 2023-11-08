@@ -19,6 +19,16 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Min(1), Range(1, 10)]
         public int CanSuckCount = 1;
 
+        // === Vision
+        [Header("Vision")]
+        // the material used for vision to indicate character can now suck objects
+        [Tooltip("the material used for vision to indicate character can now suck objects")]
+        public Material SuckableMaterial;
+
+        // the material used for vision to indicate character cannot suck objects now
+        [Tooltip("the material used for vision to indicate character cannot suck objects now")]
+        public Material NonSuckableMaterial;
+
         // === Technical
         [Header("Technical")]
         // the frame count interval between each scan for suckable targets
@@ -39,10 +49,26 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [MMReadOnly, SerializeField]
         protected List<CharacterSuckable> _listSucking = new();
 
-
         protected List<CharacterSuckable> _listSuckableTargets = new();
         internal CharacterSuckableDistanceComparerDesc _comparerDesc = new();
 
+        protected MeshRenderer _suckVisionMeshRenderer;
+
+
+        protected virtual void Start()
+        {
+            _suckVisionMeshRenderer = SuckVision.gameObject.MMGetComponentNoAlloc<MeshRenderer>();
+        }
+
+        protected void OnEnable()
+        {
+            this.MMEventStartListening();
+        }
+
+        protected void OnDisable()
+        {
+            this.MMEventStopListening();
+        }
 
         protected virtual void LateUpdate()
         {
@@ -155,15 +181,30 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                     SuckCompleteFeedback.PlayFeedbacks();
                 }
                 OnSuckCompleteEvent?.Invoke();
+
+                SetNonSuckableVision();
+
+                // TODO: send event (or anything else) to CharacterShootAction to save suckable to be used as projectile
             }
         }
 
         public void OnMMEvent(MMGameEvent eventType)
         {
-            if (eventType.EventName.Equals("ReleaseSuckingTargets", System.StringComparison.OrdinalIgnoreCase))
+            if (eventType.EventName.Equals("ReleaseSuckedTargets", System.StringComparison.OrdinalIgnoreCase))
             {
                 ReleaseSuckingTargets();
+                SetSuckableVision();
             }
+        }
+
+        protected virtual void SetSuckableVision()
+        {
+            _suckVisionMeshRenderer.material = SuckableMaterial;
+        }
+
+        protected virtual void SetNonSuckableVision()
+        {
+            _suckVisionMeshRenderer.material = NonSuckableMaterial;
         }
     }
 
