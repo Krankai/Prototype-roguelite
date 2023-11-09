@@ -150,7 +150,6 @@ MonoBehaviour:
   ObjectPooler: {fileID: 4673457564449458759}
   SpawnFeedbacks: []
   TestShootButton: 0
-  CachedProjectileHolder: {fileID: 6890980900428274271}
   _listCachedProjectiles: []
 --- !u!114 &4673457564449458759
 MonoBehaviour:

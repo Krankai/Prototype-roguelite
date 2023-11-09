@@ -175,13 +175,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 0.66
-  m_Radius: 0.23
+  m_Height: 0.1
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.21, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6766304861987313426
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -411,40 +411,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2664698109101130201}
-  - {fileID: 5523456143821503581}
   - {fileID: 8959983355249575329}
   m_Father: {fileID: 3847987034559798567}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3611198384606046651
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5523456143821503581}
-  m_Layer: 13
-  m_Name: WeaponAttachment (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5523456143821503581
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3611198384606046651}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0.52}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 398818978330669368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4460250289009931623
 GameObject:
@@ -1363,7 +1331,7 @@ GameObject:
   - component: {fileID: 3565930834280681054}
   - component: {fileID: 2628463823913914090}
   - component: {fileID: 2714288290397349700}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1448,7 +1416,7 @@ GameObject:
   - component: {fileID: 3586771337005413203}
   - component: {fileID: 3482043547444241892}
   - component: {fileID: 7365635702281896219}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MinimalDude
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -22,7 +22,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             {
                 if (_listCachedProjectiles.Count > 0)
                 {
-                    baseProjectile.SetActive(false);
+                    //baseProjectile.SetActive(false);
 
                     var cachedProjectile = _listCachedProjectiles[0];
                     _listCachedProjectiles.RemoveAt(0);
@@ -34,11 +34,12 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                         matchedObject.transform.SetLocalPositionAndRotation(cachedProjectile.Offset, Quaternion.Euler(cachedProjectile.Rotation));
                         matchedObject.transform.localScale = cachedProjectile.Scale;
 
-                        var modelHeatlh = matchedObject.gameObject.MMGetComponentNoAlloc<Health>();
-                        if (modelHeatlh != default)
-                        {
-                            modelHeatlh.MasterHealth = dynamicShapeProjectile.BaseHealth;
-                        }
+                        //var modelHeatlh = matchedObject.gameObject.MMGetComponentNoAlloc<Health>();
+                        //if (modelHeatlh != default)
+                        //{
+                        //    modelHeatlh.MasterHealth = dynamicShapeProjectile.BaseHealth;
+                        //}
+                        SetBaseHealth(matchedObject.gameObject, dynamicShapeProjectile.BaseHealth);
 
                         matchedObject.gameObject.SetActive(true);
                     }
@@ -52,11 +53,12 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                         projectileModel.transform.localScale = cachedProjectile.Scale;
                         projectileModel.name = cachedProjectile.ID;
 
-                        var modelHeatlh = projectileModel.MMGetComponentNoAlloc<Health>();
-                        if (modelHeatlh != default)
-                        {
-                            modelHeatlh.MasterHealth = dynamicShapeProjectile.BaseHealth;
-                        }
+                        //var modelHeatlh = projectileModel.MMGetComponentNoAlloc<Health>();
+                        //if (modelHeatlh != default)
+                        //{
+                        //    modelHeatlh.MasterHealth = dynamicShapeProjectile.BaseHealth;
+                        //}
+                        SetBaseHealth(projectileModel, dynamicShapeProjectile.BaseHealth);
 
                         projectileModel.SetActive(true);
                     }
@@ -67,12 +69,23 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 }
             }
 
-            if (!baseProjectile.activeSelf)
-            {
-                baseProjectile.SetActive(true);
-            }
+            //if (!baseProjectile.activeSelf)
+            //{
+            //    baseProjectile.SetActive(true);
+            //}
 
             return baseProjectile;
+        }
+
+        protected virtual void SetBaseHealth(GameObject projectileObject, Health baseHealth)
+        {
+            var modelHeatlh = projectileObject.MMGetComponentNoAlloc<Health>();
+            if (modelHeatlh == default)
+            {
+                modelHeatlh = projectileObject.GetComponentInChildren<Health>();
+            }
+
+            modelHeatlh.MasterHealth = baseHealth;
         }
 
         public virtual void CacheProjectile(CharacterSuckable suckable)

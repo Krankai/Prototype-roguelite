@@ -30,7 +30,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4564073364419608}
-  - {fileID: 4819508536344129920}
   - {fileID: 4397824079406274}
   m_Father: {fileID: 4161469876269846}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -93,8 +92,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 0.66
-  m_Radius: 0.23
+  m_Height: 0.01
+  m_Radius: 0.01
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -310,7 +309,7 @@ GameObject:
   - component: {fileID: 4794836682858754}
   - component: {fileID: 33928155771172226}
   - component: {fileID: 23125405360769016}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,9 +394,9 @@ GameObject:
   - component: {fileID: 23574501634781586}
   - component: {fileID: 8420661262967169989}
   - component: {fileID: 5941778534522576749}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MinimalDude
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1523,37 +1522,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3696826735528893278}
   m_Mesh: {fileID: 0}
---- !u!1 &6336412089925851823
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4819508536344129920}
-  m_Layer: 13
-  m_Name: WeaponAttachment (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4819508536344129920
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6336412089925851823}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0.52}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4586608631069042}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8327524971375222398
 GameObject:
   m_ObjectHideFlags: 0

@@ -107,27 +107,18 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         public override void Destroy()
         {
+            base.Destroy();
+
             if (IsDestroyModel)
             {
                 ModelAttachement.MMDestroyAllChildren();
             }
             else
             {
-                for (int i = 0, count = ModelAttachement.childCount; i < count; ++i)
-                {
-                    var child = ModelAttachement.GetChild(i);
-                    if (child == default)
-                    {
-                        continue;
-                    }
-
-                    child.gameObject.SetActive(false);
-                }
+                DisableAllModels();
             }
 
             _isFinishSteering = false;
-
-            base.Destroy();
         }
 
         protected override void FixedUpdate()
@@ -137,6 +128,20 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             if (IsHomingMode && Time.frameCount % FrameCountInterval == 0)
             {
                 SteerTowardsTargets();
+            }
+        }
+
+        public virtual void DisableAllModels()
+        {
+            for (int i = 0, count = ModelAttachement.childCount; i < count; ++i)
+            {
+                var child = ModelAttachement.GetChild(i);
+                if (child == default)
+                {
+                    continue;
+                }
+
+                child.gameObject.SetActive(false);
             }
         }
 

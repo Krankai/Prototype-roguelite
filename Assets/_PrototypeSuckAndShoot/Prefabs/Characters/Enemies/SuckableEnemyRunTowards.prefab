@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7196792643215660729}
   - component: {fileID: 3212412544472270396}
   - component: {fileID: 856688673617639508}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,37 +115,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &2780421792781141355
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9004247164651996730}
-  m_Layer: 13
-  m_Name: WeaponAttachment (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9004247164651996730
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2780421792781141355}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0.52}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6876394267275898854}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3276684841647272852
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +130,7 @@ GameObject:
   - component: {fileID: 4244919719599961152}
   - component: {fileID: 8051570222816767561}
   - component: {fileID: 1896330315695916321}
+  - component: {fileID: 5728466621312208260}
   m_Layer: 13
   m_Name: SuckableEnemyRunTowards
   m_TagString: Enemy
@@ -176,7 +146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3276684841647272852}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.51678634, z: -0, w: 0.85611445}
+  m_LocalRotation: {x: 0, y: -0.5167873, z: 0, w: 0.85611385}
   m_LocalPosition: {x: 2, y: 0, z: -8.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -206,13 +176,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 0.66
-  m_Radius: 0.23
+  m_Height: 0.1
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.21, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4533894820786679525
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -402,7 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsBeingSucked: 0
   SuckDuration: 2
-  RatioTimeMaxCancellable: 0.6
+  RatioTimeMaxCancellable: 0.8
   IsStaticOnSucking: 0
   Points: 1
   SuckableAsProjectilePrefab: {fileID: 8167313625216529914, guid: 7f76e87a44292be46a35ae034a9e7c4e,
@@ -412,6 +382,29 @@ MonoBehaviour:
   OffsetSuckableAsProjectile: {x: 0, y: 0, z: 0}
   RotationSuckableAsProjectile: {x: 0, y: 0, z: 0}
   SuckingFeedback: {fileID: 839632881869006199}
+--- !u!114 &5728466621312208260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3276684841647272852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbbe51f9806750489b5fe08d7a19729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RespawnOnPlayerRespawn: 0
+  RepositionToInitOnPlayerRespawn: 0
+  DisableAllComponentsOnKill: 0
+  DisableGameObjectOnKill: 1
+  IgnoreCheckpointsAlwaysRespawn: 1
+  AssociatedCheckpoints: []
+  AutoRespawnDuration: 3
+  AutoRespawnAmount: -1
+  AutoRespawnRemainingAmount: 3
+  RespawnEffect: {fileID: 0}
+  RespawnSfx: {fileID: 0}
 --- !u!1 &3536152470963000764
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,7 +802,7 @@ MonoBehaviour:
         Owner: {fileID: 839632881869006199}
         DebugActive: 0
         Mode: 0
-        AnimateScaleTarget: {fileID: 6876394267275898854}
+        AnimateScaleTarget: {fileID: 9219512610823644588}
         AnimateScaleDuration: 3
         RemapCurveZero: 1
         RemapCurveOne: 0
@@ -1383,9 +1376,9 @@ GameObject:
   - component: {fileID: 5682036198165488950}
   - component: {fileID: 4352432935599414723}
   - component: {fileID: 4680048549248265057}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MinimalDude
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1578,12 +1571,11 @@ Transform:
   m_GameObject: {fileID: 8325890636131369013}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8351193458329029553}
-  - {fileID: 9004247164651996730}
   - {fileID: 6356293778074213865}
   m_Father: {fileID: 9219512610823644588}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1595,6 +1587,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9219512610823644588}
     m_Modifications:
+    - target: {fileID: 3591924661465503421, guid: 8afbde67707f8764fb48951950d5e3c7,
+        type: 3}
+      propertyPath: MinimumDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5495023809184571578, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1649,6 +1646,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AIBrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573588183043060803, guid: 8afbde67707f8764fb48951950d5e3c7,
+        type: 3}
+      propertyPath: Label
+      value: DetectPlayerToMove
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
