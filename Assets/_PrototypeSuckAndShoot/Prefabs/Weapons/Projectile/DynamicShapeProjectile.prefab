@@ -270,11 +270,11 @@ MonoBehaviour:
   TargetLayerMask:
     serializedVersion: 2
     m_Bits: 8192
-  DetectRadius: 5
+  DetectRadius: 3
   DetectOverlapMaximum: 5
   SteeringSpeed: 5
   CutOffSteerAngle: 1
-  MaxApplySteeringAngle: 30
+  MaxApplySteeringAngle: 15
   _isDebugOn: 1
   _differenceAngle: 0
   _isFinishSteering: 0

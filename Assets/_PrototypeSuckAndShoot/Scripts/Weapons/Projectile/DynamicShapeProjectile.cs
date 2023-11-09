@@ -107,8 +107,6 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         public override void Destroy()
         {
-            base.Destroy();
-
             if (IsDestroyModel)
             {
                 ModelAttachement.MMDestroyAllChildren();
@@ -128,6 +126,8 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             }
 
             _isFinishSteering = false;
+
+            base.Destroy();
         }
 
         protected override void FixedUpdate()

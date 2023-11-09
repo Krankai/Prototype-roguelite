@@ -480,7 +480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1167761570092420, guid: 857af49599bb05e47b9ff573223704f5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4161469876269846, guid: 857af49599bb05e47b9ff573223704f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2513,6 +2513,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1490176970}
     m_Modifications:
+    - target: {fileID: 1200695069351558229, guid: 36cbf4a99743d114c880a02c31473278,
+        type: 3}
+      propertyPath: SuckDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4344289229411819029, guid: 36cbf4a99743d114c880a02c31473278,
         type: 3}
       propertyPath: m_LocalPosition.x

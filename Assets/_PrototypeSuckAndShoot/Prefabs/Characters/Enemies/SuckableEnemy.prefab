@@ -289,9 +289,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsBeingSucked: 0
+  SuckDuration: 0.8
   RatioTimeMaxCancellable: 0.6
   IsStaticOnSucking: 0
   Points: 1
+  SuckableAsProjectilePrefab: {fileID: 8167313625216529914, guid: 7f76e87a44292be46a35ae034a9e7c4e,
+    type: 3}
+  SuckableAsProjectileID: enemy1
+  ScaleSuckableAsProjectile: {x: 1, y: 1, z: 1}
+  OffsetSuckableAsProjectile: {x: 0, y: 0, z: 0}
+  RotationSuckableAsProjectile: {x: 0, y: 0, z: 0}
   SuckingFeedback: {fileID: 2790088620587620045}
 --- !u!114 &8267513195958442435
 MonoBehaviour:

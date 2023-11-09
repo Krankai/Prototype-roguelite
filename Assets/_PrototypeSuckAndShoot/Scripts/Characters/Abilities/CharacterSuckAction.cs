@@ -75,15 +75,16 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             if (SuckVision != default && Time.frameCount % FrameCountInterval == 0)
             {
                 ScanForSuckableTargets();
+                CheckCancelSuckingTargets();
             }
         }
 
         protected virtual void ScanForSuckableTargets()
         {
-            if (_listSucking.Count >= CanSuckCount)
-            {
-                return;
-            }
+            //if (_listSucking.Count >= CanSuckCount)
+            //{
+            //    return;
+            //}
 
             _listSuckableTargets.Clear();
 
@@ -111,6 +112,15 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             if (_listSuckableTargets.Count > 1)
             {
                 _listSuckableTargets.Sort(_comparerDesc);
+            }
+        }
+
+        protected virtual void CheckCancelSuckingTargets()
+        {
+            // TODO: check cases if sucking 2+ targets
+            if (_listSuckableTargets.Count <= 0 && _listSucking.Count > 0)
+            {
+                CancelSuckingTargets();
             }
         }
 
@@ -147,6 +157,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 }
 
                 suckableTarget.OnSucking(this);
+                _listSucking.Add(suckableTarget);
             }
 
             return true;
@@ -154,6 +165,8 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         public virtual void CancelSuckingTargets()
         {
+            Debug.Log("Cancel sucking targets");
+
             for (int i = 0, count = _listSucking.Count; i < count; ++i)
             {
                 var sucking = _listSucking[i];
@@ -189,7 +202,6 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
                 SetNonSuckableVision();
 
-                // TODO: send event (or anything else) to CharacterShootAction to save suckable to be used as projectile
                 SuckedTargetEvent.Trigger(suckable);
             }
         }
@@ -222,7 +234,6 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         }
     }
 
-    [System.Serializable]
     public struct SuckedTargetEvent
     {
         public CharacterSuckable Suckable;
