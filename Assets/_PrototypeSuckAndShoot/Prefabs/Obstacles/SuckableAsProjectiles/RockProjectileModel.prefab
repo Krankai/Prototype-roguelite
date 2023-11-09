@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4743675924250694510}
   - component: {fileID: 2084938966303713150}
   m_Layer: 0
-  m_Name: SuckableRockProjectile
+  m_Name: RockProjectileModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
