@@ -9,12 +9,6 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 {
     public class DynamicShapeProjectileWeapon : ProjectileWeapon
     {
-        //[MMInspectorGroup("Projectiles", true, 22)]
-        //[Header("Suckable Projectile")]
-        //// the holder to (temporarily) keep cached projectile's shape
-        //[Tooltip("the holder to (temporarily) keep cached projectile's shape")]
-        //public Transform CachedProjectileHolder;
-
         [SerializeField]
         List<SuckableProjectile> _listCachedProjectiles = new();
 
@@ -40,9 +34,13 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                         matchedObject.transform.SetLocalPositionAndRotation(cachedProjectile.Offset, Quaternion.Euler(cachedProjectile.Rotation));
                         matchedObject.transform.localScale = cachedProjectile.Scale;
 
-                        matchedObject.gameObject.SetActive(true);
+                        var modelHeatlh = matchedObject.gameObject.MMGetComponentNoAlloc<Health>();
+                        if (modelHeatlh != default)
+                        {
+                            modelHeatlh.MasterHealth = dynamicShapeProjectile.BaseHealth;
+                        }
 
-                        Destroy(cachedProjectile.Model);
+                        matchedObject.gameObject.SetActive(true);
                     }
                     else
                     {
@@ -53,6 +51,12 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                         projectileModel.transform.SetLocalPositionAndRotation(cachedProjectile.Offset, Quaternion.Euler(cachedProjectile.Rotation));
                         projectileModel.transform.localScale = cachedProjectile.Scale;
                         projectileModel.name = cachedProjectile.ID;
+
+                        var modelHeatlh = projectileModel.MMGetComponentNoAlloc<Health>();
+                        if (modelHeatlh != default)
+                        {
+                            modelHeatlh.MasterHealth = dynamicShapeProjectile.BaseHealth;
+                        }
 
                         projectileModel.SetActive(true);
                     }

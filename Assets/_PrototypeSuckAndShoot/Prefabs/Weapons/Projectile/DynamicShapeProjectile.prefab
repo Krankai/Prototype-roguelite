@@ -250,21 +250,34 @@ MonoBehaviour:
   ExecuteOnDisable:
     m_PersistentCalls:
       m_Calls: []
-  LifeTime: 6
+  LifeTime: 20
   FaceDirection: 1
   FaceMovement: 0
   MovementVector: 0
-  Speed: 200
-  Acceleration: 50
+  Speed: 150
+  Acceleration: 20
   Direction: {x: -1, y: 0, z: 0}
   DirectionCanBeChangedBySpawner: 1
   FlipValue: {x: -1, y: 1, z: 1}
   ProjectileIsFacingRight: 1
   InitialInvulnerabilityDuration: 0
   DamageOwner: 0
+  BaseHealth: {fileID: 5580653490666802353}
   ModelAttachement: {fileID: 2141130483953053343}
-  _defaultMeshRenderer: {fileID: 0}
-  IsDestroyed: 0
+  IsDestroyModel: 0
+  IsHomingMode: 1
+  FrameCountInterval: 1
+  TargetLayerMask:
+    serializedVersion: 2
+    m_Bits: 8192
+  DetectRadius: 5
+  DetectOverlapMaximum: 5
+  SteeringSpeed: 5
+  CutOffSteerAngle: 1
+  MaxApplySteeringAngle: 30
+  _isDebugOn: 1
+  _differenceAngle: 0
+  _isFinishSteering: 0
 --- !u!1 &9073086151839400000
 GameObject:
   m_ObjectHideFlags: 0
