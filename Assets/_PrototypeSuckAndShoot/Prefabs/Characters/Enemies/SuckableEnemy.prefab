@@ -49,7 +49,6 @@ GameObject:
   - component: {fileID: 114839196621103566}
   - component: {fileID: 114072752581488692}
   - component: {fileID: 193708206212576457}
-  - component: {fileID: 8267513195958442435}
   m_Layer: 13
   m_Name: SuckableEnemy
   m_TagString: Enemy
@@ -289,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsBeingSucked: 0
-  SuckDuration: 0.8
+  SuckDuration: 2
   RatioTimeMaxCancellable: 0.6
   IsStaticOnSucking: 0
   Points: 1
@@ -300,29 +299,6 @@ MonoBehaviour:
   OffsetSuckableAsProjectile: {x: 0, y: 0, z: 0}
   RotationSuckableAsProjectile: {x: 0, y: 0, z: 0}
   SuckingFeedback: {fileID: 2790088620587620045}
---- !u!114 &8267513195958442435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167761570092420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bbbe51f9806750489b5fe08d7a19729, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RespawnOnPlayerRespawn: 0
-  RepositionToInitOnPlayerRespawn: 0
-  DisableAllComponentsOnKill: 1
-  DisableGameObjectOnKill: 1
-  IgnoreCheckpointsAlwaysRespawn: 1
-  AssociatedCheckpoints: []
-  AutoRespawnDuration: 3
-  AutoRespawnAmount: -1
-  AutoRespawnRemainingAmount: 3
-  RespawnEffect: {fileID: 0}
-  RespawnSfx: {fileID: 0}
 --- !u!1 &1749803945586204
 GameObject:
   m_ObjectHideFlags: 0

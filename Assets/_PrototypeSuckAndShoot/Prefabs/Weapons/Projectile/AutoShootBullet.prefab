@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2392268209167722466}
   - component: {fileID: -8733641825391124147}
   - component: {fileID: 681679507696313359}
-  - component: {fileID: 1712486431392226810}
   - component: {fileID: -3449764746670472433}
   - component: {fileID: -5597180786924612219}
   m_Layer: 24
@@ -35,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.58, y: 0, z: 1.56}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2163525603998058676}
@@ -163,20 +162,20 @@ MonoBehaviour:
   DamageDirectionMode: 1
   DamageCausedKnockbackType: 1
   DamageCausedKnockbackDirection: 0
-  DamageCausedKnockbackForce: {x: 10, y: 10, z: 10}
-  InvincibilityDuration: 0.5
+  DamageCausedKnockbackForce: {x: 2, y: 2, z: 2}
+  InvincibilityDuration: 0
   RepeatDamageOverTime: 0
   AmountOfRepeats: 3
   DurationBetweenRepeats: 1
   DamageOverTimeInterruptible: 1
   RepeatedDamageType: {fileID: 0}
   DamageTakenHealth: {fileID: 681679507696313359}
-  DamageTakenEveryTime: 0
-  DamageTakenDamageable: 10
-  DamageTakenNonDamageable: 10
+  DamageTakenEveryTime: 10
+  DamageTakenDamageable: 0
+  DamageTakenNonDamageable: 0
   DamageTakenKnockbackType: 0
   DamageTakenKnockbackForce: {x: 0, y: 0, z: 0}
-  DamageTakenInvincibilityDuration: 0.5
+  DamageTakenInvincibilityDuration: 0
   HitDamageableFeedback: {fileID: 0}
   HitNonDamageableFeedback: {fileID: 0}
   HitAnythingFeedback: {fileID: 0}
@@ -234,26 +233,6 @@ MonoBehaviour:
   TargetDamageResistanceProcessor: {fileID: 0}
   TargetAnimator: {fileID: 0}
   DisableAnimatorLogs: 1
---- !u!114 &1712486431392226810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2770680601376600737}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72de0b0360096ea41a18d17864ecb963, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BoundsBasedOn: 0
-  ExecuteOnEnable:
-    m_PersistentCalls:
-      m_Calls: []
-  ExecuteOnDisable:
-    m_PersistentCalls:
-      m_Calls: []
-  LifeTime: 6
 --- !u!114 &-3449764746670472433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,9 +277,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsBeingSucked: 0
+  SuckDuration: 1
   RatioTimeMaxCancellable: 0.8
   IsStaticOnSucking: 1
   Points: 1
+  SuckableAsProjectilePrefab: {fileID: 0}
+  SuckableAsProjectileID: boss_projectile
+  ScaleSuckableAsProjectile: {x: 1, y: 1, z: 1}
+  OffsetSuckableAsProjectile: {x: 0, y: 0, z: 0}
+  RotationSuckableAsProjectile: {x: 0, y: 0, z: 0}
   SuckingFeedback: {fileID: 5649103713109168293}
 --- !u!1 &3716432802605781310
 GameObject:

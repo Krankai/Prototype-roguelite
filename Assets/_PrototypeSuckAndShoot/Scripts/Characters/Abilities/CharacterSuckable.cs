@@ -128,6 +128,8 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 //    flickerFeedback.FlickerDuration = SuckDuration;
                 //}
             }
+
+            SuckingFeedback.ComputeCachedTotalDuration();
         }
 
         public virtual void OnSucking(CharacterSuckOnSight suckOnSight)

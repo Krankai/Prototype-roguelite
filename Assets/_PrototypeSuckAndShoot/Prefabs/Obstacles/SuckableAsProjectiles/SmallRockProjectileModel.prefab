@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1841276260164863004}
   - component: {fileID: 2775717322274858943}
   m_Layer: 0
-  m_Name: RockProjectileModel
+  m_Name: SmallRockProjectileModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -169,8 +169,8 @@ MonoBehaviour:
     m_Bits: 8192
   Owner: {fileID: 0}
   TriggerFilter: 195
-  MinDamageCaused: 50
-  MaxDamageCaused: 50
+  MinDamageCaused: 10
+  MaxDamageCaused: 10
   TypedDamages: []
   DamageDirectionMode: 1
   DamageCausedKnockbackType: 1

@@ -246,11 +246,11 @@ MonoBehaviour:
   InitialHealth: 100
   MaximumHealth: 100
   ResetHealthOnEnable: 1
-  ImmuneToDamage: 1
+  ImmuneToDamage: 0
   DamageMMFeedbacks: {fileID: 0}
   FeedbackIsProportionalToDamage: 0
   PreventTakeSelfDamage: 0
-  ImmuneToKnockback: 1
+  ImmuneToKnockback: 0
   ImmuneToKnockbackIfZeroDamage: 0
   KnockbackForceMultiplier: 1
   DestroyOnDeath: 1
@@ -460,11 +460,11 @@ MonoBehaviour:
   InitialHealth: 100
   MaximumHealth: 100
   ResetHealthOnEnable: 1
-  ImmuneToDamage: 1
+  ImmuneToDamage: 0
   DamageMMFeedbacks: {fileID: 0}
   FeedbackIsProportionalToDamage: 0
   PreventTakeSelfDamage: 0
-  ImmuneToKnockback: 1
+  ImmuneToKnockback: 0
   ImmuneToKnockbackIfZeroDamage: 0
   KnockbackForceMultiplier: 1
   DestroyOnDeath: 1
@@ -884,7 +884,7 @@ MonoBehaviour:
   ShouldRotateToFaceMovementDirection: 1
   MovementRotationSpeed: 1
   MovementRotatingModel: {fileID: 0}
-  RotateToFaceMovementDirectionSpeed: 5
+  RotateToFaceMovementDirectionSpeed: 8
   AbsoluteThresholdMovement: 1
   ModelDirection: {x: 0, y: 0, z: 0}
   ModelAngles: {x: 0, y: 0, z: 0}
@@ -923,7 +923,7 @@ MonoBehaviour:
   InputAuthorized: 1
   AnalogInput: 0
   ScriptDrivenInput: 0
-  WalkSpeed: 4
+  WalkSpeed: 6
   ShouldSetMovement: 1
   IdleThreshold: 0.05
   Acceleration: 10

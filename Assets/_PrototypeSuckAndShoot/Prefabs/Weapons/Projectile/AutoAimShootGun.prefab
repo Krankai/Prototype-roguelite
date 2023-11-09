@@ -44,8 +44,9 @@ GameObject:
   - component: {fileID: 8276156064095734258}
   - component: {fileID: 236579968993929095}
   - component: {fileID: 2371536431791783013}
+  - component: {fileID: 7300508903377970637}
   m_Layer: 0
-  m_Name: AutoShootGun
+  m_Name: AutoAimShootGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,10 +83,10 @@ MonoBehaviour:
   WeaponName: 
   WeaponCurrentlyActive: 1
   InputAuthorized: 1
-  TriggerMode: 1
-  DelayBeforeUse: 0.1
+  TriggerMode: 0
+  DelayBeforeUse: 0
   DelayBeforeUseReleaseInterruption: 0
-  TimeBetweenUses: 1
+  TimeBetweenUses: 2
   TimeBetweenUsesReleaseInterruption: 0
   UseBurstMode: 0
   BurstLength: 3
@@ -140,7 +141,7 @@ MonoBehaviour:
   InitializeOnStart: 1
   Interruptable: 0
   Flipped: 0
-  ProjectileSpawnOffset: {x: 0, y: 0, z: -0.5}
+  ProjectileSpawnOffset: {x: 0, y: 0, z: 0}
   DefaultProjectileDirection: {x: 0, y: 0, z: 1}
   ProjectilesPerShot: 1
   SpawnTransforms: []
@@ -148,7 +149,7 @@ MonoBehaviour:
   Spread: {x: 0, y: 0, z: 0}
   RotateWeaponOnSpread: 0
   RandomSpread: 1
-  SpawnPosition: {x: 0, y: 0, z: -0.5}
+  SpawnPosition: {x: 0, y: 0, z: 0}
   ObjectPooler: {fileID: 236579968993929095}
   SpawnFeedbacks: []
   TestShootButton: 0
@@ -178,7 +179,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6993551085734785580}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0514d297deadac74fb15a7b7326ff0d2, type: 3}
   m_Name: 
@@ -186,9 +187,9 @@ MonoBehaviour:
   AimControl: 0
   AimControlActive: 1
   RotationMode: 0
-  WeaponRotationSpeed: 10
-  MinimumAngle: -90
-  MaximumAngle: -90
+  WeaponRotationSpeed: 1
+  MinimumAngle: -180
+  MaximumAngle: 180
   MinimumMagnitude: 0.2
   ReticleType: 0
   Reticle: {fileID: 1373789777524232, guid: 65207112181da7b41bee2bb13af8b883, type: 3}
@@ -210,6 +211,44 @@ MonoBehaviour:
     m_Bits: 9
   MaximumSlopeElevation: 50
   AvoidNullAim: 1
+--- !u!114 &7300508903377970637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993551085734785580}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917bba013df402b42b7581f687f6c802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetsMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  ObstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
+  ScanRadius: 15
+  LineOfFireBoxcastSize: {x: 0.1, y: 0.1}
+  DurationBetweenScans: 1
+  DetectionOriginOffset: {x: 0, y: 0, z: 0}
+  OnlyAcquireTargetsIfOwnerIsIdle: 0
+  RotationMode: 0
+  ApplyAutoAimAsLastDirection: 1
+  MoveCameraTarget: 0
+  CameraTargetDistance: 0.5
+  CameraTargetMaxDistance: 10
+  CameraTargetSpeed: 5
+  MoveCameraToCharacterIfNoTarget: 0
+  AimMarkerPrefab: {fileID: 0}
+  DestroyAimMarkerOnWeaponDestroy: 1
+  FirstTargetFoundFeedback: {fileID: 0}
+  NewTargetFoundFeedback: {fileID: 0}
+  NoMoreTargetsFeedback: {fileID: 0}
+  Target: {fileID: 0}
+  DrawDebugRadius: 1
+  OverlapMaximum: 10
 --- !u!1 &7418311156225882344
 GameObject:
   m_ObjectHideFlags: 0
