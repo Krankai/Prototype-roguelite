@@ -8,7 +8,7 @@ using UnityEngine.Events;
 
 namespace SpiritBomb.Prototype.SuckAndShoot
 {
-    public class CharacterShootAction : MonoBehaviour
+    public class CharacterShootAction : MonoBehaviour, MMEventListener<SuckedTargetEvent>
     {
         // === Projectile
         [Header("Projectile")]
@@ -33,7 +33,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         public MMF_Player ShootCompleteFeedback;
 
         public UnityEvent OnShootStartEvent;
-        public UnityEvent OnShootCompleteEvent;
+        public UnityEvent<bool> OnShootCompleteEvent;
 
         protected Character _character;
         protected MMF_Events _shootCompleteMMFEvent;
@@ -42,6 +42,16 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         protected virtual void Start()
         {
             Initialization();
+        }
+
+        protected virtual void OnEnable()
+        {
+            this.MMEventStartListening();
+        }
+
+        protected virtual void OnDisable()
+        {
+            this.MMEventStopListening();
         }
 
         protected virtual void Initialization()
@@ -70,7 +80,34 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         public virtual void OnShootComplete()
         {
-            OnShootCompleteEvent?.Invoke();
+            OnShootCompleteEvent?.Invoke(true);
+        }
+
+        public void OnMMEvent(SuckedTargetEvent eventType)
+        {
+            if (eventType.Suckable == default)
+            {
+                return;
+            }
+
+            if (HandleWeapon.CurrentWeapon == default)
+            {
+                HandleWeapon.OnWeaponChange += () => OnSaveSuckedAsProjectile(eventType.Suckable);
+                return;
+            }
+
+            OnSaveSuckedAsProjectile(eventType.Suckable);
+        }
+
+        protected virtual void OnSaveSuckedAsProjectile(CharacterSuckable suckedTarget)
+        {
+            var dynamicShapeWeapon = HandleWeapon.CurrentWeapon.gameObject.MMGetComponentNoAlloc<DynamicShapeProjectileWeapon>();
+            if (dynamicShapeWeapon == default)
+            {
+                return;
+            }
+
+            dynamicShapeWeapon.CacheProjectile(suckedTarget);
         }
     }
 }

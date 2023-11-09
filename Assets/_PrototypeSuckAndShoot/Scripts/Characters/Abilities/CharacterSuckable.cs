@@ -19,10 +19,15 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         // === Suck
         [Header("Suck")]
+        // the duration in which object will be fully sucked
+        [Tooltip("the duration in which object will be fully sucked")]
+        public float SuckDuration = 1f;
+
         // the ratio of sucked time above which the suck action can no longer be cancelled
         [Tooltip("the ratio of sucked time above which the suck action can no longer be cancelled")]
         [Range(0, 1)]
         public float RatioTimeMaxCancellable = 0.9f;
+
         // whether to keep object stationary on being sucked
         [Tooltip("whether to keep object stationary on being sucked")]
         public bool IsStaticOnSucking = false;
@@ -42,6 +47,10 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Tooltip("the associated model to be used as projectile once being sucked")]
         public GameObject SuckableAsProjectilePrefab;
 
+        // the id used to name instantiated project tile object (for later pooling)
+        [Tooltip("the id used to name instantiated project tile object (for later pooling)")]
+        public string SuckableAsProjectileID;
+
         // the scale for the projectile prefab
         [Tooltip("the scale for the projectile prefab")]
         public Vector3 ScaleSuckableAsProjectile = Vector3.one;
@@ -49,6 +58,10 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         // the offset position for the projectile prefab
         [Tooltip("the offset position for the projectile prefab")]
         public Vector3 OffsetSuckableAsProjectile = Vector3.zero;
+
+        // the rotation for the projectile prefab
+        [Tooltip("the rotation for the projectile prefab")]
+        public Vector3 RotationSuckableAsProjectile = Vector3.zero;
 
 
         // === Feedbacks
@@ -83,6 +96,38 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             {
                 _projectileMotionControl = gameObject.MMGetComponentNoAlloc<ProjectileMotionControl>();
             }
+
+            SyncFeedbackDuration();
+        }
+
+        protected virtual void SyncFeedbackDuration()
+        {
+            if (SuckingFeedback == default)
+            {
+                return;
+            }
+
+            var listFeedbacks = SuckingFeedback.FeedbacksList;
+            for (int i = 0, count = listFeedbacks.Count; i < count; ++i)
+            {
+                var feedback = listFeedbacks[i];
+                if (feedback == default || !feedback.Active)
+                {
+                    continue;
+                }
+
+                feedback.FeedbackDuration = SuckDuration;
+                //if (feedback is MMF_Scale)
+                //{
+                //    var scaleFeedback = feedback as MMF_Scale;
+                //    scaleFeedback.AnimateScaleDuration = SuckDuration;
+                //}
+                //else if (feedback is MMF_Flicker)
+                //{
+                //    var flickerFeedback = feedback as MMF_Flicker;
+                //    flickerFeedback.FlickerDuration = SuckDuration;
+                //}
+            }
         }
 
         public virtual void OnSucking(CharacterSuckOnSight suckOnSight)
@@ -111,7 +156,9 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             }
             else
             {
+                OnStartSucking(suckAction);
                 OnSuckingComplete();
+                OnRestore();
             }
         }
 
@@ -130,9 +177,6 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             if (SuckingFeedback != default)
             {
                 SuckingFeedback.Events.OnPlay.RemoveAllListeners();
-
-                //SuckingFeedback.StopFeedbacks();
-                //SuckingFeedback.RestoreInitialValues();
             }
 
             _health.Kill();

@@ -42,7 +42,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         public MMF_Player SuckCompleteFeedback;
 
         public UnityEvent OnSuckStartEvent;
-        public UnityEvent OnSuckCompleteEvent;
+        public UnityEvent<bool> OnSuckCompleteEvent;
 
         // === Debug
         [Header("Debug")]
@@ -121,7 +121,11 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 ScanForSuckableTargets();
             }
 
-            if (_listSuckableTargets.Count <= 0) return false;
+            if (_listSuckableTargets.Count <= 0)
+            {
+                OnSuckCompleteEvent?.Invoke(false);
+                return false;
+            }
 
             if (SuckStartFeedback != default)
             {
@@ -162,6 +166,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             }
 
             ReleaseSuckingTargets();
+            OnSuckCompleteEvent?.Invoke(false);
         }
 
         public virtual void ReleaseSuckingTargets()
@@ -180,11 +185,12 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 {
                     SuckCompleteFeedback.PlayFeedbacks();
                 }
-                OnSuckCompleteEvent?.Invoke();
+                OnSuckCompleteEvent?.Invoke(true);
 
                 SetNonSuckableVision();
 
                 // TODO: send event (or anything else) to CharacterShootAction to save suckable to be used as projectile
+                SuckedTargetEvent.Trigger(suckable);
             }
         }
 
@@ -213,6 +219,25 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         public int Compare(CharacterSuckable x, CharacterSuckable y)
         {
             return y.DistanceToSucker.CompareTo(x.DistanceToSucker);
+        }
+    }
+
+    [System.Serializable]
+    public struct SuckedTargetEvent
+    {
+        public CharacterSuckable Suckable;
+
+        public SuckedTargetEvent(CharacterSuckable suckable)
+        {
+            Suckable = suckable;
+        }
+
+        static SuckedTargetEvent e;
+
+        public static void Trigger(CharacterSuckable suckable)
+        {
+            e.Suckable = suckable;
+            MMEventManager.TriggerEvent(e);
         }
     }
 }

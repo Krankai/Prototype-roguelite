@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6890980900428274271}
   m_Layer: 0
-  m_Name: Model
+  m_Name: ProjectileHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5320185335308450587}
-  - component: {fileID: 4052119073871202158}
+  - component: {fileID: 1026262063955802427}
   - component: {fileID: 4673457564449458759}
   m_Layer: 0
   m_Name: DynamicShapeGun
@@ -65,7 +65,7 @@ Transform:
   - {fileID: 6890980900428274271}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4052119073871202158
+--- !u!114 &1026262063955802427
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3309578197018448929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d7ce0b8cf4b34859b9e359283b2e7f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a442542cf693154288ff656093aa688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponName: 
@@ -146,10 +146,12 @@ MonoBehaviour:
   Spread: {x: 0, y: 0, z: 0}
   RotateWeaponOnSpread: 0
   RandomSpread: 1
-  SpawnPosition: {x: 0, y: 0, z: -1.143}
+  SpawnPosition: {x: 0, y: 0, z: 0}
   ObjectPooler: {fileID: 4673457564449458759}
   SpawnFeedbacks: []
   TestShootButton: 0
+  CachedProjectileHolder: {fileID: 6890980900428274271}
+  _listCachedProjectiles: []
 --- !u!114 &4673457564449458759
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -121,35 +121,30 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 bool suckResult = SuckAction.SuckTargets();
                 Debug.Log($"Trigger sucking: {suckResult}");
 
-                _isSwitchAction = suckResult;
-                if (!suckResult)
-                {
-                    OnCompleteAction();
-                }
+                //_isSwitchAction = suckResult;
+                //if (!suckResult)
+                //{
+                //    OnCompleteAction();
+                //}
             }
             else
             {
                 Debug.Log("Trigger shooting");
-
-                _isSwitchAction = true;
                 ShootAction.ShootAllSuckedTargets();
             }
         }
 
-
-        public virtual void OnCompleteAction()
+        public virtual void OnCompleteAction(bool isSwitchAction)
         {
             CurrentState = CharacterActionState.Idle;
 
-            if (_isSwitchAction)
+            if (isSwitchAction)
             {
                 var countEnums = System.Enum.GetValues(typeof(CharacterActionType)).Length;
                 NextAction = (CharacterActionType)(((int)NextAction + 1) % countEnums);
             }
 
             Debug.Log($"OnCompleteAction: {NextAction}");
-
-            _isSwitchAction = false;
         }
     }
 
