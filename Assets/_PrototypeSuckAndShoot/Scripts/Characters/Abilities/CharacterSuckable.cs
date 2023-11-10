@@ -1,6 +1,9 @@
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
+using System.Collections;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace SpiritBomb.Prototype.SuckAndShoot
@@ -78,6 +81,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Tooltip("the feedback during sucking process")]
         public MMF_Player SuckingFeedback;
 
+
         protected CharacterSuckOnSight _currentSucker;
         protected CharacterSuckAction _currentSuckerAction;
         protected ProjectileMotionControl _projectileMotionControl;
@@ -102,6 +106,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             }
 
             CharacterHealth.OnRevive += OnRestore;
+            CharacterHealth.OnRevive += ResetSuckDuration;
 
             if (IsStaticOnSucking)
             {
@@ -201,6 +206,8 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         public virtual void OnSuckingComplete()
         {
+            Debug.Log("OnSuckingComplete");
+
             if (_currentSucker != default)
             {
                 _currentSucker.OnSuckComplete(this);
@@ -252,19 +259,13 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             IsBeingSucked = false;
             _currentSucker = default;
             _currentSuckerAction = default;
+        }
 
+        public virtual void ResetSuckDuration()
+        {
             SuckDuration = _originalSuckDuration;
             SyncFeedbackDuration();
         }
-
-        //public float time;
-        //public float total;
-
-        //private void LateUpdate()
-        //{
-        //    time = SuckingFeedback.ElapsedTime;
-        //    total = SuckingFeedback.TotalDuration;
-        //}
 
         public virtual void CancelSucking()
         {
