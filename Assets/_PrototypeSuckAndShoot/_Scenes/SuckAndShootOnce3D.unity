@@ -4900,6 +4900,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SuckableEnemyBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 3960004845712070131, guid: 8a6f99f614540204393127cdbca6d7ff,
+        type: 3}
+      propertyPath: InitialHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3960004845712070131, guid: 8a6f99f614540204393127cdbca6d7ff,
+        type: 3}
+      propertyPath: MaximumHealth
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 4085404532206523403, guid: 8a6f99f614540204393127cdbca6d7ff,
         type: 3}
       propertyPath: m_LocalPosition.x
