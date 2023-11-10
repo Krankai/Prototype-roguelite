@@ -597,7 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsBeingSucked: 0
-  SuckDuration: 1
+  SuckDuration: 0.5
   RatioTimeMaxCancellable: 0.9
   IsStaticOnSucking: 0
   Points: 1
