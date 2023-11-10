@@ -303,7 +303,7 @@ MonoBehaviour:
   TargetLayerMask:
     serializedVersion: 2
     m_Bits: 8192
-  DetectRadius: 4.5
+  DetectRadius: 10
   DetectOverlapMaximum: 5
   SteeringSpeed: 10
   CutOffSteerAngle: 1
