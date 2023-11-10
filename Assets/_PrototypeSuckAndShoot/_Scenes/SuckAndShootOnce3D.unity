@@ -939,6 +939,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4344289229411819029, guid: 36cbf4a99743d114c880a02c31473278,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5403824976741569347, guid: 36cbf4a99743d114c880a02c31473278,
         type: 3}
       propertyPath: m_Name
@@ -4433,6 +4438,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4344289229411819029, guid: 36cbf4a99743d114c880a02c31473278,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5076987314127273571, guid: 36cbf4a99743d114c880a02c31473278,
         type: 3}
       propertyPath: m_Enabled
@@ -4817,6 +4827,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3137996102287984302, guid: 8a6f99f614540204393127cdbca6d7ff,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3137996102287984302, guid: 8a6f99f614540204393127cdbca6d7ff,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3137996102287984302, guid: 8a6f99f614540204393127cdbca6d7ff,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3137996102287984302, guid: 8a6f99f614540204393127cdbca6d7ff,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.8
       objectReference: {fileID: 0}
@@ -4865,10 +4890,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3137996102287984302, guid: 8a6f99f614540204393127cdbca6d7ff,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3898243107809114145, guid: 8a6f99f614540204393127cdbca6d7ff,
         type: 3}
       propertyPath: m_Name
       value: SuckableEnemyBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085404532206523403, guid: 8a6f99f614540204393127cdbca6d7ff,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.009
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085404532206523403, guid: 8a6f99f614540204393127cdbca6d7ff,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.177
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085404532206523403, guid: 8a6f99f614540204393127cdbca6d7ff,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.212
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

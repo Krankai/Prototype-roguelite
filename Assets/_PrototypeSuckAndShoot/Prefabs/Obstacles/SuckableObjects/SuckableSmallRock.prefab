@@ -476,8 +476,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.52, y: 0.94, z: 4.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2148552735238149569}
   - {fileID: 8761600795763717337}
@@ -604,7 +604,7 @@ MonoBehaviour:
   SuckableAsProjectilePrefab: {fileID: 2417173888089364875, guid: 8dc51272ce65dc343bcf1fb29cb31b33,
     type: 3}
   SuckableAsProjectileID: small_rock
-  ScaleSuckableAsProjectile: {x: 1, y: 1, z: 1}
+  ScaleSuckableAsProjectile: {x: 72, y: 72, z: 72}
   OffsetSuckableAsProjectile: {x: 0, y: 0, z: 0}
   RotationSuckableAsProjectile: {x: 0, y: 0, z: 0}
   SuckingFeedback: {fileID: 3656622711507016571}

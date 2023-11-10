@@ -329,8 +329,8 @@ MonoBehaviour:
   Model: {fileID: 6967432660818577591}
   CurrentHealth: 0
   Invulnerable: 0
-  InitialHealth: 100
-  MaximumHealth: 100
+  InitialHealth: 50
+  MaximumHealth: 50
   ResetHealthOnEnable: 1
   ImmuneToDamage: 0
   DamageMMFeedbacks: {fileID: 0}
@@ -401,7 +401,7 @@ MonoBehaviour:
   DisableGameObjectOnKill: 1
   IgnoreCheckpointsAlwaysRespawn: 1
   AssociatedCheckpoints: []
-  AutoRespawnDuration: 20
+  AutoRespawnDuration: 10
   AutoRespawnAmount: -1
   AutoRespawnRemainingAmount: 3
   RespawnEffect: {fileID: 0}
