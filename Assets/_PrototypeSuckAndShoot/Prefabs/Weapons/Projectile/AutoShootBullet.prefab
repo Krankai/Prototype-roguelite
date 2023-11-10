@@ -280,6 +280,8 @@ MonoBehaviour:
   SuckDuration: 1
   RatioTimeMaxCancellable: 0.8
   IsStaticOnSucking: 1
+  CharacterHealth: {fileID: 0}
+  ScaleModel: {fileID: 0}
   Points: 1
   SuckableAsProjectilePrefab: {fileID: 0}
   SuckableAsProjectileID: boss_projectile

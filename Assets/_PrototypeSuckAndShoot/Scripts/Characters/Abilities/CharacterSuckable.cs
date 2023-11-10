@@ -32,6 +32,14 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Tooltip("whether to keep object stationary on being sucked")]
         public bool IsStaticOnSucking = false;
 
+        // the character's health component
+        [Tooltip("the character's health component")]
+        public Health CharacterHealth;
+
+        // the model to scale in sucking animation
+        [Tooltip("the model to scale in sucking animation")]
+        public Transform ScaleModel;
+
 
         // === Points
         [Header("Points")]
@@ -72,8 +80,9 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         protected CharacterSuckOnSight _currentSucker;
         protected CharacterSuckAction _currentSuckerAction;
-        protected Health _health;
         protected ProjectileMotionControl _projectileMotionControl;
+
+        protected float _originalSuckDuration;
 
 
         protected virtual void Start()
@@ -83,21 +92,26 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         protected virtual void Initialization()
         {
-            _health = gameObject.MMGetComponentNoAlloc<Health>();
-            if (_health == default)
+            if (CharacterHealth == default)
             {
-                _health = gameObject.GetComponentInParent<Health>();
+                CharacterHealth = gameObject.MMGetComponentNoAlloc<Health>();
+                if (CharacterHealth == default)
+                {
+                    CharacterHealth = gameObject.GetComponentInParent<Health>();
+                }
             }
 
-            _health.OnRevive += OnRestore;
-
+            CharacterHealth.OnRevive += OnRestore;
 
             if (IsStaticOnSucking)
             {
                 _projectileMotionControl = gameObject.MMGetComponentNoAlloc<ProjectileMotionControl>();
             }
 
+            _originalSuckDuration = SuckDuration;
+
             SyncFeedbackDuration();
+            SyncFeedbackScaleSucking();
         }
 
         protected virtual void SyncFeedbackDuration()
@@ -117,19 +131,40 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 }
 
                 feedback.FeedbackDuration = SuckDuration;
-                //if (feedback is MMF_Scale)
-                //{
-                //    var scaleFeedback = feedback as MMF_Scale;
-                //    scaleFeedback.AnimateScaleDuration = SuckDuration;
-                //}
-                //else if (feedback is MMF_Flicker)
-                //{
-                //    var flickerFeedback = feedback as MMF_Flicker;
-                //    flickerFeedback.FlickerDuration = SuckDuration;
-                //}
             }
 
             SuckingFeedback.ComputeCachedTotalDuration();
+        }
+
+        public virtual void SyncFeedbackScaleSucking()
+        {
+            if (SuckingFeedback == default)
+            {
+                return;
+            }
+
+            if (ScaleModel == default)
+            {
+                ScaleModel = transform;
+            }
+
+            var listFeedbacks = SuckingFeedback.FeedbacksList;
+            for (int i = 0, count = listFeedbacks.Count; i < count; ++i)
+            {
+                var feedback = listFeedbacks[i];
+                if (feedback == default || !feedback.Active)
+                {
+                    continue;
+                }
+
+                if (feedback is MMF_Scale)
+                {
+                    var scaleFeedback = feedback as MMF_Scale;
+                    scaleFeedback.RemapCurveZero = ScaleModel.localScale.x;
+                }
+            }
+
+            SuckingFeedback.RefreshCache();
         }
 
         public virtual void OnSucking(CharacterSuckOnSight suckOnSight)
@@ -181,7 +216,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 SuckingFeedback.Events.OnPlay.RemoveAllListeners();
             }
 
-            _health.Kill();
+            CharacterHealth.Kill();
 
             if (IsStaticOnSucking && _projectileMotionControl != default)
             {
@@ -217,6 +252,9 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             IsBeingSucked = false;
             _currentSucker = default;
             _currentSuckerAction = default;
+
+            SuckDuration = _originalSuckDuration;
+            SyncFeedbackDuration();
         }
 
         //public float time;
@@ -248,6 +286,14 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             {
                 _projectileMotionControl.ResumeControl();
             }
+        }
+
+        public virtual void UpdateSuckDurationOnHealth()
+        {
+            var ratio = CharacterHealth.CurrentHealth * 1f / CharacterHealth.MaximumHealth;
+            SuckDuration = Mathf.Clamp(ratio * _originalSuckDuration, 0, _originalSuckDuration);
+
+            SyncFeedbackDuration();
         }
     }
 }

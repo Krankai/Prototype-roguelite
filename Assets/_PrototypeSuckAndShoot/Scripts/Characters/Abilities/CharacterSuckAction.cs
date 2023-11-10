@@ -1,5 +1,6 @@
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
+using MoreMountains.TopDownEngine;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -106,7 +107,10 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                     }
                 }
 
-                _listSuckableTargets.Add(suckable);
+                if (suckable.enabled)
+                {
+                    _listSuckableTargets.Add(suckable);
+                }
             }
 
             if (_listSuckableTargets.Count > 1)

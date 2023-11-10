@@ -283,7 +283,7 @@ MonoBehaviour:
   ExecuteOnDisable:
     m_PersistentCalls:
       m_Calls: []
-  LifeTime: 20
+  LifeTime: 10
   FaceDirection: 1
   FaceMovement: 0
   MovementVector: 0
@@ -307,7 +307,7 @@ MonoBehaviour:
   DetectOverlapMaximum: 5
   SteeringSpeed: 10
   CutOffSteerAngle: 1
-  MaxApplySteeringAngle: 15
+  MaxApplySteeringAngle: 30
   _isDebugOn: 1
   _differenceAngle: 0
   _isFinishSteering: 0

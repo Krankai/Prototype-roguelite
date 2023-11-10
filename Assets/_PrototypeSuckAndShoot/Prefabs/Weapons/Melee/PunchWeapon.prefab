@@ -121,7 +121,7 @@ MonoBehaviour:
   MinDamageCaused: 2
   MaxDamageCaused: 4
   Knockback: 1
-  KnockbackForce: {x: 10, y: 10, z: 10}
-  KnockbackDirection: 0
+  KnockbackForce: {x: 0, y: 0, z: 3}
+  KnockbackDirection: 2
   InvincibilityDuration: 0.5
   CanDamageOwner: 0
