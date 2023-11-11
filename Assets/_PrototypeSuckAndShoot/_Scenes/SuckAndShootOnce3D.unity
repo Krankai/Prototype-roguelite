@@ -1321,6 +1321,16 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 795012556}
+    - target: {fileID: 4882868191403085473, guid: dd44ada791de01949b03287b9cc2f308,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5168390431066109118, guid: dd44ada791de01949b03287b9cc2f308,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6648310872404707466, guid: dd44ada791de01949b03287b9cc2f308,
         type: 3}
       propertyPath: m_Mesh
@@ -1345,6 +1355,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976903138753617007, guid: dd44ada791de01949b03287b9cc2f308,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

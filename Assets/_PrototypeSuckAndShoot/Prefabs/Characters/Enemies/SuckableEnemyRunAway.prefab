@@ -815,7 +815,7 @@ MonoBehaviour:
   DebugActive: 0
   FeedbacksList:
   - rid: 464073214464360449
-  - rid: 6896531905641709589
+  - rid: 6896531905641709607
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   StopFeedbacksOnDisable: 0
@@ -900,7 +900,7 @@ MonoBehaviour:
         MaterialIndexes: 
         UseMaterialPropertyBlocks: 0
         SpriteRendererTextureProperty: _MainTex
-    - rid: 6896531905641709589
+    - rid: 6896531905641709607
       type: {class: MMF_Scale, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -969,7 +969,7 @@ MonoBehaviour:
         Owner: {fileID: 6047725691402694510}
         DebugActive: 0
         Mode: 0
-        AnimateScaleTarget: {fileID: 0}
+        AnimateScaleTarget: {fileID: 398818978330669368}
         AnimateScaleDuration: 3
         RemapCurveZero: 1
         RemapCurveOne: 0

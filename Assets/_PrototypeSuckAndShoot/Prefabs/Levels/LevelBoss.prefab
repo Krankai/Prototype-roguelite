@@ -3511,11 +3511,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5639598663209228431}
     m_Modifications:
-    - target: {fileID: 839632881869006199, guid: 732f0519abde1dc42aa6f5bcb67a620a,
-        type: 3}
-      propertyPath: managedReferences[6896531905641709600].AnimateScaleTarget
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3276684841647272852, guid: 732f0519abde1dc42aa6f5bcb67a620a,
         type: 3}
       propertyPath: m_Name
