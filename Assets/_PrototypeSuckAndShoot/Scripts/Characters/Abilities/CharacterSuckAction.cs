@@ -162,8 +162,8 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                     continue;
                 }
 
-                suckableTarget.OnSucking(this);
                 _listSucking.Add(suckableTarget);
+                suckableTarget.OnSucking(this);
             }
 
             return true;
@@ -179,7 +179,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         protected virtual void CancelSuckingTargets()
         {
-            Debug.Log("Cancel sucking targets");
+            Debug.LogError("Cancel sucking targets");
 
             for (int i = 0, count = _listSucking.Count; i < count; ++i)
             {

@@ -244,18 +244,6 @@ namespace MoreMountains.TopDownEngine
 				{
 					_tmpRotation = Quaternion.LookRotation(_currentDirection);
                     _newMovementQuaternion = Quaternion.Slerp(MovementRotatingModel.transform.rotation, _tmpRotation, Time.deltaTime * RotateToFaceMovementDirectionSpeed);
-
-     //               var angle = Quaternion.Angle(MovementRotatingModel.transform.rotation, _tmpRotation);
-					//if (angle <= 50f)
-					//{
-     //                   _newMovementQuaternion = Quaternion.Slerp(MovementRotatingModel.transform.rotation, _tmpRotation, Time.deltaTime * RotateToFaceMovementDirectionSpeed);
-					//	Debug.LogError("Below 50");
-     //               }
-					//else
-					//{
-     //                   _newMovementQuaternion = Quaternion.Slerp(MovementRotatingModel.transform.rotation, _tmpRotation, Time.deltaTime * 0.4f);
-     //                   Debug.LogWarning("Above 50");
-     //               }
 				}
 			}
 

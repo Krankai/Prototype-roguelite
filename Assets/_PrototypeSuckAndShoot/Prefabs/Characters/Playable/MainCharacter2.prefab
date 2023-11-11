@@ -878,12 +878,12 @@ MonoBehaviour:
   BlockingMovementStates: 
   BlockingConditionStates: 
   BlockingWeaponStates: 
-  RotationMode: 3
+  RotationMode: 1
   CharacterRotationAuthorized: 1
   ShouldRotateToFaceMovementDirection: 1
-  MovementRotationSpeed: 1
+  MovementRotationSpeed: 2
   MovementRotatingModel: {fileID: 0}
-  RotateToFaceMovementDirectionSpeed: 8
+  RotateToFaceMovementDirectionSpeed: 10
   AbsoluteThresholdMovement: 1
   ModelDirection: {x: 0, y: 0, z: 0}
   ModelAngles: {x: 0, y: 0, z: 0}
@@ -982,7 +982,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   AllowDashWhenJumping: 0
   Cooldown:
     Unlimited: 0
@@ -1254,7 +1254,11 @@ MonoBehaviour:
   ThresholdInputCharge: {x: 0.05, y: 0.05}
   ThresholdInputTrigger: {x: 0, y: 0}
   ShootAction: {fileID: 3866326512423039420}
+  IsTriggerShootAtNoRotation: 0
+  MinShootingThresholdRotationAngle: 0.05
   SuckAction: {fileID: 488483498768945781}
+  IsTriggerSuckAtNoRotation: 1
+  MinSuckingThresholdRotationAngle: 0.05
   SuckActionFeedback: {fileID: 0}
   ShootActionFeedback: {fileID: 0}
   IsSuckNext: 0

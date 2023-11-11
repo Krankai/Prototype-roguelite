@@ -1,16 +1,13 @@
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using MoreMountains.TopDownEngine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SpiritBomb.Prototype.SuckAndShoot
 {
-    //[MMHiddenProperties("AbilityStartFeedbacks", "AbilityStopFeedbacks")]
+    [MMHiddenProperties("AbilityStartFeedbacks", "AbilityStopFeedbacks")]
     public class CharacterHandleSuckShoot : CharacterAbility
     {
-        // === State
         [Header("State")]
         // the current state: Idle (nothing), Charge (ready for action), or Trigger (execute action)
         [Tooltip("the current state: Idle (nothing), Charge (ready for action), or Trigger (execute action)")]
@@ -21,7 +18,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [MMReadOnly]
         public CharacterActionType NextAction = CharacterActionType.Suck;
 
-        // === Inputs
+
         [Header("Inputs")]
         // the minimum inputs to determine if the character should 'charge' for next action
         [Tooltip("the threhold inputs to determine if the character should 'charge' for next action")]
@@ -31,22 +28,42 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Tooltip("the threhold inputs to determine if the character should 'trigger' next action")]
         public Vector2 ThresholdInputTrigger = Vector2.zero;
 
-        // === Actions
+
         [Header("Actions")]
         // the shoot action in case of enough sucked objects
         [Tooltip("the shoot action in case of enough sucked objects")]
         public CharacterShootAction ShootAction;
+
+        // whether to delay shooting action until character 'stops' rotating
+        [Tooltip("whether to delay shooting action until character 'stops' rotating")]
+        public bool IsTriggerShootAtNoRotation;
+
+        [MMCondition(nameof(IsTriggerShootAtNoRotation), true)]
+        // the minimum threshold angle below which character's rotation is considered stopped
+        [Tooltip("the minimum threshold angle below which character's rotation is considered stopped")]
+        public float MinShootThresholdRotationAngle = 0.05f;
+
+
         // the suck action in case of no sucked objects
         [Tooltip("the suck action in case of no sucked objects")]
         public CharacterSuckAction SuckAction;
 
-        // === Feedbacks
+        // whether to delay sucking action until character 'stops' rotating
+        [Tooltip("whether to delay sucking action until character 'stops' rotating")]
+        public bool IsTriggerSuckAtNoRotation;
+
+        [MMCondition(nameof(IsTriggerSuckAtNoRotation), true)]
+        // the minimum threshold angle below which character's rotation is considered stopped
+        [Tooltip("the minimum threshold angle below which character's rotation is considered stopped")]
+        public float MinSuckThresholdRotationAngle = 0.05f;
+
+
         [Header("Feedbacks")]
         public MMF_Player SuckActionFeedback;
         public MMF_Player ShootActionFeedback;
 
 
-        // === Debug
+
         [Header("Debug")]
         [MMReadOnly, SerializeField]
         protected bool IsSuckNext = false;
@@ -56,6 +73,15 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         protected Vector2 _currentInput = Vector2.zero;
         protected bool _isSwitchAction = false;
 
+        protected CharacterOrientation3D _characterOrientation;
+        protected Vector3 _prevCharacterAngles;
+        protected Vector3 _currentCharacterAngles;
+
+        protected bool _isPassThresholdCharge = false;
+        protected bool _isPassThresholdTrigger = false;
+
+        protected bool _isBelowSuckThresholdAngle = false;
+        protected bool _isBelowShootThresholdAngle = false;
 
 
         protected override void Initialization()
@@ -79,6 +105,29 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
             SuckAction.OnSuckCompleteEvent.RemoveAllListeners();
             SuckAction.OnSuckCompleteEvent.AddListener(OnCompleteAction);
+
+            _characterOrientation = _character.FindAbility<CharacterOrientation3D>();
+            if (_characterOrientation != default)
+            {
+                _currentCharacterAngles = _characterOrientation.ModelAngles;
+            }
+        }
+
+        public override void LateProcessAbility()
+        {
+            base.LateProcessAbility();
+
+            if (_characterOrientation != default)
+            {
+                _prevCharacterAngles = _currentCharacterAngles;
+                _currentCharacterAngles = _characterOrientation.ModelAngles;
+
+                var angleOffset = Mathf.Abs(_currentCharacterAngles.y - _prevCharacterAngles.y);
+                _isBelowShootThresholdAngle = angleOffset <= MinShootThresholdRotationAngle;
+                _isBelowSuckThresholdAngle = angleOffset <= MinSuckThresholdRotationAngle;
+            }
+
+            HandleTriggerAction();
         }
 
         protected override void HandleInput()
@@ -90,18 +139,45 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
             if (CurrentState == CharacterActionState.Idle)
             {
-                bool isPassThresholdCharge = _currentInput.magnitude >= ThresholdInputCharge.magnitude;
-                if (isPassThresholdCharge)
+                if (_isPassThresholdCharge = _currentInput.magnitude >= ThresholdInputCharge.magnitude)
                 {
                     ChargeAction();
                 }
             }
             else if (CurrentState == CharacterActionState.Charge)
             {
-                bool isPassThresholdTrigger = _currentInput.magnitude <= ThresholdInputTrigger.magnitude;
-                if (isPassThresholdTrigger)
+                if (_isPassThresholdTrigger = _currentInput.magnitude <= ThresholdInputTrigger.magnitude)
                 {
                     TriggerAction();
+                }
+            }
+        }
+
+        protected virtual void HandleTriggerAction()
+        {
+            if (CurrentState != CharacterActionState.Trigger)
+            {
+                return;
+            }
+
+            if (NextAction == CharacterActionType.Shoot)
+            {
+                if (!IsTriggerShootAtNoRotation || _isBelowShootThresholdAngle)
+                {
+                    CurrentState = CharacterActionState.Executing;
+
+                    Debug.Log("Trigger shooting");
+                    ShootAction.ShootAllSuckedTargets();
+                }
+            }
+            else if (NextAction == CharacterActionType.Suck)
+            {
+                if (!IsTriggerSuckAtNoRotation || _isBelowSuckThresholdAngle)
+                {
+                    CurrentState = CharacterActionState.Executing;
+
+                    bool suckResult = SuckAction.SuckTargets();
+                    Debug.Log($"Trigger sucking: {suckResult}");
                 }
             }
         }
@@ -116,22 +192,19 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         {
             CurrentState = CharacterActionState.Trigger;
 
-            if (NextAction == CharacterActionType.Suck)
-            {
-                bool suckResult = SuckAction.SuckTargets();
-                Debug.Log($"Trigger sucking: {suckResult}");
+            //if (NextAction == CharacterActionType.Suck)
+            //{
+            //    //bool suckResult = SuckAction.SuckTargets();
+            //    //Debug.LogError($"Trigger sucking: {suckResult}");
 
-                //_isSwitchAction = suckResult;
-                //if (!suckResult)
-                //{
-                //    OnCompleteAction();
-                //}
-            }
-            else
-            {
-                Debug.Log("Trigger shooting");
-                ShootAction.ShootAllSuckedTargets();
-            }
+            //    // TODO: monitor ModelAngles.y offset to detect if the rotation is coming to a close soon
+            //    Invoke(nameof(Test), 0.1f);
+            //}
+            //else
+            //{
+            //    Debug.Log("Trigger shooting");
+            //    ShootAction.ShootAllSuckedTargets();
+            //}
         }
 
         public virtual void OnCompleteAction(bool isSwitchAction)
@@ -153,6 +226,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         Idle = 0,
         Charge = 1,
         Trigger = 2,
+        Executing = 3,
     }
 
     public enum CharacterActionType

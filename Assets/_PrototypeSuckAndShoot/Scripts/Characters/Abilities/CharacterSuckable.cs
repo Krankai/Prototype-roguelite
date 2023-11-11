@@ -275,7 +275,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 return;
             }
 
-            bool isCancellable = SuckingFeedback.ElapsedTime < RatioTimeMaxCancellable * SuckingFeedback.TotalDuration;
+            bool isCancellable = (SuckingFeedback.ElapsedTime - SuckingFeedback.InitialDelay) < RatioTimeMaxCancellable * SuckingFeedback.TotalDuration;
             if (SuckingFeedback.IsPlaying && isCancellable)
             {
                 Debug.Log("Cancel");
