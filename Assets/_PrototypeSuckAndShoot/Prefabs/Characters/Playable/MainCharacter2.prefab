@@ -1583,6 +1583,7 @@ MonoBehaviour:
   CanSuckCount: 1
   SuckableMaterial: {fileID: 2100000, guid: 7228fac7f602c8c49b5d040eca6aa421, type: 2}
   NonSuckableMaterial: {fileID: 2100000, guid: 5e5c3936ae84e7c4984267f340ae2265, type: 2}
+  IsInterruptedOnHit: 0
   FrameCountInterval: 3
   SuckStartFeedback: {fileID: 0}
   SuckCompleteFeedback: {fileID: 0}
@@ -2477,7 +2478,7 @@ MonoBehaviour:
             - m_Target: {fileID: 488483498768945781}
               m_TargetAssemblyTypeName: SpiritBomb.Prototype.SuckAndShoot.CharacterSuckAction,
                 Assembly-CSharp
-              m_MethodName: CancelSuckingTargets
+              m_MethodName: InterruptSucking
               m_Mode: 1
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}

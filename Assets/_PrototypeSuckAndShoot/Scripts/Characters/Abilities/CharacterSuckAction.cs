@@ -9,8 +9,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 {
     public class CharacterSuckAction : MonoBehaviour, MMEventListener<MMGameEvent>
     {
-        // === Range
-        [Header("Range")]
+        [Header("Suck Vision")]
         // the cone of vision range for sucking
         [Tooltip("the cone of vision range for sucking")]
         public MMConeOfVision SuckVision;
@@ -20,8 +19,6 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Min(1), Range(1, 10)]
         public int CanSuckCount = 1;
 
-        // === Vision
-        [Header("Vision")]
         // the material used for vision to indicate character can now suck objects
         [Tooltip("the material used for vision to indicate character can now suck objects")]
         public Material SuckableMaterial;
@@ -30,14 +27,19 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Tooltip("the material used for vision to indicate character cannot suck objects now")]
         public Material NonSuckableMaterial;
 
-        // === Technical
+        // whether the sucking process will be interrupted by taking damage
+        [Tooltip("whether the sucking process will be interrupted by taking damage")]
+        public bool IsInterruptedOnHit;
+
+
         [Header("Technical")]
         // the frame count interval between each scan for suckable targets
         [Tooltip("the frame count interval between each scan for suckable targets")]
         [Min(0), Range(0, 60)]
         public int FrameCountInterval = 1;
 
-        // === Feedbacks
+
+
         [Header("Feedbacks")]
         public MMF_Player SuckStartFeedback;
         public MMF_Player SuckCompleteFeedback;
@@ -45,7 +47,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         public UnityEvent OnSuckStartEvent;
         public UnityEvent<bool> OnSuckCompleteEvent;
 
-        // === Debug
+
         [Header("Debug")]
         [MMReadOnly, SerializeField]
         protected List<CharacterSuckable> _listSucking = new();
@@ -167,7 +169,15 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             return true;
         }
 
-        public virtual void CancelSuckingTargets()
+        public virtual void InterruptSucking()
+        {
+            if (IsInterruptedOnHit)
+            {
+                CancelSuckingTargets();
+            }
+        }
+
+        protected virtual void CancelSuckingTargets()
         {
             Debug.Log("Cancel sucking targets");
 
