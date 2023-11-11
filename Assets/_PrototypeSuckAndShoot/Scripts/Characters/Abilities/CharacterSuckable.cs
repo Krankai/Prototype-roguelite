@@ -107,6 +107,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
             CharacterHealth.OnRevive += OnRestore;
             CharacterHealth.OnRevive += ResetSuckDuration;
+            //CharacterHealth.OnRevive += () => Invoke(nameof(SyncFeedbackScaleSucking), 0.1f);
 
             if (IsStaticOnSucking)
             {

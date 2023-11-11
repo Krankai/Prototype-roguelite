@@ -17,13 +17,17 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Tooltip("the character's health component")]
         public Health CharacterHealth;
 
-        // the character's auto-respawn component
-        [Tooltip("the character's auto-respawn component")]
-        public AutoRespawn CharacterAutoRespawn;
+        //// the character's auto-respawn component
+        //[Tooltip("the character's auto-respawn component")]
+        //public AutoRespawn CharacterAutoRespawn;
 
-        // the associated feedback to update scale-on-health animation
-        [Tooltip("the associated feedback to update scale-on-health animation")]
-        public MMF_Player ScaleOnHeatlhFeedbackPlayer;
+        // the character's suckable ability
+        [Tooltip("the character's suckable ability")]
+        public CharacterSuckable CharacterHandleSuckable;
+
+        //// the associated feedback to update scale-on-health animation
+        //[Tooltip("the associated feedback to update scale-on-health animation")]
+        //public MMF_Player ScaleOnHeatlhFeedbackPlayer;
 
         protected Vector3 _originalScale;
 
@@ -35,10 +39,18 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 CharacterHealth = gameObject.GetComponentInParent<Health>();
             }
 
-            if (CharacterAutoRespawn == default)
+            if (CharacterHandleSuckable == default)
             {
-                CharacterAutoRespawn = gameObject.GetComponentInParent<AutoRespawn>();
+                CharacterHandleSuckable = gameObject.GetComponentInParent<CharacterSuckable>();
             }
+
+            CharacterHealth.OnRevive += ResetScale;
+            CharacterHealth.OnRevive += CharacterHandleSuckable.SyncFeedbackScaleSucking;
+
+            //if (CharacterAutoRespawn == default)
+            //{
+            //    CharacterAutoRespawn = gameObject.GetComponentInParent<AutoRespawn>();
+            //}
 
             if (ScaleModel == default)
             {
@@ -47,31 +59,31 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
             _originalScale = ScaleModel.localScale;
 
-            if (CharacterAutoRespawn != default)
-            {
-                CharacterAutoRespawn.OnRevive += () => ScaleModel.localScale = _originalScale;
-            }
+            //if (CharacterAutoRespawn != default)
+            //{
+            //    CharacterAutoRespawn.OnRevive += ResetScale;
+            //}
         }
 
-        public virtual void UpdateScaleOnHealthFeedback()
-        {
-            if (ScaleOnHeatlhFeedbackPlayer == default || ScaleOnHeatlhFeedbackPlayer.FeedbacksList.Count <= 0)
-            {
-                return;
-            }
+        //public virtual void UpdateScaleOnHealthFeedback()
+        //{
+        //    if (ScaleOnHeatlhFeedbackPlayer == default || ScaleOnHeatlhFeedbackPlayer.FeedbacksList.Count <= 0)
+        //    {
+        //        return;
+        //    }
 
-            var scaleFeedback = ScaleOnHeatlhFeedbackPlayer.FeedbacksList.Find(feedback => feedback is MMF_Scale
-                && feedback.Label.Equals("ScaleOnHealth")) as MMF_Scale;
+        //    var scaleFeedback = ScaleOnHeatlhFeedbackPlayer.FeedbacksList.Find(feedback => feedback is MMF_Scale
+        //        && feedback.Label.Equals("ScaleOnHealth")) as MMF_Scale;
 
-            if (scaleFeedback == default)
-            {
-                return;
-            }
+        //    if (scaleFeedback == default)
+        //    {
+        //        return;
+        //    }
 
             
-            var ratio = CharacterHealth.CurrentHealth * 1f / CharacterHealth.MaximumHealth;
-            scaleFeedback.DestinationScale = ratio * _originalScale;
-        }
+        //    var ratio = CharacterHealth.CurrentHealth * 1f / CharacterHealth.MaximumHealth;
+        //    scaleFeedback.DestinationScale = ratio * _originalScale;
+        //}
 
         public virtual void UpdateScaleOnHealth()
         {
@@ -91,6 +103,11 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             {
                 transform.localScale = ratio * _originalScale;
             }
+        }
+
+        protected virtual void ResetScale()
+        {
+            ScaleModel.localScale = _originalScale;
         }
     }
 }

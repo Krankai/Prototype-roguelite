@@ -122,13 +122,9 @@ MonoBehaviour:
   DebugActive: 0
   FeedbacksList:
   - rid: 464073299874021382
-  - rid: 464073299874021406
-  - rid: 464073299874021409
-  - rid: 464073299874021407
-  - rid: 464073299874021408
-  - rid: 464073299874021410
-  - rid: 6896531893851258882
-  - rid: 6896531893851258883
+  - rid: 6896531905641709595
+  - rid: 6896531905641709596
+  - rid: 6896531905641709597
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   StopFeedbacksOnDisable: 0
@@ -213,153 +209,7 @@ MonoBehaviour:
         MaterialIndexes: 
         UseMaterialPropertyBlocks: 0
         SpriteRendererTextureProperty: _MainTex
-    - rid: 464073299874021406
-      type: {class: MMF_Property, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
-      data:
-        Active: 0
-        UniqueID: -1500138616
-        Label: HealthInvulnerable
-        ChannelMode: 0
-        Channel: 0
-        MMChannelDefinition: {fileID: 0}
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        AutomatedTargetAcquisition:
-          Mode: 0
-          ChildIndex: 0
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        UseRange: 0
-        RangeDistance: 5
-        UseRangeFalloff: 0
-        RangeFalloff:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 6220542959862887090}
-        DebugActive: 0
-        Target:
-          TargetObject: {fileID: 8517786294032939978}
-          TargetComponent: {fileID: 5755668674425920377}
-          TargetScriptableObject: {fileID: 0}
-          TargetPropertyName: enabled
-          ShouldModifyValue: 1
-          RelativeValue: 1
-          ModifyX: 1
-          ModifyY: 1
-          ModifyZ: 1
-          ModifyW: 1
-          Threshold: 0.5
-          BoolRemapZero: 0
-          BoolRemapOne: 1
-          StringRemapZero: Zero
-          StringRemapOne: One
-          IntRemapZero: 0
-          IntRemapOne: 1
-          FloatRemapZero: 0
-          FloatRemapOne: 1
-          Vector2RemapZero: {x: 0, y: 0}
-          Vector2RemapOne: {x: 1, y: 1}
-          Vector3RemapZero: {x: 0, y: 0, z: 0}
-          Vector3RemapOne: {x: 1, y: 1, z: 1}
-          Vector4RemapZero: {x: 0, y: 0, z: 0, w: 0}
-          Vector4RemapOne: {x: 1, y: 1, z: 1, w: 1}
-          QuaternionRemapZero: {x: 0, y: 0, z: 0}
-          QuaternionRemapOne: {x: 180, y: 180, z: 180}
-          ColorRemapZero: {r: 1, g: 1, b: 1, a: 1}
-          ColorRemapOne: {r: 0, g: 0, b: 0, a: 1}
-          Level: 0
-        Mode: 1
-        Duration: 0.2
-        StartsOff: 0
-        RelativeValues: 0
-        AllowAdditivePlays: 0
-        DetermineInitialValueOnPlay: 0
-        LevelCurve:
-          MMTweenDefinitionType: 1
-          MMTweenCurve: 4
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.3
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        RemapLevelZero: 0
-        RemapLevelOne: 1
-        InstantLevel: 0
-        ToDestinationLevel: 5
-    - rid: 464073299874021407
+    - rid: 6896531905641709595
       type: {class: MMF_Events, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
@@ -430,7 +280,7 @@ MonoBehaviour:
         PlayEvents:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 6696121199012052221}
+            - m_Target: {fileID: 0}
               m_TargetAssemblyTypeName: SpiritBomb.Prototype.SuckAndShoot.CharacterScaleOnHealth,
                 Assembly-CSharp
               m_MethodName: UpdateScaleOnHealth
@@ -443,7 +293,7 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 1
-            - m_Target: {fileID: 877625132587819154}
+            - m_Target: {fileID: 0}
               m_TargetAssemblyTypeName: SpiritBomb.Prototype.SuckAndShoot.CharacterSuckable,
                 Assembly-CSharp
               m_MethodName: UpdateSuckDurationOnHealth
@@ -456,7 +306,7 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 1
-            - m_Target: {fileID: 877625132587819154}
+            - m_Target: {fileID: 0}
               m_TargetAssemblyTypeName: SpiritBomb.Prototype.SuckAndShoot.CharacterSuckable,
                 Assembly-CSharp
               m_MethodName: SyncFeedbackScaleSucking
@@ -478,449 +328,11 @@ MonoBehaviour:
         ResetEvents:
           m_PersistentCalls:
             m_Calls: []
-    - rid: 464073299874021408
-      type: {class: MMF_Property, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
-      data:
-        Active: 0
-        UniqueID: -1158420374
-        Label: HealthVulnerable
-        ChannelMode: 0
-        Channel: 0
-        MMChannelDefinition: {fileID: 0}
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0.5
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        AutomatedTargetAcquisition:
-          Mode: 0
-          ChildIndex: 0
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        UseRange: 0
-        RangeDistance: 5
-        UseRangeFalloff: 0
-        RangeFalloff:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 6220542959862887090}
-        DebugActive: 0
-        Target:
-          TargetObject: {fileID: 8517786294032939978}
-          TargetComponent: {fileID: 5755668674425920377}
-          TargetScriptableObject: {fileID: 0}
-          TargetPropertyName: enabled
-          ShouldModifyValue: 1
-          RelativeValue: 1
-          ModifyX: 1
-          ModifyY: 1
-          ModifyZ: 1
-          ModifyW: 1
-          Threshold: 0.5
-          BoolRemapZero: 0
-          BoolRemapOne: 1
-          StringRemapZero: Zero
-          StringRemapOne: One
-          IntRemapZero: 0
-          IntRemapOne: 1
-          FloatRemapZero: 0
-          FloatRemapOne: 1
-          Vector2RemapZero: {x: 0, y: 0}
-          Vector2RemapOne: {x: 1, y: 1}
-          Vector3RemapZero: {x: 0, y: 0, z: 0}
-          Vector3RemapOne: {x: 1, y: 1, z: 1}
-          Vector4RemapZero: {x: 0, y: 0, z: 0, w: 0}
-          Vector4RemapOne: {x: 1, y: 1, z: 1, w: 1}
-          QuaternionRemapZero: {x: 0, y: 0, z: 0}
-          QuaternionRemapOne: {x: 180, y: 180, z: 180}
-          ColorRemapZero: {r: 1, g: 1, b: 1, a: 1}
-          ColorRemapOne: {r: 0, g: 0, b: 0, a: 1}
-          Level: 0
-        Mode: 1
-        Duration: 0.2
-        StartsOff: 0
-        RelativeValues: 0
-        AllowAdditivePlays: 0
-        DetermineInitialValueOnPlay: 0
-        LevelCurve:
-          MMTweenDefinitionType: 1
-          MMTweenCurve: 4
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.3
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        RemapLevelZero: 0
-        RemapLevelOne: 1
-        InstantLevel: 1
-        ToDestinationLevel: 5
-    - rid: 464073299874021409
-      type: {class: MMF_Property, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
-      data:
-        Active: 0
-        UniqueID: -474500899
-        Label: BaseHealthInvulnerable
-        ChannelMode: 0
-        Channel: 0
-        MMChannelDefinition: {fileID: 0}
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        AutomatedTargetAcquisition:
-          Mode: 0
-          ChildIndex: 0
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        UseRange: 0
-        RangeDistance: 5
-        UseRangeFalloff: 0
-        RangeFalloff:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 6220542959862887090}
-        DebugActive: 0
-        Target:
-          TargetObject: {fileID: 3898243107809114145}
-          TargetComponent: {fileID: 4265441009935554056}
-          TargetScriptableObject: {fileID: 0}
-          TargetPropertyName: detectCollisions
-          ShouldModifyValue: 1
-          RelativeValue: 1
-          ModifyX: 1
-          ModifyY: 1
-          ModifyZ: 1
-          ModifyW: 1
-          Threshold: 0.5
-          BoolRemapZero: 0
-          BoolRemapOne: 1
-          StringRemapZero: Zero
-          StringRemapOne: One
-          IntRemapZero: 0
-          IntRemapOne: 1
-          FloatRemapZero: 0
-          FloatRemapOne: 1
-          Vector2RemapZero: {x: 0, y: 0}
-          Vector2RemapOne: {x: 1, y: 1}
-          Vector3RemapZero: {x: 0, y: 0, z: 0}
-          Vector3RemapOne: {x: 1, y: 1, z: 1}
-          Vector4RemapZero: {x: 0, y: 0, z: 0, w: 0}
-          Vector4RemapOne: {x: 1, y: 1, z: 1, w: 1}
-          QuaternionRemapZero: {x: 0, y: 0, z: 0}
-          QuaternionRemapOne: {x: 180, y: 180, z: 180}
-          ColorRemapZero: {r: 1, g: 1, b: 1, a: 1}
-          ColorRemapOne: {r: 0, g: 0, b: 0, a: 1}
-          Level: 0
-        Mode: 1
-        Duration: 0.2
-        StartsOff: 0
-        RelativeValues: 0
-        AllowAdditivePlays: 0
-        DetermineInitialValueOnPlay: 0
-        LevelCurve:
-          MMTweenDefinitionType: 1
-          MMTweenCurve: 4
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.3
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        RemapLevelZero: 0
-        RemapLevelOne: 1
-        InstantLevel: 0
-        ToDestinationLevel: 5
-    - rid: 464073299874021410
-      type: {class: MMF_Property, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
-      data:
-        Active: 0
-        UniqueID: -1175316577
-        Label: BaseHealthInvulnerable
-        ChannelMode: 0
-        Channel: 0
-        MMChannelDefinition: {fileID: 0}
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        AutomatedTargetAcquisition:
-          Mode: 0
-          ChildIndex: 0
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        UseRange: 0
-        RangeDistance: 5
-        UseRangeFalloff: 0
-        RangeFalloff:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 6220542959862887090}
-        DebugActive: 0
-        Target:
-          TargetObject: {fileID: 3898243107809114145}
-          TargetComponent: {fileID: 4265441009935554056}
-          TargetScriptableObject: {fileID: 0}
-          TargetPropertyName: detectCollisions
-          ShouldModifyValue: 1
-          RelativeValue: 1
-          ModifyX: 1
-          ModifyY: 1
-          ModifyZ: 1
-          ModifyW: 1
-          Threshold: 0.5
-          BoolRemapZero: 0
-          BoolRemapOne: 1
-          StringRemapZero: Zero
-          StringRemapOne: One
-          IntRemapZero: 0
-          IntRemapOne: 1
-          FloatRemapZero: 0
-          FloatRemapOne: 1
-          Vector2RemapZero: {x: 0, y: 0}
-          Vector2RemapOne: {x: 1, y: 1}
-          Vector3RemapZero: {x: 0, y: 0, z: 0}
-          Vector3RemapOne: {x: 1, y: 1, z: 1}
-          Vector4RemapZero: {x: 0, y: 0, z: 0, w: 0}
-          Vector4RemapOne: {x: 1, y: 1, z: 1, w: 1}
-          QuaternionRemapZero: {x: 0, y: 0, z: 0}
-          QuaternionRemapOne: {x: 180, y: 180, z: 180}
-          ColorRemapZero: {r: 1, g: 1, b: 1, a: 1}
-          ColorRemapOne: {r: 0, g: 0, b: 0, a: 1}
-          Level: 0
-        Mode: 1
-        Duration: 0.2
-        StartsOff: 0
-        RelativeValues: 0
-        AllowAdditivePlays: 0
-        DetermineInitialValueOnPlay: 0
-        LevelCurve:
-          MMTweenDefinitionType: 1
-          MMTweenCurve: 4
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.3
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        RemapLevelZero: 0
-        RemapLevelOne: 1
-        InstantLevel: 1
-        ToDestinationLevel: 5
-    - rid: 6896531893851258882
-      type: {class: MMF_Property, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
+    - rid: 6896531905641709596
+      type: {class: MMF_Collider, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 591355588
+        UniqueID: -570502424
         Label: DisableCollider
         ChannelMode: 0
         Channel: 0
@@ -984,89 +396,13 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 6220542959862887090}
         DebugActive: 0
-        Target:
-          TargetObject: {fileID: 8517786294032939978}
-          TargetComponent: {fileID: 5755668674425920377}
-          TargetScriptableObject: {fileID: 0}
-          TargetPropertyName: enabled
-          ShouldModifyValue: 1
-          RelativeValue: 1
-          ModifyX: 1
-          ModifyY: 1
-          ModifyZ: 1
-          ModifyW: 1
-          Threshold: 0.5
-          BoolRemapZero: 0
-          BoolRemapOne: 1
-          StringRemapZero: Zero
-          StringRemapOne: One
-          IntRemapZero: 0
-          IntRemapOne: 1
-          FloatRemapZero: 0
-          FloatRemapOne: 1
-          Vector2RemapZero: {x: 0, y: 0}
-          Vector2RemapOne: {x: 1, y: 1}
-          Vector3RemapZero: {x: 0, y: 0, z: 0}
-          Vector3RemapOne: {x: 1, y: 1, z: 1}
-          Vector4RemapZero: {x: 0, y: 0, z: 0, w: 0}
-          Vector4RemapOne: {x: 1, y: 1, z: 1, w: 1}
-          QuaternionRemapZero: {x: 0, y: 0, z: 0}
-          QuaternionRemapOne: {x: 180, y: 180, z: 180}
-          ColorRemapZero: {r: 1, g: 1, b: 1, a: 1}
-          ColorRemapOne: {r: 0, g: 0, b: 0, a: 1}
-          Level: 0
+        TargetCollider: {fileID: 5755668674425920377}
         Mode: 1
-        Duration: 0.2
-        StartsOff: 0
-        RelativeValues: 1
-        AllowAdditivePlays: 0
-        DetermineInitialValueOnPlay: 0
-        LevelCurve:
-          MMTweenDefinitionType: 1
-          MMTweenCurve: 4
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.3
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        RemapLevelZero: 0
-        RemapLevelOne: 1
-        InstantLevel: 0
-        ToDestinationLevel: 5
-    - rid: 6896531893851258883
-      type: {class: MMF_Property, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
+    - rid: 6896531905641709597
+      type: {class: MMF_Collider, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 1769066281
+        UniqueID: -1961530978
         Label: EnableColliderAfterDelay
         ChannelMode: 0
         Channel: 0
@@ -1130,84 +466,8 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 6220542959862887090}
         DebugActive: 0
-        Target:
-          TargetObject: {fileID: 8517786294032939978}
-          TargetComponent: {fileID: 5755668674425920377}
-          TargetScriptableObject: {fileID: 0}
-          TargetPropertyName: enabled
-          ShouldModifyValue: 1
-          RelativeValue: 1
-          ModifyX: 1
-          ModifyY: 1
-          ModifyZ: 1
-          ModifyW: 1
-          Threshold: 0.5
-          BoolRemapZero: 0
-          BoolRemapOne: 1
-          StringRemapZero: Zero
-          StringRemapOne: One
-          IntRemapZero: 0
-          IntRemapOne: 1
-          FloatRemapZero: 0
-          FloatRemapOne: 1
-          Vector2RemapZero: {x: 0, y: 0}
-          Vector2RemapOne: {x: 1, y: 1}
-          Vector3RemapZero: {x: 0, y: 0, z: 0}
-          Vector3RemapOne: {x: 1, y: 1, z: 1}
-          Vector4RemapZero: {x: 0, y: 0, z: 0, w: 0}
-          Vector4RemapOne: {x: 1, y: 1, z: 1, w: 1}
-          QuaternionRemapZero: {x: 0, y: 0, z: 0}
-          QuaternionRemapOne: {x: 180, y: 180, z: 180}
-          ColorRemapZero: {r: 1, g: 1, b: 1, a: 1}
-          ColorRemapOne: {r: 0, g: 0, b: 0, a: 1}
-          Level: 0
-        Mode: 1
-        Duration: 0.2
-        StartsOff: 0
-        RelativeValues: 1
-        AllowAdditivePlays: 0
-        DetermineInitialValueOnPlay: 0
-        LevelCurve:
-          MMTweenDefinitionType: 1
-          MMTweenCurve: 4
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.3
-              value: 1
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        RemapLevelZero: 0
-        RemapLevelOne: 1
-        InstantLevel: 1
-        ToDestinationLevel: 5
+        TargetCollider: {fileID: 5755668674425920377}
+        Mode: 0
 --- !u!1 &1235521694922144373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,7 +845,7 @@ GameObject:
   - component: {fileID: 5987777424509108295}
   - component: {fileID: 3960004845712070131}
   - component: {fileID: 877625132587819154}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SuckableEnemyBoss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1624,7 +884,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -2560,8 +1820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScaleModel: {fileID: 1822393165819416038}
   CharacterHealth: {fileID: 3960004845712070131}
-  CharacterAutoRespawn: {fileID: 0}
-  ScaleOnHeatlhFeedbackPlayer: {fileID: 0}
+  CharacterHandleSuckable: {fileID: 0}
 --- !u!1 &7994582950053947942
 GameObject:
   m_ObjectHideFlags: 0
@@ -3339,8 +2598,8 @@ MonoBehaviour:
         m_Calls: []
   DebugActive: 0
   FeedbacksList:
-  - rid: 464073299874021391
-  - rid: 464073299874021397
+  - rid: 6896531905641709598
+  - rid: 6896531905641709599
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   StopFeedbacksOnDisable: 0
@@ -3348,217 +2607,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 464073299874021391
-      type: {class: MMF_Scale, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
-      data:
-        Active: 0
-        UniqueID: 1833942375
-        Label: Scale
-        ChannelMode: 0
-        Channel: 0
-        MMChannelDefinition: {fileID: 0}
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0.1
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        AutomatedTargetAcquisition:
-          Mode: 0
-          ChildIndex: 0
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        UseRange: 0
-        RangeDistance: 5
-        UseRangeFalloff: 0
-        RangeFalloff:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 2572205389374291461}
-        DebugActive: 0
-        Mode: 2
-        AnimateScaleTarget: {fileID: 1822393165819416038}
-        AnimateScaleDuration: 0.1
-        RemapCurveZero: 0
-        RemapCurveOne: 1
-        Offset: 0
-        AnimateX: 0
-        AnimateScaleTweenX:
-          MMTweenDefinitionType: 1
-          MMTweenCurve: 32
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.3
-              value: 1.5
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        AnimateY: 0
-        AnimateScaleTweenY:
-          MMTweenDefinitionType: 1
-          MMTweenCurve: 4
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.3
-              value: 1.5
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        AnimateZ: 0
-        AnimateScaleTweenZ:
-          MMTweenDefinitionType: 1
-          MMTweenCurve: 4
-          Curve:
-            serializedVersion: 2
-            m_Curve:
-            - serializedVersion: 3
-              time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 0.3
-              value: 1.5
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            - serializedVersion: 3
-              time: 1
-              value: 0
-              inSlope: 0
-              outSlope: 0
-              tangentMode: 0
-              weightedMode: 0
-              inWeight: 0
-              outWeight: 0
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          Initialized: 0
-        UniformScaling: 1
-        AllowAdditivePlays: 0
-        DetermineScaleOnPlay: 0
-        DestinationScale: {x: 3, y: 3, z: 3}
-        AnimateScaleX:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        AnimateScaleY:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        AnimateScaleZ:
-          serializedVersion: 2
-          m_Curve: []
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-    - rid: 464073299874021397
+    - rid: 6896531905641709598
       type: {class: MMF_DebugLog, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks.MMTools}
       data:
         Active: 1
@@ -3630,3 +2679,73 @@ MonoBehaviour:
         DebugMessage: Died
         DebugColor: {r: 0, g: 1, b: 1, a: 1}
         DisplayFrameCount: 1
+    - rid: 6896531905641709599
+      type: {class: MMF_Collider, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
+      data:
+        Active: 1
+        UniqueID: 440362626
+        Label: Collider
+        ChannelMode: 0
+        Channel: 0
+        MMChannelDefinition: {fileID: 0}
+        Chance: 100
+        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
+        Timing:
+          TimescaleMode: 0
+          ExcludeFromHoldingPauses: 0
+          ContributeToTotalDuration: 1
+          InitialDelay: 0
+          CooldownDuration: 0
+          InterruptsOnStop: 1
+          NumberOfRepeats: 0
+          RepeatForever: 0
+          DelayBetweenRepeats: 1
+          MMFeedbacksDirectionCondition: 0
+          PlayDirection: 0
+          ConstantIntensity: 0
+          UseIntensityInterval: 0
+          IntensityIntervalMin: 0
+          IntensityIntervalMax: 0
+          Sequence: {fileID: 0}
+          TrackID: 0
+          Quantized: 0
+          TargetBPM: 120
+        AutomatedTargetAcquisition:
+          Mode: 0
+          ChildIndex: 0
+        RandomizeOutput: 0
+        RandomMultiplier: {x: 0.8, y: 1}
+        RandomizeDuration: 0
+        RandomDurationMultiplier: {x: 0.5, y: 2}
+        UseRange: 0
+        RangeDistance: 5
+        UseRangeFalloff: 0
+        RangeFalloff:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        RemapRangeFalloff: {x: 0, y: 1}
+        Owner: {fileID: 2572205389374291461}
+        DebugActive: 0
+        TargetCollider: {fileID: 5755668674425920377}
+        Mode: 0

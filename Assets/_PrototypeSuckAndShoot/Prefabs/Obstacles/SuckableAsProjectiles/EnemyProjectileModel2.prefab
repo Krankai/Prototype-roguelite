@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8311394671349921849}
   - component: {fileID: 800999390943268384}
   - component: {fileID: 8149919195901155710}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: MinimalDude
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,14 +170,14 @@ MonoBehaviour:
     m_Bits: 8192
   Owner: {fileID: 0}
   TriggerFilter: 195
-  MinDamageCaused: 30
-  MaxDamageCaused: 30
+  MinDamageCaused: 1
+  MaxDamageCaused: 1
   TypedDamages: []
   DamageDirectionMode: 1
   DamageCausedKnockbackType: 1
   DamageCausedKnockbackDirection: 0
   DamageCausedKnockbackForce: {x: 4, y: 4, z: 4}
-  InvincibilityDuration: 0.2
+  InvincibilityDuration: 0.5
   RepeatDamageOverTime: 0
   AmountOfRepeats: 3
   DurationBetweenRepeats: 1
@@ -211,7 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 196307917232834388}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: EnemyProjectileModel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 5687388111931445584}
   - component: {fileID: 6853752074815081676}
   - component: {fileID: 2771915342243871070}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}

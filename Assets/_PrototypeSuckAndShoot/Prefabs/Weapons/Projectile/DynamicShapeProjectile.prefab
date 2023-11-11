@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5834460316697690968}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Feedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 5580653490666802353}
   - component: {fileID: 5242114562268919112}
   - component: {fileID: 7021167097963546426}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: DynamicShapeProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8308040778993054176}
   - component: {fileID: 7494535026201186290}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: DeathFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,7 +615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2141130483953053343}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

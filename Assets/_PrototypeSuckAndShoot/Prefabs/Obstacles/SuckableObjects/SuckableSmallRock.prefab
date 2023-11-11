@@ -789,7 +789,7 @@ MonoBehaviour:
   PlayOnAwake: 0
   PermanentShake: 0
   Interruptible: 1
-  AlwaysResetTargetValuesAfterShake: 1
+  AlwaysResetTargetValuesAfterShake: 0
   OnlyUseShakerValues: 0
   CooldownBetweenShakes: 0
   Shaking: 0
