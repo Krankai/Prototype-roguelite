@@ -2433,7 +2433,7 @@ MonoBehaviour:
         PlayEvents:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 0}
+            - m_Target: {fileID: 5236581148019576012}
               m_TargetAssemblyTypeName: SpiritBomb.Prototype.SuckAndShoot.CharacterScaleOnHealth,
                 Assembly-CSharp
               m_MethodName: UpdateScaleOnHealth
@@ -2446,7 +2446,7 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 1
-            - m_Target: {fileID: 0}
+            - m_Target: {fileID: 288362284083721825}
               m_TargetAssemblyTypeName: SpiritBomb.Prototype.SuckAndShoot.CharacterSuckable,
                 Assembly-CSharp
               m_MethodName: UpdateSuckDurationOnHealth
@@ -2459,7 +2459,7 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 1
-            - m_Target: {fileID: 0}
+            - m_Target: {fileID: 288362284083721825}
               m_TargetAssemblyTypeName: SpiritBomb.Prototype.SuckAndShoot.CharacterSuckable,
                 Assembly-CSharp
               m_MethodName: SyncFeedbackScaleSucking
