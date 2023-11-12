@@ -180,7 +180,7 @@ MonoBehaviour:
   DamageOverTimeInterruptible: 1
   RepeatedDamageType: {fileID: 0}
   DamageTakenHealth: {fileID: 0}
-  DamageTakenEveryTime: 10
+  DamageTakenEveryTime: 1
   DamageTakenDamageable: 0
   DamageTakenNonDamageable: 0
   DamageTakenKnockbackType: 0

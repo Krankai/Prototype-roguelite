@@ -179,7 +179,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         protected virtual void CancelSuckingTargets()
         {
-            Debug.LogError("Cancel sucking targets");
+            Debug.Log("Cancel sucking targets");
 
             for (int i = 0, count = _listSucking.Count; i < count; ++i)
             {

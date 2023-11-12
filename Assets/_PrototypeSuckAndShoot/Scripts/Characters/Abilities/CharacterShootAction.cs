@@ -93,10 +93,11 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             if (HandleWeapon.CurrentWeapon == default)
             {
                 HandleWeapon.OnWeaponChange += () => OnSaveSuckedAsProjectile(eventType.Suckable);
-                return;
             }
-
-            OnSaveSuckedAsProjectile(eventType.Suckable);
+            else
+            {
+                OnSaveSuckedAsProjectile(eventType.Suckable);
+            }
         }
 
         protected virtual void OnSaveSuckedAsProjectile(CharacterSuckable suckedTarget)
@@ -107,7 +108,8 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 return;
             }
 
-            dynamicShapeWeapon.CacheProjectile(suckedTarget);
+            //dynamicShapeWeapon.CacheProjectile(suckedTarget);
+            dynamicShapeWeapon.SaveSuckedProjectile(suckedTarget);
         }
     }
 }

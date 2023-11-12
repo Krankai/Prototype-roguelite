@@ -74,6 +74,10 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Tooltip("the rotation for the projectile prefab")]
         public Vector3 RotationSuckableAsProjectile = Vector3.zero;
 
+        // whether the sucked object is shown
+        [Tooltip("whether the sucked object is shown")]
+        public bool IsShownOnSucked;
+
 
         // === Feedbacks
         [Header("Feedbacks")]
