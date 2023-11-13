@@ -606,9 +606,9 @@ MonoBehaviour:
   RotationMode: 1
   CharacterRotationAuthorized: 1
   ShouldRotateToFaceMovementDirection: 1
-  MovementRotationSpeed: 2
+  MovementRotationSpeed: 1
   MovementRotatingModel: {fileID: 0}
-  RotateToFaceMovementDirectionSpeed: 20
+  RotateToFaceMovementDirectionSpeed: 14
   AbsoluteThresholdMovement: 1
   ModelDirection: {x: 0, y: 0, z: 0}
   ModelAngles: {x: 0, y: 0, z: 0}
@@ -619,7 +619,7 @@ MonoBehaviour:
   AbsoluteThresholdWeapon: 0.5
   LockVerticalRotation: 1
   RotationSpeedResetSpeed: 2
-  RotationOffsetSmoothSpeed: 1
+  RotationOffsetSmoothSpeed: 0.8
   ForcedRotation: 0
   ForcedRotationDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &4187923116287535712
@@ -645,7 +645,7 @@ MonoBehaviour:
   BlockingWeaponStates: 
   Movement: 0
   InputAuthorized: 1
-  AnalogInput: 0
+  AnalogInput: 1
   ScriptDrivenInput: 0
   WalkSpeed: 8
   ShouldSetMovement: 1
@@ -976,6 +976,7 @@ MonoBehaviour:
   BlockingWeaponStates: 
   CurrentState: 0
   NextAction: 0
+  DelayTriggerSuckAfterShoot: 1
   ThresholdInputCharge: {x: 0.05, y: 0.05}
   ThresholdInputTrigger: {x: 0, y: 0}
   ShootAction: {fileID: 3866326512423039420}

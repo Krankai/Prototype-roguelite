@@ -305,8 +305,8 @@ MonoBehaviour:
     m_Bits: 8192
   DetectRadius: 10
   DetectOverlapMaximum: 5
-  SteeringSpeed: 10
-  CutOffSteerAngle: 1
+  SteeringSpeed: 5
+  CutOffSteerAngle: 2
   MaxApplySteeringAngle: 30
   _isDebugOn: 1
   _differenceAngle: 0

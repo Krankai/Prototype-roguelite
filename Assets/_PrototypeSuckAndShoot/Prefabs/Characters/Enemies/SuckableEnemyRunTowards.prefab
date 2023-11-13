@@ -432,7 +432,7 @@ MonoBehaviour:
   ScaleSuckableAsProjectile: {x: 1, y: 1, z: 1}
   OffsetSuckableAsProjectile: {x: 0, y: 0, z: 0}
   RotationSuckableAsProjectile: {x: 0, y: 0, z: 0}
-  IsShownOnSucked: 0
+  IsShownOnSucked: 1
   SuckingFeedback: {fileID: 839632881869006199}
 --- !u!114 &5728466621312208260
 MonoBehaviour:
@@ -2323,12 +2323,12 @@ PrefabInstance:
     - target: {fileID: 3100417960900732391, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
       propertyPath: Distance
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3591924661465503421, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
       propertyPath: MinimumDistance
-      value: 0.8
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5495023809184571578, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
@@ -2463,7 +2463,7 @@ PrefabInstance:
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
       propertyPath: States.Array.data[4].Transitions.array.Array.data[0].TrueState
-      value: Idling
+      value: Attacking
       objectReference: {fileID: 0}
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}

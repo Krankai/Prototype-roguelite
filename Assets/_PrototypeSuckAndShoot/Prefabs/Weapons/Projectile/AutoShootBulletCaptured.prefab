@@ -16,9 +16,8 @@ GameObject:
   - component: {fileID: -8733641825391124147}
   - component: {fileID: 681679507696313359}
   - component: {fileID: -3449764746670472433}
-  - component: {fileID: -5597180786924612219}
   m_Layer: 24
-  m_Name: AutoShootBullet
+  m_Name: AutoShootBulletCaptured
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.58, y: 0, z: 1.56}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2163525603998058676}
@@ -153,11 +152,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetLayerMask:
     serializedVersion: 2
-    m_Bits: 33555456
+    m_Bits: 8192
   Owner: {fileID: 0}
   TriggerFilter: 195
-  MinDamageCaused: 1
-  MaxDamageCaused: 1
+  MinDamageCaused: 10
+  MaxDamageCaused: 10
   TypedDamages: []
   DamageDirectionMode: 1
   DamageCausedKnockbackType: 1
@@ -256,7 +255,7 @@ MonoBehaviour:
   FaceDirection: 1
   FaceMovement: 0
   MovementVector: 0
-  Speed: 100
+  Speed: 180
   Acceleration: 10
   Direction: {x: -1, y: 0, z: 0}
   DirectionCanBeChangedBySpawner: 1
@@ -264,32 +263,6 @@ MonoBehaviour:
   ProjectileIsFacingRight: 1
   InitialInvulnerabilityDuration: 0
   DamageOwner: 0
---- !u!114 &-5597180786924612219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2770680601376600737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f284b1acf12f67d47b5fd52609198646, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsBeingSucked: 0
-  SuckDuration: 1
-  RatioTimeMaxCancellable: 0.8
-  IsStaticOnSucking: 1
-  CharacterHealth: {fileID: 0}
-  ScaleModel: {fileID: 0}
-  Points: 1
-  SuckableAsProjectilePrefab: {fileID: 0}
-  SuckableAsProjectileID: boss_projectile
-  ScaleSuckableAsProjectile: {x: 1, y: 1, z: 1}
-  OffsetSuckableAsProjectile: {x: 0, y: 0, z: 0}
-  RotationSuckableAsProjectile: {x: 0, y: 0, z: 0}
-  IsShownOnSucked: 0
-  SuckingFeedback: {fileID: 5649103713109168293}
 --- !u!1 &3716432802605781310
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1033419790441508377
 Transform:
   m_ObjectHideFlags: 0
@@ -359,7 +332,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2163525603998058676
 Transform:
   m_ObjectHideFlags: 0
@@ -456,7 +429,7 @@ MonoBehaviour:
     OnComplete:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: -5597180786924612219}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: SpiritBomb.Prototype.SuckAndShoot.CharacterSuckable,
             Assembly-CSharp
           m_MethodName: OnSuckingComplete
@@ -484,7 +457,7 @@ MonoBehaviour:
     OnRestoreInitialValues:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: -5597180786924612219}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: SpiritBomb.Prototype.SuckAndShoot.CharacterSuckable,
             Assembly-CSharp
           m_MethodName: OnRestore

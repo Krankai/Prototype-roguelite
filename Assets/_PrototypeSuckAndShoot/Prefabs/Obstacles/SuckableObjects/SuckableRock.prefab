@@ -165,6 +165,7 @@ MonoBehaviour:
   ScaleSuckableAsProjectile: {x: 100, y: 100, z: 100}
   OffsetSuckableAsProjectile: {x: 0, y: 0, z: 0}
   RotationSuckableAsProjectile: {x: 0, y: 0, z: 0}
+  IsShownOnSucked: 1
   SuckingFeedback: {fileID: 5426392173284384203}
 --- !u!114 &5076987314127273571
 MonoBehaviour:

@@ -162,10 +162,6 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             {
                 projectileObject.SetActive(false);
             }
-            else
-            {
-
-            }
 
             var projectileHealth = projectileObject.GetComponentInChildren<Health>();
             if (projectileHealth != default && suckable.IsShownOnSucked)
