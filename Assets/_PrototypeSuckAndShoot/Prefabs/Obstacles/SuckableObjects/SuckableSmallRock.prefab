@@ -734,7 +734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsBeingSucked: 0
-  SuckDuration: 1
+  SuckDuration: 0.25
   RatioTimeMaxCancellable: 0.9
   IsStaticOnSucking: 0
   CharacterHealth: {fileID: 401992522783907170}

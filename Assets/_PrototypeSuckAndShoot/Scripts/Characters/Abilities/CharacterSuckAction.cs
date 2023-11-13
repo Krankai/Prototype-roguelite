@@ -139,7 +139,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
             if (_listSuckableTargets.Count <= 0)
             {
-                OnSuckCompleteEvent?.Invoke(false);
+                //OnSuckCompleteEvent?.Invoke(false);
                 return false;
             }
 
