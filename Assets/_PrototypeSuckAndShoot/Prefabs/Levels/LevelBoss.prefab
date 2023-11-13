@@ -1343,11 +1343,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6809042927068187788}
     m_Modifications:
-    - target: {fileID: 1200695069351558229, guid: 36cbf4a99743d114c880a02c31473278,
-        type: 3}
-      propertyPath: SuckDuration
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4344289229411819029, guid: 36cbf4a99743d114c880a02c31473278,
         type: 3}
       propertyPath: m_LocalPosition.x

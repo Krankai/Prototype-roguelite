@@ -13,10 +13,16 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         [Tooltip("the current state: Idle (nothing), Charge (ready for action), or Trigger (execute action)")]
         [SerializeField, MMReadOnly]
         CharacterActionState CurrentState = CharacterActionState.Idle;
+
         // the next action to be executed on triggered
         [Tooltip("the next action to be executed on triggered")]
         [MMReadOnly]
         public CharacterActionType NextAction = CharacterActionType.Suck;
+
+        // the delay to trigger suck action right after shoot
+        [Tooltip("the delay to trigger suck action right after shoot")]
+        [Min(0)]
+        public float DelayTriggerSuckAfterShoot = 0.5f;
 
 
         [Header("Inputs")]
@@ -137,7 +143,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             _currentInput.x = _horizontalInput;
             _currentInput.y = _verticalInput;
 
-            if (CurrentState == CharacterActionState.Idle)
+            if (CurrentState == CharacterActionState.Idle || CurrentState == CharacterActionState.Sucking)
             {
                 if (_isPassThresholdCharge = _currentInput.magnitude >= ThresholdInputCharge.magnitude)
                 {
@@ -155,30 +161,26 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
         protected virtual void HandleTriggerAction()
         {
-            if (CurrentState != CharacterActionState.Trigger)
+            if (CurrentState == CharacterActionState.Trigger)
             {
-                return;
-            }
-
-            if (NextAction == CharacterActionType.Shoot)
-            {
-                if (!IsTriggerShootAtNoRotation || _isBelowShootThresholdAngle)
+                if (NextAction == CharacterActionType.Shoot)
                 {
-                    CurrentState = CharacterActionState.Executing;
-
-                    Debug.Log("Trigger shooting");
-                    ShootAction.ShootAllSuckedTargets();
+                    if (!IsTriggerShootAtNoRotation || _isBelowShootThresholdAngle)
+                    {
+                        ExecuteShootAction();
+                    }
+                }
+                else if (NextAction == CharacterActionType.Suck)
+                {
+                    if (!IsTriggerSuckAtNoRotation || _isBelowSuckThresholdAngle)
+                    {
+                        ExecuteSuckAction();
+                    }
                 }
             }
-            else if (NextAction == CharacterActionType.Suck)
+            else if (CurrentState == CharacterActionState.Sucking && Time.frameCount % 5 == 0)
             {
-                if (!IsTriggerSuckAtNoRotation || _isBelowSuckThresholdAngle)
-                {
-                    CurrentState = CharacterActionState.Executing;
-
-                    bool suckResult = SuckAction.SuckTargets();
-                    Debug.Log($"Trigger sucking: {suckResult}");
-                }
+                ExecuteSuckAction();
             }
         }
 
@@ -217,7 +219,30 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 NextAction = (CharacterActionType)(((int)NextAction + 1) % countEnums);
             }
 
+            if (NextAction == CharacterActionType.Suck)
+            {
+                Invoke(nameof(ExecuteSuckAction), DelayTriggerSuckAfterShoot);
+            }
+
             Debug.Log($"OnCompleteAction: {NextAction}");
+        }
+
+        protected virtual void ExecuteShootAction()
+        {
+            //CurrentState = CharacterActionState.Executing;
+            CurrentState = CharacterActionState.Shooting;
+
+            Debug.Log("Trigger shooting");
+            ShootAction.ShootAllSuckedTargets();
+        }
+
+        protected virtual void ExecuteSuckAction()
+        {
+            //CurrentState = CharacterActionState.Executing;
+            CurrentState = CharacterActionState.Sucking;
+
+            bool suckResult = SuckAction.SuckTargets();
+            Debug.Log($"Trigger sucking: {suckResult}");
         }
     }
 
@@ -227,6 +252,8 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         Charge = 1,
         Trigger = 2,
         Executing = 3,
+        Sucking = 4,
+        Shooting = 5,
     }
 
     public enum CharacterActionType

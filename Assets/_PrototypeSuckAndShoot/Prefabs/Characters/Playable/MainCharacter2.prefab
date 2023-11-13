@@ -883,7 +883,7 @@ MonoBehaviour:
   ShouldRotateToFaceMovementDirection: 1
   MovementRotationSpeed: 2
   MovementRotatingModel: {fileID: 0}
-  RotateToFaceMovementDirectionSpeed: 10
+  RotateToFaceMovementDirectionSpeed: 20
   AbsoluteThresholdMovement: 1
   ModelDirection: {x: 0, y: 0, z: 0}
   ModelAngles: {x: 0, y: 0, z: 0}
@@ -922,7 +922,7 @@ MonoBehaviour:
   InputAuthorized: 1
   AnalogInput: 0
   ScriptDrivenInput: 0
-  WalkSpeed: 6
+  WalkSpeed: 8
   ShouldSetMovement: 1
   IdleThreshold: 0.05
   Acceleration: 10
@@ -1255,10 +1255,10 @@ MonoBehaviour:
   ThresholdInputTrigger: {x: 0, y: 0}
   ShootAction: {fileID: 3866326512423039420}
   IsTriggerShootAtNoRotation: 0
-  MinShootingThresholdRotationAngle: 0.05
+  MinShootThresholdRotationAngle: 0.05
   SuckAction: {fileID: 488483498768945781}
   IsTriggerSuckAtNoRotation: 1
-  MinSuckingThresholdRotationAngle: 0.05
+  MinSuckThresholdRotationAngle: 0.05
   SuckActionFeedback: {fileID: 0}
   ShootActionFeedback: {fileID: 0}
   IsSuckNext: 0
@@ -1612,8 +1612,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShootProjectiles: []
   HandleWeapon: {fileID: 2717271642743271122}
-  ShootStartFeedback: {fileID: 0}
-  ShootCompleteFeedback: {fileID: 6837227579258368060}
+  ShootStartFeedback: {fileID: 6837227579258368060}
+  ShootCompleteFeedback: {fileID: 0}
   OnShootStartEvent:
     m_PersistentCalls:
       m_Calls: []
