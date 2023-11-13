@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 33555456
   Owner: {fileID: 0}
   TriggerFilter: 195
   MinDamageCaused: 10
@@ -162,7 +162,7 @@ MonoBehaviour:
   DamageDirectionMode: 1
   DamageCausedKnockbackType: 1
   DamageCausedKnockbackDirection: 0
-  DamageCausedKnockbackForce: {x: 2, y: 2, z: 2}
+  DamageCausedKnockbackForce: {x: 2, y: 0, z: 2}
   InvincibilityDuration: 0
   RepeatDamageOverTime: 0
   AmountOfRepeats: 3
@@ -288,6 +288,7 @@ MonoBehaviour:
   ScaleSuckableAsProjectile: {x: 1, y: 1, z: 1}
   OffsetSuckableAsProjectile: {x: 0, y: 0, z: 0}
   RotationSuckableAsProjectile: {x: 0, y: 0, z: 0}
+  IsShownOnSucked: 0
   SuckingFeedback: {fileID: 5649103713109168293}
 --- !u!1 &3716432802605781310
 GameObject:

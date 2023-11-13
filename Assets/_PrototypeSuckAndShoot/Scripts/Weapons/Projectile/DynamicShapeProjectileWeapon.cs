@@ -25,6 +25,15 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         protected int _indexHolderForSuckedObject = 0;
         protected Vector3 _localAttachPosition = Vector3.zero;
 
+        protected CharacterShootAction _shootAction;
+
+
+        public override void Initialization()
+        {
+            base.Initialization();
+
+            _shootAction = Owner.GetComponentInChildren<CharacterShootAction>();
+        }
 
         public override GameObject SpawnProjectile(Vector3 spawnPosition, int projectileIndex, int totalProjectiles, bool triggerObjectActivation = true)
         {
@@ -36,16 +45,22 @@ namespace SpiritBomb.Prototype.SuckAndShoot
                 if (_listCachedProjectiles.Count > 0)
                 {
                     //baseProjectile.SetActive(false);
+                    dynamicShapeProjectile.ModelAttachement.MMDestroyAllChildren();
 
                     var cachedProjectile = _listCachedProjectiles[0];
                     _listCachedProjectiles.RemoveAt(0);
 
-                    var currentWorldPosition = cachedProjectile.Model.transform.position;
+                    if (cachedProjectile.Health != default)
+                    {
+                        //cachedProjectile.Health.gameObject.layer = LayerMask.NameToLayer("Projectile");
+                        cachedProjectile.Health.OnDeath -= OnDeathSuckedProjectile;
+                    }
 
+                    var currentWorldPosition = cachedProjectile.Model.transform.position;
                     cachedProjectile.Model.transform.SetParent(dynamicShapeProjectile.ModelAttachement);
                     cachedProjectile.Model.transform.localPosition = cachedProjectile.Offset;
                     cachedProjectile.Model.transform.position = currentWorldPosition;
-                    cachedProjectile.Model.gameObject.SetActive(true);
+                    cachedProjectile.Model.SetActive(true);
 
                     //var matchedObject = dynamicShapeProjectile.ModelAttachement.MMFindDeepChildBreadthFirst(cachedProjectile.ID);
                     //if (matchedObject != default)
@@ -91,22 +106,22 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             modelHeatlh.MasterHealth = baseHealth;
         }
 
-        public virtual void CacheProjectile(CharacterSuckable suckable)
-        {
-            if (suckable.SuckableAsProjectilePrefab == default)
-            {
-                return;
-            }
+        //public virtual void CacheProjectile(CharacterSuckable suckable)
+        //{
+        //    if (suckable.SuckableAsProjectilePrefab == default)
+        //    {
+        //        return;
+        //    }
 
-            _listCachedProjectiles.Add(new SuckableProjectile
-            {
-                Model = suckable.SuckableAsProjectilePrefab,
-                ID = suckable.SuckableAsProjectileID,
-                Offset = suckable.OffsetSuckableAsProjectile,
-                Rotation = suckable.RotationSuckableAsProjectile,
-                Scale = suckable.ScaleSuckableAsProjectile,
-            });
-        }
+        //    _listCachedProjectiles.Add(new SuckableProjectile
+        //    {
+        //        Model = suckable.SuckableAsProjectilePrefab,
+        //        ID = suckable.SuckableAsProjectileID,
+        //        Offset = suckable.OffsetSuckableAsProjectile,
+        //        Rotation = suckable.RotationSuckableAsProjectile,
+        //        Scale = suckable.ScaleSuckableAsProjectile,
+        //    });
+        //}
 
         public virtual void SaveSuckedProjectile(CharacterSuckable suckable)
         {
@@ -147,15 +162,36 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             {
                 projectileObject.SetActive(false);
             }
+            else
+            {
+
+            }
+
+            var projectileHealth = projectileObject.GetComponentInChildren<Health>();
+            if (projectileHealth != default && suckable.IsShownOnSucked)
+            {
+                //projectileHealth.gameObject.layer = LayerMask.NameToLayer("SuckedProjectile");
+                projectileHealth.OnDeath += OnDeathSuckedProjectile;
+            }
 
             _listCachedProjectiles.Add(new SuckableProjectile
             {
                 Model = projectileObject,
+                Health = suckable.IsShownOnSucked ? projectileHealth : default,
                 ID = suckable.SuckableAsProjectileID,
                 Offset = suckable.OffsetSuckableAsProjectile,
                 Rotation = suckable.RotationSuckableAsProjectile,
                 Scale = suckable.ScaleSuckableAsProjectile,
             });
+        }
+
+        protected virtual void OnDeathSuckedProjectile()
+        {
+            MMGameEvent.Trigger("ReleaseSuckedTargets");
+            _shootAction.OnShootComplete();
+
+            // TODO: detect which one should be removed in case can have multiple 'shields'
+            _listCachedProjectiles.RemoveAt(0);
         }
     }
 
@@ -163,6 +199,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
     struct SuckableProjectile
     {
         public GameObject Model;
+        public Health Health;
         public string ID;
         public Vector3 Offset;
         public Vector3 Rotation;

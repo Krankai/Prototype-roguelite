@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7638107698959496289}
   - component: {fileID: 1841276260164863004}
   - component: {fileID: 2775717322274858943}
-  m_Layer: 18
+  m_Layer: 25
   m_Name: SmallRockProjectileModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
