@@ -864,6 +864,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SuckableEnemyRunAway (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2344625859800132653, guid: 6316107ebbc2aa74287b9400db1bf960,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2664698109101130201, guid: 6316107ebbc2aa74287b9400db1bf960,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -1654,6 +1659,11 @@ PrefabInstance:
       propertyPath: AutoRespawnDuration
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2433609789953503409, guid: dd44ada791de01949b03287b9cc2f308,
+        type: 3}
+      propertyPath: DisableAllComponentsOnKill
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2686074546485602792, guid: dd44ada791de01949b03287b9cc2f308,
         type: 3}
       propertyPath: m_Mesh
@@ -1672,7 +1682,7 @@ PrefabInstance:
     - target: {fileID: 4882868191403085473, guid: dd44ada791de01949b03287b9cc2f308,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5168390431066109118, guid: dd44ada791de01949b03287b9cc2f308,
         type: 3}
@@ -1694,12 +1704,6 @@ PrefabInstance:
       propertyPath: SuckDuration
       value: 0.1
       objectReference: {fileID: 0}
-    - target: {fileID: 6349480518366873123, guid: dd44ada791de01949b03287b9cc2f308,
-        type: 3}
-      propertyPath: SuckableAsProjectilePrefab
-      value: 
-      objectReference: {fileID: 8167313625216529914, guid: c69ca68b20d145648b4d7909405b47a2,
-        type: 3}
     - target: {fileID: 6648310872404707466, guid: dd44ada791de01949b03287b9cc2f308,
         type: 3}
       propertyPath: m_Mesh
@@ -1720,11 +1724,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 622021429}
-    - target: {fileID: 8424949988738758676, guid: dd44ada791de01949b03287b9cc2f308,
-        type: 3}
-      propertyPath: IsShownOnSucked
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8439672115362123903, guid: dd44ada791de01949b03287b9cc2f308,
         type: 3}
       propertyPath: m_Name

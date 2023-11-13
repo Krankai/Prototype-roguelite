@@ -8,16 +8,16 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 {
     public class WeaponAim3DForward : WeaponAim3D
     {
-        protected override void Initialization()
-        {
-            base.Initialization();
-            _weapon = gameObject.MMGetComponentNoAlloc<Weapon>();
-        }
-
         public override void GetScriptAim()
         {
             _currentAim = _weapon.transform.forward;
             base.GetScriptAim();
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, transform.position + 3 * _currentAim);
         }
     }
 }

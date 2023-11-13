@@ -148,7 +148,7 @@ MonoBehaviour:
   Spread: {x: 0, y: 0, z: 0}
   RotateWeaponOnSpread: 0
   RandomSpread: 1
-  SpawnPosition: {x: 0, y: 0, z: -1.5}
+  SpawnPosition: {x: 0, y: 0, z: 1}
   ObjectPooler: {fileID: 236579968993929095}
   SpawnFeedbacks: []
   TestShootButton: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   MutualizeWaitingPools: 0
   NestWaitingPool: 1
   NestUnderThis: 0
-  GameObjectToPool: {fileID: 2770680601376600737, guid: 91ff7271bb7602b4fa8e2df7910804ae,
+  GameObjectToPool: {fileID: 2770680601376600737, guid: 5c39c83d36ccfd6479656e7fc30bea10,
     type: 3}
   PoolSize: 5
   PoolCanExpand: 1

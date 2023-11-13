@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9975007fa7213e74c806a4da4629112e, type: 2}
+  - {fileID: 2100000, guid: 8381496784d42b841a499bae12a18214, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -202,6 +202,66 @@ MonoBehaviour:
   HitAnythingEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1441148440707050406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6622146904469902905}
+  - component: {fileID: 5734366067185918785}
+  m_Layer: 18
+  m_Name: ShootStartListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6622146904469902905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441148440707050406}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3745578464817362949}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5734366067185918785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441148440707050406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d32468fc4b09b2409873fc687f0e04d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventName: ShootSuckedProjectile
+  OnMMGameEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 292035843512490208}
+        m_TargetAssemblyTypeName: MoreMountains.Tools.AIBrain, MoreMountains.Tools
+        m_MethodName: TransitionToState
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Terminating
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &3186743469027083736
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,6 +365,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4517374565570997624}
+  - {fileID: 6622146904469902905}
   m_Father: {fileID: 196307917232834388}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4933797551723786747
@@ -628,8 +689,11 @@ GameObject:
   m_Component:
   - component: {fileID: 196307917232834388}
   - component: {fileID: 4421771966647179696}
+  - component: {fileID: 603624484764866178}
+  - component: {fileID: 1268826260513140161}
+  - component: {fileID: 6958345554420034902}
   m_Layer: 18
-  m_Name: EnemyProjectileModel3
+  m_Name: EnemyShootingProjectileModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -681,6 +745,136 @@ MonoBehaviour:
   - {fileID: 3186743469027083736}
   CharacterBrain: {fileID: 292035843512490208}
   OptimizeForMobile: 1
+--- !u!143 &603624484764866178
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167313625216529914}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Height: 0
+  m_Radius: 0.05
+  m_SlopeLimit: 45
+  m_StepOffset: 0
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1268826260513140161
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167313625216529914}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &6958345554420034902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167313625216529914}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c88994d153c654449e4c5012ac55def, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gravity: 40
+  GravityActive: 0
+  CrouchedRaycastLengthMultiplier: 1
+  PerformCardinalObstacleRaycastDetection: 0
+  Speed: {x: 0, y: 0, z: 0}
+  Velocity: {x: 0, y: 0, z: 0}
+  VelocityLastFrame: {x: 0, y: 0, z: 0}
+  Acceleration: {x: 0, y: 0, z: 0}
+  Grounded: 1
+  JustGotGrounded: 0
+  CurrentMovement: {x: 0, y: 0, z: 0}
+  CurrentDirection: {x: 0, y: 0, z: 0}
+  Friction: 0
+  AddedForce: {x: 0, y: 0, z: 0}
+  FreeMovement: 1
+  InputMoveDirection: {x: 0, y: 0, z: 0}
+  UpdateMode: 1
+  VelocityTransferMethod: 0
+  ObstaclesLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  GroundedRaycastLength: 5
+  MinimumGroundedDistance: 0.2
+  GroundedComputationMode: 1
+  GroundNormalHeightThreshold: 0.2
+  ImpactFalloff: 5
+  MaximumFallSpeed: 20
+  SlopeSpeedMultiplier:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -90
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 90
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  GroundNormal: {x: 0, y: 0, z: 0}
+  SlideOnSteepSurfaces: 1
+  SlidingSpeed: 15
+  SlidingSpeedControl: 0.4
+  SlidingDirectionControl: 1
 --- !u!1 &9038058798462724180
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,7 +1039,7 @@ PrefabInstance:
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
       propertyPath: States.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
@@ -860,7 +1054,7 @@ PrefabInstance:
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
       propertyPath: States.Array.data[3].StateName
-      value: Holding
+      value: Terminating
       objectReference: {fileID: 0}
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
@@ -891,8 +1085,7 @@ PrefabInstance:
         type: 3}
       propertyPath: States.Array.data[3].Actions.array.Array.data[0]
       value: 
-      objectReference: {fileID: 4039303599320825523, guid: 7f76e87a44292be46a35ae034a9e7c4e,
-        type: 3}
+      objectReference: {fileID: 2589246280173349394}
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
       propertyPath: States.Array.data[4].Actions.array.Array.data[0]
@@ -912,7 +1105,7 @@ PrefabInstance:
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
       propertyPath: States.Array.data[3].Transitions.array.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
@@ -944,8 +1137,7 @@ PrefabInstance:
         type: 3}
       propertyPath: States.Array.data[3].Transitions.array.Array.data[0].Decision
       value: 
-      objectReference: {fileID: 8089381474906095879, guid: 7f76e87a44292be46a35ae034a9e7c4e,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
       propertyPath: States.Array.data[4].Transitions.array.Array.data[0].Decision
@@ -1017,6 +1209,7 @@ PrefabInstance:
     - {fileID: 529865285076610571, guid: 8afbde67707f8764fb48951950d5e3c7, type: 3}
     - {fileID: 9086121401756230911, guid: 8afbde67707f8764fb48951950d5e3c7, type: 3}
     - {fileID: 3591924661465503421, guid: 8afbde67707f8764fb48951950d5e3c7, type: 3}
+    - {fileID: 3100417960900732391, guid: 8afbde67707f8764fb48951950d5e3c7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1064,8 +1257,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: PrepareAttack
-  AfterTimeMin: 1
-  AfterTimeMax: 1
+  AfterTimeMin: 0.5
+  AfterTimeMax: 0.5
 --- !u!114 &3557888813391162156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,8 +1272,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: AttackTime
-  AfterTimeMin: 0.5
-  AfterTimeMax: 0.5
+  AfterTimeMin: 0.1
+  AfterTimeMax: 0.1
 --- !u!114 &8752832352768867721
 MonoBehaviour:
   m_ObjectHideFlags: 0

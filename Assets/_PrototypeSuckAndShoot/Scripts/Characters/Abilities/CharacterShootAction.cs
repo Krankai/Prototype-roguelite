@@ -74,6 +74,8 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             }
             OnShootStartEvent?.Invoke();
 
+            MMGameEvent.Trigger("ShootSuckedProjectile");
+
             HandleWeapon.CurrentWeapon.WeaponStopMMFeedback = ShootCompleteFeedback;
             HandleWeapon.ShootStart();
         }
