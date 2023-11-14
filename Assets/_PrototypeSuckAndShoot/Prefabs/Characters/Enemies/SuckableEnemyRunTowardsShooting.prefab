@@ -922,7 +922,7 @@ MonoBehaviour:
   DisableGameObjectOnKill: 1
   IgnoreCheckpointsAlwaysRespawn: 1
   AssociatedCheckpoints: []
-  AutoRespawnDuration: 10
+  AutoRespawnDuration: 20
   AutoRespawnAmount: -1
   AutoRespawnRemainingAmount: 3
   RespawnEffect: {fileID: 0}
@@ -2407,6 +2407,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
+      propertyPath: States.Array.data[1].Actions.array.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
+        type: 3}
       propertyPath: States.Array.data[3].Actions.array.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2415,6 +2420,16 @@ PrefabInstance:
       propertyPath: States.Array.data[4].Actions.array.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
+        type: 3}
+      propertyPath: States.Array.data[1].Actions.array.Array.data[0]
+      value: 
+      objectReference: {fileID: 818733187391389600}
+    - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
+        type: 3}
+      propertyPath: States.Array.data[1].Actions.array.Array.data[1]
+      value: 
+      objectReference: {fileID: 1545265507116715906}
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
       propertyPath: States.Array.data[2].Actions.array.Array.data[0]
@@ -2557,7 +2572,23 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 609926690332426585}
+    - targetCorrespondingSourceObject: {fileID: 7005032535213694160, guid: 8afbde67707f8764fb48951950d5e3c7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 818733187391389600}
   m_SourcePrefab: {fileID: 100100000, guid: 8afbde67707f8764fb48951950d5e3c7, type: 3}
+--- !u!114 &1545265507116715906 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3591924661465503421, guid: 8afbde67707f8764fb48951950d5e3c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2641632452690762047}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5016492397252675055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97230edd623230e4ea486ef91a6d23e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5016492397252675055 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7005032535213694160, guid: 8afbde67707f8764fb48951950d5e3c7,
@@ -2628,6 +2659,21 @@ MonoBehaviour:
   Label: AttackingTime
   AfterTimeMin: 0.1
   AfterTimeMax: 0.1
+--- !u!114 &818733187391389600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5016492397252675055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad888dc2bbe117441bde19ec878ff32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationMode: 0
+  Label: RotateTowardsTarget
+  LockRotationX: 1
 --- !u!114 &5069793980005104501 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
