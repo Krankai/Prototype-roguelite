@@ -91,6 +91,7 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         protected ProjectileMotionControl _projectileMotionControl;
 
         protected float _originalSuckDuration;
+        protected float _cachedHealth;
 
 
         protected virtual void Start()
@@ -177,9 +178,12 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             SuckingFeedback.RefreshCache();
         }
 
+        // Obsolete
         public virtual void OnSucking(CharacterSuckOnSight suckOnSight)
         {
             if (IsBeingSucked) return;
+
+            _cachedHealth = CharacterHealth.CurrentHealth;
 
             if (SuckingFeedback != default)
             {
@@ -195,6 +199,8 @@ namespace SpiritBomb.Prototype.SuckAndShoot
         public virtual void OnSucking(CharacterSuckAction suckAction)
         {
             if (IsBeingSucked) return;
+
+            _cachedHealth = CharacterHealth.CurrentHealth;
 
             if (SuckingFeedback != default)
             {
@@ -286,12 +292,19 @@ namespace SpiritBomb.Prototype.SuckAndShoot
 
                 SuckingFeedback.StopFeedbacks();
                 SuckingFeedback.RestoreInitialValues();
+
+                Invoke(nameof(ResetHealth), 0.1f);
             }
 
             if (IsStaticOnSucking && _projectileMotionControl)
             {
                 _projectileMotionControl.ResumeControl();
             }
+        }
+
+        protected virtual void ResetHealth()
+        {
+            CharacterHealth.SetHealth(_cachedHealth);
         }
 
         public virtual void UpdateSuckDurationOnHealth()

@@ -232,7 +232,6 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             //CurrentState = CharacterActionState.Executing;
             CurrentState = CharacterActionState.Shooting;
 
-            Debug.Log("Trigger shooting");
             ShootAction.ShootAllSuckedTargets();
         }
 
@@ -242,7 +241,6 @@ namespace SpiritBomb.Prototype.SuckAndShoot
             CurrentState = CharacterActionState.Sucking;
 
             bool suckResult = SuckAction.SuckTargets();
-            Debug.Log($"Trigger sucking: {suckResult}");
         }
     }
 
