@@ -83,19 +83,19 @@ MonoBehaviour:
   WeaponCurrentlyActive: 1
   InputAuthorized: 1
   TriggerMode: 1
-  DelayBeforeUse: 0.1
+  DelayBeforeUse: 2.5
   DelayBeforeUseReleaseInterruption: 0
-  TimeBetweenUses: 1
+  TimeBetweenUses: 5.5
   TimeBetweenUsesReleaseInterruption: 0
-  UseBurstMode: 0
-  BurstLength: 3
-  BurstTimeBetweenShots: 0.1
+  UseBurstMode: 1
+  BurstLength: 5
+  BurstTimeBetweenShots: 0.25
   MagazineBased: 0
   MagazineSize: 30
   AutoReload: 0
   NoInputReload: 0
   ReloadTime: 2
-  AmmoConsumedPerShot: 1
+  AmmoConsumedPerShot: 0
   AutoDestroyWhenEmpty: 0
   AutoDestroyWhenEmptyDelay: 1
   PreventReloadIfAmmoEmpty: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   ProjectilesPerShot: 1
   SpawnTransforms: []
   SpawnTransformsMode: 1
-  Spread: {x: 0, y: 0, z: 0}
+  Spread: {x: 0, y: 5, z: 0}
   RotateWeaponOnSpread: 0
   RandomSpread: 1
   SpawnPosition: {x: 0, y: 0, z: 1}

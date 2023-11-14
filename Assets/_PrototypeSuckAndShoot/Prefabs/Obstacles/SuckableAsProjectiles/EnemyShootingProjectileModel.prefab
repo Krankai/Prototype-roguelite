@@ -1260,8 +1260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Label: PrepareAttack
-  AfterTimeMin: 0.5
-  AfterTimeMax: 0.5
+  AfterTimeMin: 0.2
+  AfterTimeMax: 0.2
 --- !u!114 &3557888813391162156
 MonoBehaviour:
   m_ObjectHideFlags: 0
