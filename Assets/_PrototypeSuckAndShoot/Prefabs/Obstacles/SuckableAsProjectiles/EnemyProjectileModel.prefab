@@ -917,7 +917,7 @@ PrefabInstance:
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
       propertyPath: States.Array.data[0].Transitions.array.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
@@ -943,7 +943,7 @@ PrefabInstance:
         type: 3}
       propertyPath: States.Array.data[0].Transitions.array.Array.data[1].Decision
       value: 
-      objectReference: {fileID: 8089381474906095879}
+      objectReference: {fileID: 8983432850595771297}
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
       propertyPath: States.Array.data[1].Transitions.array.Array.data[0].Decision
@@ -972,7 +972,7 @@ PrefabInstance:
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
       propertyPath: States.Array.data[0].Transitions.array.Array.data[1].TrueState
-      value: Attacking
+      value: Terminating
       objectReference: {fileID: 0}
     - target: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
         type: 3}
@@ -1044,6 +1044,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8939228717046792904}
+    - targetCorrespondingSourceObject: {fileID: 7005032535213694160, guid: 8afbde67707f8764fb48951950d5e3c7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8983432850595771297}
   m_SourcePrefab: {fileID: 100100000, guid: 8afbde67707f8764fb48951950d5e3c7, type: 3}
 --- !u!1 &2029028253830968027 stripped
 GameObject:
@@ -1096,6 +1100,20 @@ MonoBehaviour:
   Label: AttackTime
   AfterTimeMin: 0.1
   AfterTimeMax: 0.5
+--- !u!114 &8983432850595771297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029028253830968027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b145c49e93a5243bc218ef7582606f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: TimeToStop
+  AfterTime: 10
 --- !u!114 &2300532301059902529 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7130166312119624266, guid: 8afbde67707f8764fb48951950d5e3c7,
